@@ -77,7 +77,7 @@ export const Sidebar = () => {
                 color: ${token.colorInfoTextActive};
               `}
             >
-              پنل مدیریت فرایاد
+              پنل مدیریت پیامک
             </Typography>
           </Link>
         </ImageContainer>
@@ -97,39 +97,6 @@ export const Sidebar = () => {
             onClick={(event) => changePage(event)}
           />
           <FloatBox>
-            <Flex vertical gap={10} align="center">
-              <Image
-                src="/media/vector1.svg"
-                preview={false}
-                wrapperClassName={css`
-                  width: 60%;
-                  margin: 0 auto;
-                `}
-              />
-              <Typography>
-                <LastUpdate token={token}>
-                  آخرین بروزرسانی: 10/9/1403
-                </LastUpdate>
-                <Text
-                  className={css`
-                    font-size: 11px;
-                    color: ${token.colorText};
-                  `}
-                >
-                  نسخه: 4.5.6
-                </Text>
-              </Typography>
-            </Flex>
-
-            <Divider />
-            <Quote vertical token={token}>
-              <QuoteContainer>
-                <QuoteText token={token}>
-                  باور کنید که می توانید و در نیمه راه موفقیت هستید
-                </QuoteText>
-              </QuoteContainer>
-            </Quote>
-            <Divider />
             <Profile onSelectOption={onSelectOption} />
           </FloatBox>
         </Flex>
