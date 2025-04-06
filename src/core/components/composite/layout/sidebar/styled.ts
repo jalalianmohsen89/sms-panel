@@ -45,7 +45,7 @@ export const SidebarContainer = styled("div")<TokenType & PatternType>(
 
 export const Navigation = styled(Menu)<TokenType & PatternType>(
   ({ token, pattern }) => ({
-    height: "calc(100% - 430px)",
+    height: "calc(100% - 150px)",
     overflow: "auto",
     marginTop: "2rem",
     background: hexToRgba(token.colorBgContainer, +pattern?.navOpacity),
