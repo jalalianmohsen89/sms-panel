@@ -5,16 +5,28 @@ import image11 from "@/core/assets/images/pic/image11.jpg";
 import image12 from "@/core/assets/images/pic/image12.jpeg";
 import image13 from "@/core/assets/images/pic/image13.jpeg";
 import image14 from "@/core/assets/images/pic/image14.jpeg";
-import { Pencil, Trash, Create, ShiedLockFill, SMS } from "@/core/icons";
+import { Create, Pencil, SMS, Trash } from "@/core/icons";
 import { IPatterns } from "@/core/types";
 
 export const permissionList = ["UI::Sms::SendPersonal", "UI::Sms::Report"];
 
 export const navigation = [
   {
-    key: "permission",
-    icon: <ShiedLockFill />,
-    label: "دسترسی ها"
+    key: "sms",
+    // eslint-disable-next-line react/jsx-pascal-case
+    icon: <SMS />,
+    label: "پیامک ها",
+    style: { borderBottom: "1px solid #e8e8e8" },
+    children: [
+      {
+        key: "send_personal",
+        label: "ارسال پیامک"
+      },
+      {
+        key: "report",
+        label: " گزارش پیامک ها"
+      }
+    ]
   },
   {
     key: "sms",
