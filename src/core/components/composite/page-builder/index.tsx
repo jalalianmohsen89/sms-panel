@@ -79,8 +79,11 @@ export const PageBuilder: FC<Props> = ({
           >
             <Typography
               className={css`
+                width: 100%;
+                max-width: 1360px;
                 font-size: 20px;
                 font-weight: bold;
+                margin: 0 auto;
               `}
             >
               {pageData.page.title}

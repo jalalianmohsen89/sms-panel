@@ -10,7 +10,7 @@ export const MasterHeader = styled(Header)<TokenType & PatternType>(
   ({ token, pattern }) => ({
     width: "100%",
     padding: "0 1rem",
-    height: "63px",
+    height: "67px",
     display: "flex",
     alignItems: "center",
     background: hexToRgba(token.colorBgContainer, +pattern?.layoutOpacity),

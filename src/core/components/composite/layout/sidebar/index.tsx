@@ -1,25 +1,21 @@
-import { css } from "@emotion/css";
-import { Divider, Flex, Image, Typography } from "@/core/components/base";
-import { navigation } from "@/core/content";
-import { theme as themeContent } from "@/core/theme";
+import { Flex, Image, Typography } from "@/core/components/base";
+import { Profile } from "@/core/components/composite";
+import PatternSelect from "@/core/components/composite/layout/sidebar/PatternSelect.tsx";
 import {
   FloatBox,
   ImageContainer,
-  LastUpdate,
   Navigation,
-  Quote,
-  QuoteContainer,
-  QuoteText,
   // Segments,
   SettingModal,
   SidebarContainer,
   SiderBox
 } from "@/core/components/composite/layout/sidebar/styled";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { Profile } from "@/core/components/composite";
-import PatternSelect from "@/core/components/composite/layout/sidebar/PatternSelect.tsx";
+import { navigation } from "@/core/content";
 import { usePattern } from "@/core/context/PatternContext.tsx";
+import { theme as themeContent } from "@/core/theme";
+import { css } from "@emotion/css";
 import { useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export const Sidebar = () => {
   // ---------------------- variables ---------------------

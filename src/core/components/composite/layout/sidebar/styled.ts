@@ -32,9 +32,9 @@ export const SidebarContainer = styled("div")<TokenType & PatternType>(
     top: 0,
 
     "@media (min-width: 991px)": {
-      right: 6,
+      right: 5,
       bottom: 0,
-      top: 6,
+      top: 5,
       borderRadius: "16px 16px 16px 0",
       overflow: "hidden",
       backdropFilter: `blur(${pattern?.blur}px)`,
@@ -84,6 +84,8 @@ export const Navigation = styled(Menu)<TokenType & PatternType>(
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
+      borderRadius: 0,
+      margin: "0 8px",
 
       "&::after": {
         content: "''",
