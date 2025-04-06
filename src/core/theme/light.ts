@@ -1,0 +1,186 @@
+import { ThemeConfig } from "antd";
+
+export const lightTheme: ThemeConfig = {
+  token: {
+    colorBgContainer: "#FFFFFF",
+    colorBgLayout: "#F8F8F9",
+    colorPrimary: "#1A85F6",
+    colorPrimaryText: "#1A85F6",
+    colorSuccess: "#028764",
+    colorSuccessText: "#028764",
+    colorError: "#D93953",
+    colorErrorText: "#D93953",
+    colorWarning: "#F8AB17",
+    colorWarningText: "#F8AB17",
+    colorText: "#090909",
+    colorIcon: "#090909",
+    colorBgSolid: "#F8F8F9",
+    colorFillTertiary: "#E0E1E4",
+    colorFillSecondary: "#C3C5C9",
+    colorInfo: "#1A85F6",
+    colorBorder: "rgba(9, 9, 9, 0.1)",
+    colorTextSecondary: "#646B71",
+    fontFamily: "Vazir"
+  },
+  components: {
+    Alert: {
+      colorSuccessBg: "#F2F8F6",
+      colorSuccessBorder: "#028764",
+      colorSuccessText: "#026E51",
+      colorInfoBg: "#F5F8FC",
+      colorInfoBorder: "#1A85F6",
+      colorInfoText: "#1D61BA",
+      colorWarningBg: "#FEF9EC",
+      colorWarningBorder: "#F8AB17",
+      colorWarningText: "#B37A0E",
+      colorErrorBg: "#FEF2F4",
+      colorErrorBorder: "#D93953",
+      colorErrorText: "#A72A3F"
+    },
+    Button: {
+      primaryShadow: "none",
+      dangerShadow: "none",
+      colorBgContainer: "#FFFFFF",
+      colorLink: "#1A85F6",
+      colorBgContainerDisabled: "#E0E1E4",
+      colorTextDisabled: "#646B71",
+      colorError: "#D93953",
+      colorErrorActive: "#A72A3F",
+      colorErrorHover: "#EC7388",
+      colorErrorBorderHover: "#EC7388",
+      colorErrorBg: "#FFD8DA"
+    },
+    Menu: {
+      dangerItemSelectedColor: "#EC7388",
+      itemSelectedBg: "#E9EFFC",
+      itemSelectedColor: "#1A85F6",
+      colorIcon: "#1A85F6",
+      groupTitleColor: "#646B71",
+      colorSplit: "#E0E1E4",
+      groupTitleFontSize: 14
+    },
+    Input: {
+      colorTextPlaceholder: "#646B71",
+      colorBorder: "#E0E1E4",
+      colorErrorText: "#D93953",
+      colorError: "#D93953",
+      activeShadow: "#1A85F61a"
+    },
+    Select: {
+      colorTextPlaceholder: "#646B71",
+      colorBorder: "#E0E1E4",
+      colorBgElevated: "#FFFFFF",
+      optionSelectedBg: "#E9EFFC",
+      optionActiveBg: "#E0E1E4",
+      colorTextQuaternary: "#090909",
+      activeOutlineColor: "#1A85F64d",
+      colorErrorOutline: "#ffffff00",
+      colorError: "#D93953",
+      colorWarningOutline: "#fdfdfd00"
+    },
+    Checkbox: {
+      colorPrimary: "#1A85F6",
+      colorBgContainerDisabled: "#E0E1E4",
+      colorTextDisabled: "#646B71",
+      colorPrimaryHover: "#4D9BF8"
+    },
+    Radio: {
+      colorPrimary: "#1A85F6",
+      colorBgContainerDisabled: "#E0E1E4",
+      colorTextDisabled: "#646B71",
+      colorPrimaryHover: "#4D9BF8"
+    },
+    Pagination: {
+      itemActiveColorDisabled: "#7d7d7e",
+      itemActiveBgDisabled: "#8e8e8e14",
+      colorPrimary: "#1A85F6",
+      colorTextDisabled: "#646B71",
+      controlOutlineWidth: 0,
+      lineWidthFocus: 0
+    },
+    Cascader: {
+      colorSplit: "#E0E1E4",
+      colorBorder: "#EC7388",
+      optionSelectedBg: "#E9EFFC",
+      colorHighlight: "#1A85F6",
+      colorTextDescription: "#090909"
+    },
+    Form: {
+      labelRequiredMarkColor: "#D93953",
+      colorError: "#D93953"
+    },
+    Upload: {
+      colorPrimaryHover: "#1A85F6"
+    },
+    Descriptions: {
+      colorTextSecondary: "#646B71"
+    },
+    Empty: {
+      colorTextDescription: "#646B71"
+    },
+    Popover: {
+      colorBgElevated: "#FFFFFF"
+    },
+    Segmented: {
+      itemColor: "#090909",
+      itemSelectedBg: "#E9EFFC"
+    },
+    Table: {
+      colorLink: "#1D61BA",
+      colorLinkHover: "#1A85F6",
+      borderColor: "#E0E1E4"
+    },
+    Tabs: {
+      itemSelectedColor: "#1A85F6",
+      itemHoverColor: "#1D61BA",
+      inkBarColor: "#1D61BA"
+    },
+    Tooltip: {
+      colorBgSpotlight: "#FFFFFF",
+      colorTextLightSolid: "#090909"
+    },
+    Tree: {
+      colorText: "#090909",
+      colorTextDisabled: "#646B71",
+      directoryNodeSelectedBg: "#E9EFFC",
+      nodeSelectedBg: "#E0E1E4"
+    },
+    Drawer: {
+      colorBgElevated: "#FFFFFF",
+      colorSplit: "#E0E1E4"
+    },
+    Message: {
+      contentBg: "#FFFFFF"
+    },
+    Modal: {
+      contentBg: "#FFFFFF",
+      headerBg: "#F8F8F9",
+      colorText: "#646B71"
+    },
+    Notification: {
+      colorBgElevated: "#FFFFFF"
+    },
+    Result: {
+      colorTextDescription: "#646B71"
+    },
+    Spin: {
+      colorPrimary: "#1A85F6"
+    },
+    Dropdown: {
+      colorBgElevated: "#FFFFFF",
+      colorError: "#A72A3F",
+      colorTextDisabled: "#646B71"
+    },
+    Divider: {
+      colorSplit: "rgba(9, 9, 9, 0.1)"
+    },
+    DatePicker: {
+      colorTextPlaceholder: "#646B71",
+      colorTextDisabled: "#E0E1E4",
+      colorText: "#090909",
+      colorTextHeading: "#13c2c2",
+      colorIcon: "#090909",
+      colorBgElevated: "#FFFFFF"
+    }
+  }
+};

@@ -1,0 +1,12 @@
+import { IModuleRoutes } from "@/core/types";
+import {{pascalCase pageName}} from "@/app/modules/{{kebabCase name}}/{{kebabCase pageName}}/index.tsx";
+
+export const {{camelCase name}}Routes: IModuleRoutes[] = [
+  // pages
+
+  {
+    path: "{{snakeCase pageName}}",
+    component: <{{pascalCase pageName}} />,
+    permission: "UI::{{pascalCase name}}::{{pascalCase pageName}}"
+  }
+];

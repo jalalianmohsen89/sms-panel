@@ -1,0 +1,33 @@
+import { FC } from "react";
+import { Menu as BaseMenu, MenuProps } from "antd";
+import Item from "antd/es/menu/MenuItem";
+import SubMenu from "antd/es/menu/SubMenu";
+import MenuDivider from "antd/es/menu/MenuDivider";
+
+export type Props = Pick<
+  MenuProps,
+  | "items"
+  | "children"
+  | "disabled"
+  | "direction"
+  | "mode"
+  | "inlineCollapsed"
+  | "defaultOpenKeys"
+  | "openKeys"
+  | "defaultActiveFirst"
+  | "defaultSelectedKeys"
+  | "selectedKeys"
+  | "itemIcon"
+  | "onClick"
+  | "onOpenChange"
+  | "style"
+>;
+export const Menu: FC<Props> & {
+  Item: typeof Item;
+  SubMenu: typeof SubMenu;
+  Divider: typeof MenuDivider;
+} = (props) => <BaseMenu {...props} />;
+
+Menu.Item = Item;
+Menu.SubMenu = SubMenu;
+Menu.Divider = MenuDivider;

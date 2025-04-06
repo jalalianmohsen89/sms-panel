@@ -1,0 +1,122 @@
+@import "fonts.css";
+
+body {
+  font-family: Vazir !important;
+  margin: 0;
+  border-width: 0;
+  padding: 0;
+  width: 100% !important;
+}
+
+.ant-typography,
+.ant-btn,
+.ant-menu,
+.ant-form-item,
+.ant-input {
+  font-family: Vazir !important;
+}
+
+.ant-typography,
+.ant-menu {
+  user-select: none;
+}
+
+.ant-divider {
+  margin: 0;
+}
+.ant-space-item {
+  width: 100%;
+}
+
+.shellTheme__item {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  filter: contrast(50%);
+  overflow: hidden;
+  cursor: pointer;
+
+  &.active {
+    border: 2px solid white;
+    filter: contrast(100%);
+  }
+
+  & img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.shellTheme__default {
+  background-color: #ccc;
+}
+
+.backgroundPattern {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: repeat;
+  background-size: auto;
+  background-position: center;
+  z-index: 0;
+}
+
+.ant-table-expanded-row-fixed,
+.ant-select,
+.ant-upload-wrapper,
+.ant-upload,
+.ant-upload .ant-btn-default {
+  width: 100% !important;
+}
+
+.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+  background-color: #4d9bf81a !important;
+}
+
+.ant-empty-image svg path {
+  stroke: #898e94;
+}
+.ant-otp {
+  direction: ltr !important;
+}
+
+/* استایل اصلی برای RTL */
+.quill-rtl-container {
+  font-family: "Vazir", sans-serif;
+}
+
+/* تنظیمات RTL برای ادیتور */
+.ql-container.ql-snow {
+  border: 1px solid #ddd;
+  border-radius: 0 0 8px 8px;
+  text-align: right;
+  direction: rtl;
+}
+
+/* نوار ابزار RTL */
+.ql-toolbar.ql-snow {
+  border: 1px solid #ddd;
+  border-radius: 8px 8px 0 0;
+  text-align: right;
+}
+
+/* محتوای ادیتور */
+.ql-editor {
+  line-height: 2;
+  font-size: 16px;
+  text-align: right;
+}
+
+/* تنظیمات خاص برای لیست‌ها */
+.ql-editor ol,
+.ql-editor ul {
+  padding-right: 1.5em;
+  padding-left: 0;
+}
+
+/* دکمه‌های فارسی شده در نوار ابزار */
+.ql-formats button::before {
+  font-family: "Vazir";
+}
