@@ -1,14 +1,8 @@
-import { Section } from "@/core/styled";
-import { FC, ReactNode } from "react";
-import {
-  Modal,
-  Flex,
-  Typography,
-  Drawer,
-  Button
-} from "@/core/components/base";
+import { Button, Drawer, Flex, Modal } from "@/core/components/base";
 import { DataTable, PageBuilderFilter } from "@/core/components/composite";
+import { Section, TitlePage } from "@/core/styled";
 import { css } from "@emotion/css";
+import { FC, ReactNode } from "react";
 import { SortOrder } from "../data-table/types";
 
 import { HiPlus } from "react-icons/hi";
@@ -77,17 +71,7 @@ export const PageBuilder: FC<Props> = ({
               margin-bottom: 20px;
             `}
           >
-            <Typography
-              className={css`
-                width: 100%;
-                max-width: 1360px;
-                font-size: 20px;
-                font-weight: bold;
-                margin: 0 auto;
-              `}
-            >
-              {pageData.page.title}
-            </Typography>
+            <TitlePage>{pageData.page.title}</TitlePage>
           </Flex>
           {pageData.filters && <PageBuilderFilter list={pageData.filters} />}
           {pageData.page.createForm && (

@@ -16,11 +16,21 @@ export const FormTitle = styled(Typography)<TokenType>(({ token }) => ({
 
 export const Section = styled("section")<TokenType & { isBorder?: boolean }>(
   ({ token, isBorder = true }) => ({
+    width: "100%",
+    maxWidth: 1360,
     backgroundColor: hexToRgba(token.colorBgContainer, isBorder ? 0.7 : 1),
     padding: "2rem",
     borderRadius: 12,
-    marginBottom: "2rem",
+    margin: "0 auto 2rem",
     backdropFilter: "blur(40px)",
     border: `1px solid ${isBorder ? token.colorBorder : "transparent"}`
   })
 );
+
+export const TitlePage = styled(Typography)({
+  width: "100%",
+  maxWidth: "1360px",
+  fontSize: "20px",
+  fontWeight: "bold",
+  margin: "0 auto"
+});
