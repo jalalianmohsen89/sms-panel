@@ -3,7 +3,6 @@ import { useSearchParams } from "react-router-dom";
 import { IPageBuilderFilter } from "../types";
 import FilterItem from "./FilterItem";
 import { Col } from "@/core/components/base";
-import useStore from "@/core/store";
 
 type Props = {
   list: IPageBuilderFilter[];
@@ -12,7 +11,6 @@ const usePageBuilderFilterHook = (props: Props) => {
   // -------------------- variables ----------------------
   const [params, setParams] = useState<any>({});
   const [searchParams, setSearchParams] = useSearchParams();
-  const { lang, setLang } = useStore();
 
   // -------------------- methods ----------------------
   const filterQueryParams = () =>
@@ -27,9 +25,6 @@ const usePageBuilderFilterHook = (props: Props) => {
     const queryString = new URLSearchParams(filteredParams as any).toString();
 
     setSearchParams(queryString);
-    if (filteredParams?.lang) {
-      setLang(filteredParams?.lang as string);
-    }
     // props.onSend();
   };
 
@@ -71,9 +66,6 @@ const usePageBuilderFilterHook = (props: Props) => {
       let initParam = { ...params };
 
       props.list.map((item: IPageBuilderFilter) => {
-        if (lang && item.field === "lang") {
-          initParam = { ...initParam, ...{ lang } };
-        }
         if (item.defaultValue)
           initParam = { ...initParam, ...{ [item.field]: item.defaultValue } };
       });

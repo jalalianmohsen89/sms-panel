@@ -1,4 +1,4 @@
-import { ShowFormType } from "@/core/types";
+import ConvertDate from "../columns/convert-date";
 import {
   IDataMap,
   IPage,
@@ -35,12 +35,12 @@ export const dataMapsList: IDataMap[] = [
   {
     value: 0,
     label: "ساده",
-    method: (data: any) => data.data
+    method: (data: any) => data
   },
   {
     value: 1,
     label: "پیچیده",
-    method: (data: any) => data.data
+    method: (data: any) => data
   }
 ];
 
@@ -49,7 +49,7 @@ export const pages: IPage[] = [
     title: "پیامک ها",
     pageId: "sms",
     pageUrl: "/sms",
-    apiUrl: "/v1/categories/list",
+    apiUrl: "/sms",
     query: null,
     dataMap: dataMapsList[0]
     // createForm: {
@@ -62,9 +62,8 @@ export const pages: IPage[] = [
 
 export const typeValueColumns: ITypeValueColumn[] = [
   {
-    label: "sound",
-    value: (item: any) => <></>
-    // value: (item: any) => <WordSound {...item} />
+    label: "createdAt",
+    value: (item: any) => <ConvertDate date={item.createdAt} />
   },
   {
     label: "dateRange",

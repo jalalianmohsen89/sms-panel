@@ -1,0 +1,10 @@
+import { Typography } from "@/core/components/base";
+import dayjs from "@/core/functions/dayjs";
+
+const ConvertDate = (props: any) => {
+  const dateValue = props.date ? dayjs(props.date).format("YYYY/MM/DD") : "";
+
+  return <Typography>{dateValue}</Typography>;
+};
+
+export default ConvertDate;
