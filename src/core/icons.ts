@@ -45,5 +45,6 @@ export {
   BiItalic as Italic,
   BiUnderline as Underline
 } from "react-icons/bi";
+export { IoMdCloudUpload as Upload } from "react-icons/io";
 
 export { MdTitle as Title } from "react-icons/md";
