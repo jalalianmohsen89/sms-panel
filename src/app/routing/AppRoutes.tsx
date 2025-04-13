@@ -6,6 +6,7 @@ import { PrivateRoutes } from "@/app/routing/PrivateRoutes.tsx";
 import Dashboard from "../Dashboard.tsx";
 import Login from "../modules/auth/Login.tsx";
 import useStore from "@/core/store";
+import Register from "../modules/auth/Register.tsx";
 
 const routesUser = createBrowserRouter([
   {
@@ -39,6 +40,10 @@ const routesGuest = createBrowserRouter([
       {
         path: "auth/login",
         element: <Login />
+      },
+      {
+        path: "auth/register",
+        element: <Register />
       },
       { index: true, element: <Login /> }
     ]

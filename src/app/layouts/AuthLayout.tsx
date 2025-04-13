@@ -12,24 +12,15 @@ const AuthLayout: FC<Props> = ({ children }) => {
   return (
     <Flex
       className={css`
-        height: 100vh;
+        height: 100%;
+        min-height: 100vh;
         width: 100%;
         background-color: ${token.colorBgLayout};
       `}
       align="center"
       justify="center"
     >
-      <Flex
-        className={css`
-          width: 250px;
-          background-color: ${token.colorBgContainer};
-          border-radius: 10px;
-          padding: 2rem;
-          margin-bottom: 14rem;
-        `}
-      >
-        {children}
-      </Flex>
+      {children}
     </Flex>
   );
 };

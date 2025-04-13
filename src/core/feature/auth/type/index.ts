@@ -1,6 +1,6 @@
 export type FormPropsType = {
-  mobile?: string;
-  otp?: string;
+  mobile: string;
+  password: string;
 };
 
 export interface IUser {
