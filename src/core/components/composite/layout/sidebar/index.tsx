@@ -20,7 +20,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 export const Sidebar = () => {
   // ---------------------- variables ---------------------
   const { token } = themeContent.useToken();
-  const { Text } = Typography;
   const navigate = useNavigate();
   const location = useLocation();
   const path = location.pathname.split("/");
