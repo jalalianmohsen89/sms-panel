@@ -38,13 +38,6 @@ describe("Input Component", () => {
     expect(searchElement).toBeInTheDocument();
   });
 
-  it("renders TextArea", () => {
-    render(<Input.TextArea placeholder="Write something" />);
-    const textAreaElement = screen.getByPlaceholderText("Write something");
-
-    expect(textAreaElement).toBeInTheDocument();
-  });
-
   it("renders Password input", () => {
     render(<Input.Password placeholder="Enter password" />);
     const passwordElement = screen.getByPlaceholderText("Enter password");

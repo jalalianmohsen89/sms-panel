@@ -23,20 +23,6 @@ export const locale = {
     dayFormat: "D",
     dateTimeFormat: "YYYY/MM/DD",
     monthBeforeYear: true,
-    months: [
-      "فروردین",
-      "اردیبهشت",
-      "خرداد",
-      "تیر",
-      "مرداد",
-      "شهریور",
-      "مهر",
-      "آبان",
-      "آذر",
-      "دی",
-      "بهمن",
-      "اسفند"
-    ],
     shortMonths: [
       "فروردین",
       "اردیبهشت",
@@ -50,7 +36,8 @@ export const locale = {
       "دی",
       "بهمن",
       "اسفند"
-    ]
+    ],
+    shortWeekDays: ["یک", "دو", "سه", "چهار", "پنج", "جمعه", "شنبه"]
   }
 };
 

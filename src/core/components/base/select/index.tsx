@@ -27,6 +27,7 @@ export type Props = Pick<
   | "optionFilterProp"
   | "maxTagCount"
   | "optionRender"
+  | "size"
 > & {
   label?: string;
 };

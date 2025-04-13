@@ -16,6 +16,9 @@ type Props = Pick<
   | "value"
   | "onResize"
   | "onChange"
+  | "placeholder"
+  | "rows"
+  | "allowClear"
 > & {
   label?: string;
 };

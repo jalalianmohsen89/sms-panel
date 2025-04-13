@@ -15,7 +15,8 @@ type Props = Pick<
   | "lg"
   | "xl"
   | "xxl"
-  | "children"
   | "className"
->;
+> & {
+  children?: React.ReactNode;
+};
 export const Col: FC<Props> = (props) => <BaseCol {...props} />;
