@@ -95,3 +95,4 @@ export { Toast } from "./toast";
 export { ColorPicker } from "./color-picker";
 export { Statistic, Countdown } from "./statistic";
 export { Tree } from "./tree";
+export { Editor } from "./editor";

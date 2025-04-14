@@ -35,6 +35,7 @@ export type Props = Pick<
   | "progress"
   | "maxCount"
   | "children"
+  | "action"
 >;
 export const Upload: FC<Props> = (props) => <BaseUpload {...props} />;
 
