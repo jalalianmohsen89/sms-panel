@@ -10,8 +10,10 @@ export const FormContainer = styled(Flex)({
 });
 
 export const FormTitle = styled(Typography)<TokenType>(({ token }) => ({
-  fontSize: "12px",
-  color: token.colorText
+  fontSize: "13px",
+  color: token.colorTextSecondary,
+  fontWeight: "bold",
+  marginRight: 3
 }));
 
 export const Section = styled("section")<TokenType & { isBorder?: boolean }>(
@@ -20,7 +22,7 @@ export const Section = styled("section")<TokenType & { isBorder?: boolean }>(
     maxWidth: 1360,
     backgroundColor: hexToRgba(token.colorBgContainer, isBorder ? 0.7 : 1),
     padding: "2rem",
-    borderRadius: 12,
+    borderRadius: 8,
     margin: "0 auto 2rem",
     backdropFilter: "blur(40px)",
     border: `1px solid ${isBorder ? token.colorBorder : "transparent"}`
