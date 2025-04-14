@@ -29,6 +29,7 @@ export {
   HiChevronRight as ChevronRight,
   HiDeviceMobile as Mobile
 } from "react-icons/hi";
+export { HiOutlineMegaphone as Megaphone } from "react-icons/hi2";
 
 export { BiSolidVolumeMute as SolidVolumeMute } from "react-icons/bi";
 export { BsShieldLockFill as ShiedLockFill } from "react-icons/bs";
@@ -45,6 +46,8 @@ export {
   BiItalic as Italic,
   BiUnderline as Underline
 } from "react-icons/bi";
-export { IoMdCloudUpload as Upload } from "react-icons/io";
+export { IoMdCloudUpload as Upload, IoMdTime as Time } from "react-icons/io";
 
 export { MdTitle as Title } from "react-icons/md";
+export { TbSend2 as Send, TbMessage2 as Message } from "react-icons/tb";
+export { BsEnvelopeArrowUp as EnvelopeArrowUp } from "react-icons/bs";
