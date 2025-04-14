@@ -1,9 +1,10 @@
+import { typeValueColumns } from "@/core/components/composite";
 import {
   IPageBuilderColumns,
   IPageBuilderFilter,
   TYPES
 } from "@/core/components/composite/page-builder/types";
-import { actionIconList } from "@/core/content";
+// import { actionIconList } from "@/core/content";
 import { ShowFormType } from "@/core/types";
 
 export const filtersSms: IPageBuilderFilter[] = [
@@ -22,43 +23,54 @@ export const filtersSms: IPageBuilderFilter[] = [
 
 export const columnsSms: IPageBuilderColumns[] = [
   {
-    id: "Sms",
-    title: "زبان",
-    value: "Sms"
+    id: "from",
+    title: "از شماره",
+    value: "from"
   },
   {
-    id: "translate",
-    title: "ترجمه",
-    value: "translate"
+    id: "to",
+    title: "به شماره",
+    value: "to"
   },
   {
-    id: "actions",
-    title: "عملیات",
-    width: "10%",
-    actions: [
-      {
-        action: "edit",
-        title: "ویرایش",
-        icon: actionIconList[0].value
-      },
-      {
-        action: "delete",
-        title: "حذف",
-        icon: actionIconList[1].value
-      }
-    ]
+    id: "body",
+    title: "متن پیام",
+    value: "body"
+  },
+  {
+    id: "createdAt",
+    title: "تاریخ",
+    value: "createdAt",
+    typeValue: (row: any) => typeValueColumns[0]?.value?.(row)
   }
+  // {
+  //   id: "actions",
+  //   title: "عملیات",
+  //   width: "10%",
+  //   actions: [
+  //     {
+  //       action: "edit",
+  //       title: "ویرایش",
+  //       icon: actionIconList[0].value
+  //     },
+  //     {
+  //       action: "delete",
+  //       title: "حذف",
+  //       icon: actionIconList[1].value
+  //     }
+  //   ]
+  // }
 ];
 
 export const actionsColumnSms = [
   {
     id: "edit",
     showType: "modal" as ShowFormType,
-    value: (props: any) => <></>
+    value: () => <></>
   },
   {
     id: "delete",
     showType: "modal" as ShowFormType,
-    value: (props: any) => <></>
+    value: () => <></>
   }
 ];
