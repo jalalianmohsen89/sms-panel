@@ -59,7 +59,7 @@ export const DataTable = <T extends object>({
     setSearchValue,
     otherProps,
     featuresMobileColumns,
-    onChangeTable
+    onChangeTable,
   } = useDataTable({
     apiPath,
     selection,
@@ -74,7 +74,7 @@ export const DataTable = <T extends object>({
     onSelected,
     onGetData,
     onChangeSortMobile,
-    ...props
+    ...props,
   });
 
   return loading ? (
@@ -116,13 +116,13 @@ export const DataTable = <T extends object>({
               scroll={{ x: "max-content" }}
               {...(withPagination
                 ? {
-                  pagination: paginationData
+                  pagination: paginationData,
                 }
                 : {
-                  pagination: false
+                  pagination: false,
                 })}
               {...(selection && {
-                rowSelection: rowSelectionRow
+                rowSelection: rowSelectionRow,
               })}
               onChange={onChangeTable}
               {...otherProps}

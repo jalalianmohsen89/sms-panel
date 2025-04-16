@@ -18,17 +18,17 @@ const useDevtools = () => {
       title: "نام",
       dataIndex: "name",
       key: "name",
-      render: (name: string) => name
+      render: (name: string) => name,
     },
     {
       title: "آدرس",
       dataIndex: "url",
-      render: (url: string) => url
+      render: (url: string) => url,
     },
     {
       title: "پارامترها",
       dataIndex: "params",
-      render: (params: string) => (params ? params : "-")
+      render: (params: string) => (params ? params : "-"),
     },
     {
       title: "عملیات",
@@ -42,14 +42,14 @@ const useDevtools = () => {
         >
           {row && selectedRow.length > 0 ? "مخفی" : "نمایش"}
         </Flex>
-      )
-    }
+      ),
+    },
   ];
 
   // ---------------------- methods ---------------------
   const onClick = (row: any) => {
     if (selectedRow.length > 0) setSelectedRow([]);
-    else setSelectedRow([...row.list.data]);
+    else setSelectedRow([...row]);
   };
 
   const showData = () => {

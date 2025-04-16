@@ -8,7 +8,13 @@ import image14 from "@/core/assets/images/pic/image14.jpeg";
 import { Create, Pencil, SMS, Trash } from "@/core/icons";
 import { IPatterns } from "@/core/types";
 
-export const permissionList = ["UI::Sms::SendPersonal", "UI::Sms::Report"];
+export const permissionList = [
+  "UI::Sms::SendPersonal",
+  "UI::Sms::SendFile",
+  "UI::Sms::Report",
+  "UI::Notification::Report",
+  "UI::Notification::SendFile",
+];
 
 export const navigation = [
   {
@@ -20,30 +26,35 @@ export const navigation = [
     children: [
       {
         key: "send_personal",
-        label: "ارسال پیامک"
+        label: "ارسال پیامک",
+      },
+      {
+        key: "send_file",
+        label: "ارسال به صورت فایل",
       },
       {
         key: "report",
-        label: " گزارش پیامک ها"
-      }
-    ]
+        label: " گزارش پیامک ها",
+      },
+    ],
   },
   {
-    key: "sms",
+    key: "notification",
     // eslint-disable-next-line react/jsx-pascal-case
     icon: <SMS />,
-    label: "پیامک ها",
+    label: "اعلانات",
+    style: { borderBottom: "1px solid #e8e8e8" },
     children: [
       {
-        key: "send_personal",
-        label: "ارسال پیامک"
+        key: "send_file",
+        label: "ارسال به صورت فایل",
       },
       {
         key: "report",
-        label: " گزارش پیامک ها"
-      }
-    ]
-  }
+        label: " گزارش اعلانات",
+      },
+    ],
+  },
 ];
 
 export const patterns: IPatterns = {
@@ -55,7 +66,7 @@ export const patterns: IPatterns = {
     layoutOpacity: "0.7",
     containerOpacity: "0.5",
     navOpacity: "0.01",
-    blur: "0"
+    blur: "0",
   },
   bubbles: {
     id: "bubbles",
@@ -65,7 +76,7 @@ export const patterns: IPatterns = {
     layoutOpacity: "0.7",
     containerOpacity: "0.6",
     navOpacity: "0.03",
-    blur: "3"
+    blur: "3",
   },
   image10: {
     id: "image10",
@@ -75,7 +86,7 @@ export const patterns: IPatterns = {
     layoutOpacity: "0.6",
     containerOpacity: "0.5",
     navOpacity: "0.06",
-    blur: "20"
+    blur: "20",
   },
   image11: {
     id: "image11",
@@ -85,7 +96,7 @@ export const patterns: IPatterns = {
     layoutOpacity: "0.7",
     containerOpacity: "0.2",
     navOpacity: "0.006",
-    blur: "6"
+    blur: "6",
   },
   image12: {
     id: "image12",
@@ -95,7 +106,7 @@ export const patterns: IPatterns = {
     layoutOpacity: "0.9",
     containerOpacity: "0.7",
     navOpacity: "0.05",
-    blur: "15"
+    blur: "15",
   },
   image13: {
     id: "image13",
@@ -105,7 +116,7 @@ export const patterns: IPatterns = {
     layoutOpacity: "0.7",
     containerOpacity: "0.7",
     navOpacity: "0.006",
-    blur: "20"
+    blur: "20",
   },
   image14: {
     id: "image14",
@@ -115,7 +126,7 @@ export const patterns: IPatterns = {
     layoutOpacity: "0.8",
     containerOpacity: "0.6",
     navOpacity: "0.05",
-    blur: "20"
+    blur: "20",
   },
   brick: {
     id: "brick",
@@ -125,21 +136,21 @@ export const patterns: IPatterns = {
     layoutOpacity: "0.7",
     containerOpacity: "0.5",
     navOpacity: "0.04",
-    blur: "2"
-  }
+    blur: "2",
+  },
 };
 
 export const actionIconList = [
   {
     label: "ویرایش",
-    value: <Pencil />
+    value: <Pencil />,
   },
   {
     label: "حذف",
-    value: <Trash />
+    value: <Trash />,
   },
   {
     label: "افزودن صوت",
-    value: <Create />
-  }
+    value: <Create />,
+  },
 ];
