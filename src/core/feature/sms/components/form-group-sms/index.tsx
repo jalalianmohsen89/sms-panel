@@ -5,7 +5,6 @@ import {
   Editor,
   Flex,
   Form,
-  Grid,
   Input,
   Modal,
   Radio,
@@ -14,107 +13,36 @@ import {
   Space,
   Switch,
   Table,
-  Toast,
   Typography,
-  useForm
 } from "@/core/components/base";
-import {
-  previewFile,
-  uploadFileSms,
-  userNumberList
-} from "@/core/feature/sms/service";
+import { UploadRules } from "@/core/components/composite";
 import { UploadAlertText } from "@/core/feature/sms/styled";
 import { EnvelopeArrowUp, Megaphone, Message, Send } from "@/core/icons";
-import { theme as themeContent } from "@/core/theme";
+import {
+  ModalGuide,
+  ModalRowKey,
+  ModalRowvalue,
+  ModalTitle,
+} from "@/core/styled";
 import { css } from "@emotion/css";
-import { useMutation, useQuery } from "@tanstack/react-query";
 import { Button } from "antd";
-import { CheckboxGroupProps } from "antd/es/checkbox";
-import { useState } from "react";
-import { ModalGuide, ModalRowKey, ModalRowvalue, ModalTitle } from "./styled";
-import UploadRules from "./UploadRules";
+import useFormGroup from "./hook";
 
 const FormGroupSms = () => {
-  // --------------------- variables ---------------------------
-  const [formProps, setFormProps] = useState<any>({
-    //   number: "10003949",
-    //   time: "1404/01/25-14:12",
-    //   body: "سلام $2$",
-  });
-  const [preview, setPreview] = useState<any>([]);
-  const [isOpenModal, setOpenModal] = useState(false);
-  const options: CheckboxGroupProps<string>["options"] = [
-    { label: "هم اکنون", value: "1" },
-    { label: "در تاریخ مشخص", value: "2" }
-  ];
-  const columns = [
-    {
-      title: "ردیف",
-      dataIndex: "row",
-      key: "row"
-    },
-    {
-      title: "گیرنده",
-      dataIndex: "mobile",
-      key: "mobile"
-    },
-    {
-      title: "متن",
-      dataIndex: "message",
-      key: "message"
-    }
-  ];
-
-  // --------------------- hooks ---------------------------
-  const [form] = useForm();
-  const { token } = themeContent.useToken();
-  const { useBreakpoint } = Grid;
-  // --------------------- mutations ---------------------------
-  const { mutate: previewFileRequest } = useMutation({
-    mutationFn: previewFile,
-    onSuccess: ({ data }) => {
-      setPreview(
-        data.result.map((item: any, index: number) => ({
-          row: index + 1,
-          mobile: item.mobile,
-          message: item.message
-        }))
-      );
-      setOpenModal(true);
-    }
-  });
-
-  const { mutate: uploadFileSmsRequest } = useMutation({
-    mutationFn: uploadFileSms,
-    onSuccess: () => {
-      Toast.success("پیامک ها در صف ارسال قرار گرفت");
-      setOpenModal(false);
-      setFormProps({});
-    }
-  });
-
-  const { data: userNumbers } = useQuery({
-    queryKey: ["user-numbers"],
-    queryFn: userNumberList,
-    select: ({ data }) =>
-      data.data.map((item: any) => ({
-        label: item.number,
-        value: item.number.toString()
-      }))
-  });
-
-  // -------------------- methods --------------------------
-  const onFinish = (isSend: boolean) => {
-    const formData = new FormData();
-
-    // formData.append("title", formProps.title);
-    formData.append("number", formProps.number);
-    formData.append("body", formProps.body);
-    formData.append("file", formProps.file);
-    if (isSend === true) {
-      uploadFileSmsRequest(formData);
-    } else previewFileRequest(formData);
-  };
+  const {
+    columns,
+    preview,
+    form,
+    token,
+    isOpenModal,
+    setOpenModal,
+    formProps,
+    setFormProps,
+    options,
+    userNumbers,
+    useBreakpoint,
+    onFinish,
+  } = useFormGroup();
   // --------------------- render ---------------------------
 
   return (
@@ -153,7 +81,7 @@ const FormGroupSms = () => {
                 onChange={(option) =>
                   setFormProps({
                     ...formProps,
-                    number: option
+                    number: option,
                   })
                 }
               />

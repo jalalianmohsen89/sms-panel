@@ -9,7 +9,7 @@ export {
   MobileTableSelection,
   MobileTableSort,
   RenderSkeleton,
-  SearchbarTable
+  SearchbarTable,
 } from "./data-table/components";
 
 export { PageBuilder } from "./page-builder";
@@ -19,7 +19,9 @@ export {
   dataMapsList,
   pages,
   typeValueColumns,
-  pageBuilders
+  pageBuilders,
 } from "@/core/components/composite/page-builder/content";
 
 export { PageBuilderFilter } from "@/core/components/composite/page-builder/filter";
+
+export { UploadRules } from "@/core/components/composite/upload-rules";

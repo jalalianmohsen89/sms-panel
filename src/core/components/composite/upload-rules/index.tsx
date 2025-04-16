@@ -4,24 +4,24 @@ import {
   Toast,
   Upload,
   UploadProps,
-  UploadFile
+  UploadFile,
+  Button,
 } from "@/core/components/base";
 import {
   UploadAlertItem,
   UploadAlertList,
-  UploadAlertText
+  UploadAlertText,
 } from "@/core/feature/sms/styled";
 import { Upload as UploadIcon } from "@/core/icons";
 import { theme as themeContent } from "@/core/theme";
 import { css } from "@emotion/css";
-import { Button } from "antd";
 import { FC, useState } from "react";
 import Svg from "react-inlinesvg";
 
 type Props = {
   onChange: (file: any) => void;
 };
-const UploadRules: FC<Props> = ({ onChange }) => {
+export const UploadRules: FC<Props> = ({ onChange }) => {
   const { token } = themeContent.useToken();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const propsImage: UploadProps = {
@@ -31,7 +31,7 @@ const UploadRules: FC<Props> = ({ onChange }) => {
         [
           "application/vnd.ms-excel",
           "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-          "application/octet-stream" // برای برخی مرورگرها
+          "application/octet-stream", // برای برخی مرورگرها
         ].includes(file.type) ||
         [".xls", ".xlsx"].some((ext) => file.name.toLowerCase().endsWith(ext));
 
@@ -57,7 +57,7 @@ const UploadRules: FC<Props> = ({ onChange }) => {
     },
     multiple: false,
     showUploadList: true,
-    accept: ".xls,.xlsx"
+    accept: ".xls,.xlsx",
   };
 
   return (
@@ -158,5 +158,3 @@ const UploadRules: FC<Props> = ({ onChange }) => {
     </Flex>
   );
 };
-
-export default UploadRules;
