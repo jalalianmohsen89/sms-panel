@@ -1,0 +1,237 @@
+import {
+  Col,
+  DatePickerJalali,
+  Divider,
+  Editor,
+  Flex,
+  Form,
+  Input,
+  Modal,
+  Radio,
+  Row,
+  Space,
+  Switch,
+  Table,
+  Typography,
+} from "@/core/components/base";
+import { UploadRules } from "@/core/components/composite";
+import { UploadAlertText } from "@/core/feature/sms/styled";
+import { EnvelopeArrowUp, Megaphone, Message, Send } from "@/core/icons";
+import {
+  ModalGuide,
+  ModalRowKey,
+  ModalRowvalue,
+  ModalTitle,
+} from "@/core/styled";
+import { css } from "@emotion/css";
+import { Button } from "antd";
+import useFormGroupNotification from "./hook";
+
+const FormGroupNotif = () => {
+  const {
+    formProps,
+    setFormProps,
+    preview,
+    isOpenModal,
+    setOpenModal,
+    options,
+    columns,
+    form,
+    token,
+    useBreakpoint,
+    onFinish,
+  } = useFormGroupNotification();
+  // --------------------- render ---------------------------
+
+  return (
+    <>
+      <Form form={form} onFinish={() => onFinish(false)}>
+        <Flex
+          vertical
+          gap={20}
+          className={css`
+            margin: 1rem;
+          `}
+        >
+          <Row
+            gutter={[20, 20]}
+            className={css`
+              margin-bottom: 20px;
+            `}
+          >
+            <Col span={24}>
+              <Input
+                label="عنوان ارسال"
+                placeholder="به عنوان مثال: تخفیف ویژه"
+                size="large"
+                value={formProps?.title}
+                onChange={(e) =>
+                  setFormProps({ ...formProps, title: e.target.value })
+                }
+              />
+            </Col>
+            {/* <Col span={24} md={12}>
+              <Select
+                label="خط ارسال کننده پیام"
+                value={formProps?.number}
+                options={userNumbers}
+                size="large"
+                onChange={(option) =>
+                  setFormProps({
+                    ...formProps,
+                    number: option
+                  })
+                }
+              />
+            </Col> */}
+          </Row>
+          <Row gutter={[20, 20]} align="bottom">
+            <Col span={0} md={1} xl={0} />
+            <Col span={24} md={4} xl={3}>
+              <Typography>زمان ارسال</Typography>
+            </Col>
+            <Col span={24} md={12} xl={9}>
+              <Radio.Group
+                block={!useBreakpoint().xs}
+                disabled
+                // value={formProps.date}
+                options={options}
+                // onChange={(e) =>
+                //   setFormProps({ ...formProps, date: e.target.value })
+                // }
+              />
+            </Col>
+            {formProps.date === "2" && (
+              <Col span={12}>
+                <DatePickerJalali
+                  label="تاریخ و ساعت ارسال"
+                  showTime
+                  size="large"
+                />
+              </Col>
+            )}
+          </Row>
+          <UploadRules
+            onChange={(file) => setFormProps({ ...formProps, file })}
+          />
+          <Flex vertical gap={20}>
+            <Flex align="center" gap={10}>
+              <UploadAlertText token={token}>
+                حذف شماره های تکراری
+              </UploadAlertText>
+              <Space>
+                <Switch
+                  checkedChildren="فعال"
+                  unCheckedChildren="غیرفعال"
+                  defaultChecked
+                  disabled
+                />
+              </Space>
+            </Flex>
+            <Editor
+              value={formProps.body}
+              onChange={(text: string) =>
+                setFormProps({ ...formProps, body: text })
+              }
+            />
+          </Flex>
+          <Flex justify="flex-end">
+            <Button
+              variant="filled"
+              color="primary"
+              size="large"
+              htmlType="submit"
+            >
+              پیش نمایش و ارسال
+            </Button>
+          </Flex>
+        </Flex>
+      </Form>
+
+      <Modal
+        open={isOpenModal}
+        onCancel={() => setOpenModal(false)}
+        footer={<></>}
+      >
+        <Flex vertical gap={20}>
+          <Flex>
+            <ModalTitle>پیش نمایش و ارسال پیام با اکسل</ModalTitle>
+          </Flex>
+          <Flex
+            vertical
+            gap={20}
+            className={css`
+              padding: 0.5rem 1rem;
+            `}
+          >
+            <Flex align="center" justify="space-between">
+              <Flex align="center" gap={10}>
+                <EnvelopeArrowUp size={18} />
+                <ModalRowKey>خط ارسال کننده </ModalRowKey>
+              </Flex>
+              <Flex align="center" gap={10}>
+                <ModalRowvalue token={token}>{formProps.number}</ModalRowvalue>
+                <Megaphone size={18} />
+              </Flex>
+            </Flex>
+            {/* <Flex align="center">
+            <Typography>زمان ارسال</Typography>
+            <Typography>{formProps.title}</Typography>
+          </Flex> */}
+
+            <Flex vertical gap={20}>
+              <Flex align="center" gap={10}>
+                <Message size={18} />
+                <ModalRowKey>متن پیام</ModalRowKey>
+              </Flex>
+              <ModalRowvalue
+                token={token}
+                className={css`
+                  margin-right: 1rem;
+                `}
+              >
+                {formProps.body}
+              </ModalRowvalue>
+            </Flex>
+            {preview?.length > 0 && (
+              <Flex vertical gap={20}>
+                <Divider />
+                <ModalGuide>
+                  اگر فایل شما دارای بیش از 100 سطر باشد، تنها 100 سطر اول از آن
+                  بررسی و در اینجا نمایش داده خواهند شد و اگر کمتر از 100 سطر
+                  باشد، تمام سطرهای آن بررسی و نمایش داده خواهند شد
+                </ModalGuide>
+                <Table
+                  columns={columns}
+                  dataSource={preview}
+                  pagination={false}
+                />
+              </Flex>
+            )}
+            <Flex gap={10} justify="space-between">
+              <Button
+                type="primary"
+                size="large"
+                icon={
+                  <Send
+                    className={css`
+                      transform: rotate(180deg);
+                    `}
+                  />
+                }
+                onClick={() => onFinish(true)}
+              >
+                تایید و ارسال پیامک
+              </Button>
+              <Button type="default" size="large">
+                انصراف و اصلاح
+              </Button>
+            </Flex>
+          </Flex>
+        </Flex>
+      </Modal>
+    </>
+  );
+};
+
+export default FormGroupNotif;
