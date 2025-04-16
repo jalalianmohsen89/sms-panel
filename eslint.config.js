@@ -141,7 +141,7 @@ export default tseslint.config(
       // ],
       semi: ["error", "always"],
       quotes: ["error", "double"],
-      "comma-dangle": ["error", "never"],
+      "comma-dangle": ["error", "always-multiline"],
       "arrow-parens": ["error", "always"],
       "max-len": ["error", { code: 100 }],
       "object-curly-spacing": ["error", "always"],
