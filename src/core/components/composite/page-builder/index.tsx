@@ -38,7 +38,7 @@ export const PageBuilder: FC<Props> = ({
   expandable,
   onSelectedRow,
   refresh,
-  onGetData
+  onGetData,
 }) => {
   // ---------------------- hooks ---------------------
   const {
@@ -53,11 +53,11 @@ export const PageBuilder: FC<Props> = ({
     sortInfo,
     setSortInfo,
     handleSort,
-    addForm
+    addForm,
   } = usePageBuilder({
     pageId,
     pageColumns,
-    refresh
+    refresh,
   });
   const isRequredFilter = pageData?.filters?.some((filter) => filter.required);
 
@@ -93,14 +93,14 @@ export const PageBuilder: FC<Props> = ({
               requiredFilter={isRequredFilter}
               withPagination={withPagination}
               {...(pageData.page.dataMap && {
-                dataMap: pageData.page.dataMap.method
+                dataMap: pageData.page.dataMap.method,
               })}
               {...(selectable && {
                 selection: true,
-                onSelected: (rows) => onSelectedRow?.(rows)
+                onSelected: (rows) => onSelectedRow?.(rows),
               })}
               {...(searchable && {
-                searchbar: true
+                searchbar: true,
               })}
               {...(sortable && {
                 sortInfo,
@@ -108,23 +108,23 @@ export const PageBuilder: FC<Props> = ({
                   // eslint-disable-next-line @typescript-eslint/naming-convention
                   sort_direction: SortOrder,
                   // eslint-disable-next-line @typescript-eslint/naming-convention
-                  sort_field: string
+                  sort_field: string,
                 ) => {
                   setSortInfo({ sort_field, sort_direction });
                   handleSort(sort_field);
-                }
+                },
               })}
               {...(expandable && {
-                expandable
+                expandable,
               })}
               {...(refeatchData && {
-                refeatch: refeatchData
+                refeatch: refeatchData,
               })}
               {...(skipUrlParams && {
-                skipUrlParams: true
+                skipUrlParams: true,
               })}
               {...(showRowNumber && {
-                showRowNumber: true
+                showRowNumber: true,
               })}
               onGetData={(data) => onGetData?.(data)}
             />

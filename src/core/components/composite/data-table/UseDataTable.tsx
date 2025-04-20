@@ -288,6 +288,7 @@ const useDataTable = <T extends WithOptionalId>({
       paramsObject = undefined;
       setParams({});
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search]);
 
   useEffect(() => {
@@ -298,12 +299,14 @@ const useDataTable = <T extends WithOptionalId>({
         getData();
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params, requiredFilter]);
 
   useEffect(() => {
     if (dataMap && refeatch) {
       getData();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refeatch]);
 
   useEffect(() => {

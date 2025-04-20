@@ -6,13 +6,16 @@ const RegisterForm = () => (
     <Flex gap={10}>
       <Form.Item<{ name: string }>
         label="نام"
+        className={css`
+          width: 100%;
+        `}
         name="name"
         layout="vertical"
         rules={[
           {
             required: true,
-            message: "لطفا نام خود را وارد کنید !"
-          }
+            message: "لطفا نام خود را وارد کنید !",
+          },
         ]}
       >
         <Input placeholder="مثال: علی" />
@@ -20,12 +23,15 @@ const RegisterForm = () => (
       <Form.Item<{ family: string }>
         label="نام خانوادگی"
         name="family"
+        className={css`
+          width: 100%;
+        `}
         layout="vertical"
         rules={[
           {
             required: true,
-            message: "لطفا نام خانوادگی خود را وارد کنید !"
-          }
+            message: "لطفا نام خانوادگی خود را وارد کنید !",
+          },
         ]}
       >
         <Input placeholder="مثال: مقدم" />
@@ -38,8 +44,8 @@ const RegisterForm = () => (
       rules={[
         {
           required: true,
-          message: "لطفا ایمیل خود را وارد کنید !"
-        }
+          message: "لطفا ایمیل خود را وارد کنید !",
+        },
       ]}
     >
       <Input type="email" placeholder="مثال: example@gmail.com" />
@@ -51,8 +57,8 @@ const RegisterForm = () => (
       rules={[
         {
           required: true,
-          message: "لطفا تلفن همراه خود را وارد کنید !"
-        }
+          message: "لطفا تلفن همراه خود را وارد کنید !",
+        },
       ]}
     >
       <Input placeholder="مثال: 09123456789" maxLength={11} />
@@ -64,8 +70,8 @@ const RegisterForm = () => (
       rules={[
         {
           required: true,
-          message: "لطفا نام کاربری خود را وارد کنید !"
-        }
+          message: "لطفا نام کاربری خود را وارد کنید !",
+        },
       ]}
     >
       <Input placeholder="" />
@@ -77,8 +83,8 @@ const RegisterForm = () => (
       rules={[
         {
           required: true,
-          message: "لطفا رمز عبور خود را وارد کنید !"
-        }
+          message: "لطفا رمز عبور خود را وارد کنید !",
+        },
       ]}
     >
       <Password />
@@ -90,7 +96,7 @@ const RegisterForm = () => (
       rules={[
         {
           required: true,
-          message: "لطفا رمز عبور خود را تکرار کنید !"
+          message: "لطفا رمز عبور خود را تکرار کنید !",
         },
         ({ getFieldValue }) => ({
           validator(_, value) {
@@ -99,10 +105,10 @@ const RegisterForm = () => (
             }
 
             return Promise.reject(
-              new Error("رمز عبور و تکرار آن مطابقت ندارند!")
+              new Error("رمز عبور و تکرار آن مطابقت ندارند!"),
             );
-          }
-        })
+          },
+        }),
       ]}
     >
       <Password />

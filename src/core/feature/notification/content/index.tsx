@@ -12,7 +12,7 @@ export const notificationRoutes: IModuleRoutes[] = [
     permission: "UI::Notification::Report",
   },
   {
-    path: "send_file",
+    path: "send_notif_file",
     component: <SendFile />,
     permission: "UI::Notification::SendFile",
   },

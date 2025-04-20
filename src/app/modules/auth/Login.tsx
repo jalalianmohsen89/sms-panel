@@ -15,12 +15,12 @@ const Login = () => {
   const { mutate: sendMobileRequest } = useMutation({
     mutationFn: loginMobile,
     onSuccess: ({ data }) => {
-      if (data.user) {
-        login(data.user, data.access_token);
+      if (data.data.user) {
+        login(data.data.user, data.data.access_token);
       } else {
         Toast.error("کاربری با این مشخصات یافت نشد");
       }
-    }
+    },
   });
 
   // -------------------- methods --------------------------

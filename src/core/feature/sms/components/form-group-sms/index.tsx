@@ -192,7 +192,7 @@ const FormGroupSms = () => {
                   margin-right: 1rem;
                 `}
               >
-                {formProps.body}
+                <pre>{formProps.body}</pre>
               </ModalRowvalue>
             </Flex>
             {preview?.length > 0 && (
@@ -225,7 +225,11 @@ const FormGroupSms = () => {
               >
                 تایید و ارسال پیامک
               </Button>
-              <Button type="default" size="large">
+              <Button
+                type="default"
+                size="large"
+                onClick={() => setOpenModal(false)}
+              >
                 انصراف و اصلاح
               </Button>
             </Flex>

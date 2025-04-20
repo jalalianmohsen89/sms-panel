@@ -49,7 +49,7 @@ const useDevtools = () => {
   // ---------------------- methods ---------------------
   const onClick = (row: any) => {
     if (selectedRow.length > 0) setSelectedRow([]);
-    else setSelectedRow([...row]);
+    else setSelectedRow([...row.list.data]);
   };
 
   const showData = () => {

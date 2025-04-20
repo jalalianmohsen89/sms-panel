@@ -79,7 +79,7 @@ export const UploadRules: FC<Props> = ({ onChange }) => {
         className={css`
           width: 100px;
           height: 100px;
-          background-color: rgb(225 247 239/0.6);
+          background-color: ${token.colorPrimaryBg};
           border-radius: 50%;
         `}
       >
