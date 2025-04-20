@@ -8,7 +8,7 @@ describe("Flex Component", () => {
       <Flex>
         <div>Item 1</div>
         <div>Item 2</div>
-      </Flex>
+      </Flex>,
     );
 
     expect(container.querySelector(".ant-flex")).toBeInTheDocument();
@@ -18,7 +18,7 @@ describe("Flex Component", () => {
     const { container } = render(
       <Flex vertical>
         <div>Item 1</div>
-      </Flex>
+      </Flex>,
     );
 
     expect(container.querySelector(".ant-flex-vertical")).toBeInTheDocument();
@@ -28,11 +28,11 @@ describe("Flex Component", () => {
     const { container } = render(
       <Flex justify="center">
         <div>Item 1</div>
-      </Flex>
+      </Flex>,
     );
 
     expect(
-      container.querySelector(".ant-flex-justify-center")
+      container.querySelector(".ant-flex-justify-center"),
     ).toBeInTheDocument();
   });
 
@@ -41,7 +41,7 @@ describe("Flex Component", () => {
       <Flex gap={16}>
         <div>Item 1</div>
         <div>Item 2</div>
-      </Flex>
+      </Flex>,
     );
     const flexElement = container.querySelector(".ant-flex");
 
@@ -53,7 +53,7 @@ describe("Flex Component", () => {
     const { container } = render(
       <Flex onClick={handleClick}>
         <div>Item 1</div>
-      </Flex>
+      </Flex>,
     );
 
     const flexElement = container.querySelector(".ant-flex");
@@ -66,11 +66,11 @@ describe("Flex Component", () => {
     const { container } = render(
       <Flex align="center">
         <div>Item 1</div>
-      </Flex>
+      </Flex>,
     );
 
     expect(
-      container.querySelector(".ant-flex-align-center")
+      container.querySelector(".ant-flex-align-center"),
     ).toBeInTheDocument();
   });
 });

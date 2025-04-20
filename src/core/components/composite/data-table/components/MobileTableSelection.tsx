@@ -2,7 +2,7 @@ import {
   Checkbox,
   Flex,
   Typography,
-  CheckboxChangeEvent
+  CheckboxChangeEvent,
 } from "@/core/components/base";
 import { css } from "@emotion/css";
 import { FC } from "react";
@@ -18,7 +18,7 @@ export const MobileTableSelection: FC<Props> = ({
   selectionKey,
   setSelectionKey,
   setSelectedRow,
-  rows
+  rows,
 }) => {
   // ---------------------- methods ---------------------
   const onChangeSelection = (event: CheckboxChangeEvent) => {

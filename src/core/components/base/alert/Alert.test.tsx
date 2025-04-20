@@ -17,7 +17,7 @@ describe("Alert Component", () => {
     const onClose = vi.fn();
 
     render(
-      <Alert message="Test" closable onClose={onClose} data-testid="alert" />
+      <Alert message="Test" closable onClose={onClose} data-testid="alert" />,
     );
 
     const closeButton = screen.getByRole("button", { name: /close/i });
@@ -29,7 +29,7 @@ describe("Alert Component", () => {
 
   it("renders with different types", () => {
     const { rerender } = render(
-      <Alert message="Test" type="success" data-testid="alert" />
+      <Alert message="Test" type="success" data-testid="alert" />,
     );
 
     const alert = screen.getByTestId("alert");
@@ -47,7 +47,7 @@ describe("Alert Component", () => {
         showIcon
         type="success"
         data-testid="alert-with-icon"
-      />
+      />,
     );
 
     const alert = screen.getByTestId("alert-with-icon");

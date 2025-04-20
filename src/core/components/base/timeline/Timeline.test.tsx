@@ -10,7 +10,7 @@ vi.mock("antd", () => {
     dot,
     position,
     label,
-    className
+    className,
   }: {
     children?: React.ReactNode;
     color?: string;
@@ -45,7 +45,7 @@ vi.mock("antd", () => {
     pending,
     reverse,
     className,
-    style
+    style,
   }: {
     children?: React.ReactNode;
     mode?: "left" | "right" | "alternate";
@@ -74,7 +74,7 @@ vi.mock("antd", () => {
 
   return {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    Timeline: ActualTimeline
+    Timeline: ActualTimeline,
   };
 });
 
@@ -83,7 +83,7 @@ describe("Timeline Component", () => {
     const { getByTestId } = render(
       <Timeline>
         <Timeline.Item>Event 1</Timeline.Item>
-      </Timeline>
+      </Timeline>,
     );
 
     expect(getByTestId("timeline")).toHaveClass("ant-timeline");
@@ -93,7 +93,7 @@ describe("Timeline Component", () => {
     const { getByTestId } = render(
       <Timeline mode="alternate">
         <Timeline.Item>Event 1</Timeline.Item>
-      </Timeline>
+      </Timeline>,
     );
 
     expect(getByTestId("timeline")).toHaveAttribute("data-mode", "alternate");
@@ -103,7 +103,7 @@ describe("Timeline Component", () => {
     const { getByTestId } = render(
       <Timeline pending="Loading...">
         <Timeline.Item>Event 1</Timeline.Item>
-      </Timeline>
+      </Timeline>,
     );
 
     expect(getByTestId("pending-item")).toBeInTheDocument();
@@ -113,7 +113,7 @@ describe("Timeline Component", () => {
     const { getByTestId } = render(
       <Timeline>
         <Timeline.Item dot={<span>•</span>}>Event 1</Timeline.Item>
-      </Timeline>
+      </Timeline>,
     );
 
     expect(getByTestId("timeline")).toBeInTheDocument();
@@ -123,7 +123,7 @@ describe("Timeline Component", () => {
     const { getByTestId } = render(
       <Timeline reverse>
         <Timeline.Item>Event 1</Timeline.Item>
-      </Timeline>
+      </Timeline>,
     );
 
     expect(getByTestId("timeline")).toHaveAttribute("data-reverse", "true");

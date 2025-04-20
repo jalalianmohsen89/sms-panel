@@ -11,17 +11,17 @@ const SmsRoutes = () => {
         permissionList.includes(item.permission)
           ? {
             path: item.path,
-            element: item.component
+            element: item.component,
           }
           : {
             path: "*",
-            element: <Navigate to="/error/403" />
-          }
+            element: <Navigate to="/error/403" />,
+          },
       ),
-      { path: "*", element: <Navigate to="/error/404" /> }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
+      { path: "*", element: <Navigate to="/error/404" /> },
     ],
-    [permissionList]
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [permissionList],
   );
 
   return <MasterLayout>{useRoutes(routes)}</MasterLayout>;

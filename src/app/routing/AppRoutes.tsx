@@ -16,16 +16,16 @@ const routesUser = createBrowserRouter([
     children: [
       {
         path: "error/*",
-        element: <ErrorsPage />
+        element: <ErrorsPage />,
       },
       {
         path: "/*",
-        element: <PrivateRoutes />
+        element: <PrivateRoutes />,
       },
 
-      { index: true, element: <Dashboard /> }
-    ]
-  }
+      { index: true, element: <Dashboard /> },
+    ],
+  },
 ]);
 const routesGuest = createBrowserRouter([
   {
@@ -35,19 +35,19 @@ const routesGuest = createBrowserRouter([
     children: [
       {
         path: "error/*",
-        element: <ErrorsPage />
+        element: <ErrorsPage />,
       },
       {
         path: "auth/login",
-        element: <Login />
+        element: <Login />,
       },
       {
         path: "auth/register",
-        element: <Register />
+        element: <Register />,
       },
-      { index: true, element: <Login /> }
-    ]
-  }
+      { index: true, element: <Login /> },
+    ],
+  },
 ]);
 
 const AppRoutes: FC = () => {

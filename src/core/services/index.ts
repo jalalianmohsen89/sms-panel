@@ -4,7 +4,7 @@ import { Toast } from "../components/base";
 
 const apiService = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL, // api base_url
-  timeout: 120000 // request timeout,
+  timeout: 120000, // request timeout,
 });
 
 apiService.interceptors.request.use(
@@ -14,12 +14,12 @@ apiService.interceptors.request.use(
 
     return req;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 apiService.interceptors.response.use(
   (res) => res,
-  (error) => catcherServerApi(error)
+  (error) => catcherServerApi(error),
 );
 
 const catcherServerApi = (error: unknown) => {
@@ -38,14 +38,14 @@ const catcherServerApi = (error: unknown) => {
         return Toast.error(error.response?.data?.message[0]);
       }
     case 403:
-      window.location.href = "/errors/403";
+      window.location.href = "/error/403";
       break;
     case 404:
-      window.location.href = "/errors/404";
+      // window.location.href = "/error/404";
       break;
     case 429:
     case 500: {
-      window.location.href = "/errors/500";
+      window.location.href = "/error/500";
       break;
     }
     }

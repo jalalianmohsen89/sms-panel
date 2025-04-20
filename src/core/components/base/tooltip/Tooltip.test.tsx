@@ -13,8 +13,8 @@ Object.defineProperty(window, "matchMedia", {
     removeListener: vi.fn(),
     addEventListener: vi.fn(),
     removeEventListener: vi.fn(),
-    dispatchEvent: vi.fn()
-  }))
+    dispatchEvent: vi.fn(),
+  })),
 });
 
 describe("Tooltip Component", () => {
@@ -23,7 +23,7 @@ describe("Tooltip Component", () => {
     render(
       <Tooltip title="Tooltip Text" {...props}>
         <button>Hover Me</button>
-      </Tooltip>
+      </Tooltip>,
     );
 
   // Basic rendering
@@ -43,7 +43,7 @@ describe("Tooltip Component", () => {
         style={customStyle}
       >
         <button>Hover Me</button>
-      </Tooltip>
+      </Tooltip>,
     );
 
     const tooltipWrapper = document.querySelector(".custom-tooltip");
@@ -82,7 +82,7 @@ describe("Tooltip Component", () => {
         style={{ fontSize: "14px" }}
       >
         <button>Complex Hover</button>
-      </Tooltip>
+      </Tooltip>,
     );
 
     const trigger = screen.getByText("Complex Hover");

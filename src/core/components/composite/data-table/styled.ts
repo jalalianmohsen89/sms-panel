@@ -10,7 +10,7 @@ export const MobileColumns = styled(Flex)<TokenType>(({ token }) => ({
   padding: "16px",
   marginBottom: "16px",
   gap: "10px",
-  alignItems: "flex-start"
+  alignItems: "flex-start",
 }));
 
 export const ActionContainer = styled(Flex)<TokenType>(({ token }) => ({
@@ -21,9 +21,9 @@ export const ActionContainer = styled(Flex)<TokenType>(({ token }) => ({
   borderRadius: "5px",
   transition: "all 0.3s ease-in-out",
   svg: {
-    color: token.colorText
+    color: token.colorText,
   },
   "&:hover": {
-    backgroundColor: token.colorBgContainerDisabled
-  }
+    backgroundColor: token.colorBgContainerDisabled,
+  },
 }));

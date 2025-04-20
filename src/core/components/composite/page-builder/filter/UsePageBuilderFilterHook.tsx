@@ -16,8 +16,8 @@ const usePageBuilderFilterHook = (props: Props) => {
   const filterQueryParams = () =>
     Object.fromEntries(
       Object.entries(params).filter(
-        ([, value]) => value !== undefined && value !== null && value !== ""
-      )
+        ([, value]) => value !== undefined && value !== null && value !== "",
+      ),
     );
 
   const sendParams = () => {
@@ -51,7 +51,7 @@ const usePageBuilderFilterHook = (props: Props) => {
               onChangeValue={(value, field) => {
                 setParams((prev: any) => ({
                   ...prev,
-                  [field]: value?.value ?? value
+                  [field]: value?.value ?? value,
                 }));
               }}
             />
@@ -71,7 +71,7 @@ const usePageBuilderFilterHook = (props: Props) => {
       });
       const queryString = new URLSearchParams({
         ...initParam,
-        ...Object.fromEntries(searchParams)
+        ...Object.fromEntries(searchParams),
       } as any).toString();
 
       setSearchParams(queryString);
@@ -81,7 +81,7 @@ const usePageBuilderFilterHook = (props: Props) => {
 
   return {
     sendParams,
-    checkFilters
+    checkFilters,
   };
 };
 

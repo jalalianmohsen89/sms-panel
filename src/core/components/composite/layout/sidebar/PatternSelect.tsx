@@ -27,7 +27,7 @@ const PatternSelect = () => {
         style={{
           borderColor: theme === "dark" ? "white" : "#333",
           backgroundColor:
-            theme === "dark" ? "rgba(256,256,256,0.09)" : "rgba(0,0,0,0.09)"
+            theme === "dark" ? "rgba(256,256,256,0.09)" : "rgba(0,0,0,0.09)",
         }}
         onClick={() => changePattern("default")}
       />
@@ -35,7 +35,7 @@ const PatternSelect = () => {
         .filter(
           (item) =>
             item.useOnOriginalTheme === theme ||
-            item.useOnOriginalTheme === "both"
+            item.useOnOriginalTheme === "both",
         )
         .map((item, index) => (
           <Flex
@@ -46,7 +46,7 @@ const PatternSelect = () => {
               backgroundColor:
                 theme === "dark"
                   ? "rgba(256,256,256,0.09)"
-                  : "rgba(0,0,0,0.09)"
+                  : "rgba(0,0,0,0.09)",
             }}
             onClick={() => changePattern(item.id)}
           >

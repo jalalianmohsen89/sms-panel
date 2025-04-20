@@ -3,12 +3,12 @@ import {
   Button,
   Dropdown,
   Flex,
-  Tooltip
+  Tooltip,
 } from "@/core/components/base";
 import { css, css as cssStyle } from "@emotion/css";
 import {
   NotificationIcon,
-  ToolsItemContainer
+  ToolsItemContainer,
 } from "@/core/components/composite/layout/header/styled.ts";
 import { theme as themeContent } from "@/core/theme";
 import { RiUser2Fill, RiUserAddFill } from "react-icons/ri";

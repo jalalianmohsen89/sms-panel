@@ -45,7 +45,7 @@ const createUserAuthSlice: StateCreator<IUserState> = (set) => ({
       Cookies.set(TOKEN_COOKIE_NAME, token, {
         expires: 7,
         secure: true,
-        sameSite: "strict"
+        sameSite: "strict",
       });
       localStorage.setItem(TOKEN_COOKIE_NAME, token);
       set({ token, isAuthenticated: true });
@@ -60,14 +60,14 @@ const createUserAuthSlice: StateCreator<IUserState> = (set) => ({
     Cookies.set(TOKEN_COOKIE_NAME, token, {
       expires: 7,
       secure: true,
-      sameSite: "strict"
+      sameSite: "strict",
     });
     localStorage.setItem(TOKEN_COOKIE_NAME, token);
     localStorage.setItem(USER_LOCAL_STORAGE_NAME, JSON.stringify(user));
     set({
       user,
       token,
-      isAuthenticated: true
+      isAuthenticated: true,
     });
     window.location.href = "/";
   },
@@ -79,10 +79,10 @@ const createUserAuthSlice: StateCreator<IUserState> = (set) => ({
     set({
       user: null,
       token: null,
-      isAuthenticated: false
+      isAuthenticated: false,
     });
     window.location.href = "/";
-  }
+  },
 });
 
 export default createUserAuthSlice;

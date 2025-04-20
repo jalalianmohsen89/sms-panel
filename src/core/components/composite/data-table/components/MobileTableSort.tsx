@@ -3,7 +3,7 @@ import {
   Dropdown,
   Flex,
   Typography,
-  GlobalToken
+  GlobalToken,
 } from "@/core/components/base";
 import { IParams, ISortInfo, SortOrder } from "../types";
 import { ArrowDown, ArrowUp } from "@/core/icons";
@@ -21,7 +21,7 @@ const getNextSortOrder = (currentOrder: SortOrder): SortOrder => {
   const orderCycle: Record<string, SortOrder> = {
     ascend: "descend",
     descend: null,
-    null: "ascend"
+    null: "ascend",
   };
 
   return orderCycle[currentOrder || "null"] || null;
@@ -42,7 +42,7 @@ export const MobileTableSort: FC<Props> = ({
   setParams,
   token,
   onChangeSortMobile,
-  refreshData
+  refreshData,
 }) => {
   // ---------------------- variables ---------------------
   const styles = {
@@ -69,7 +69,7 @@ export const MobileTableSort: FC<Props> = ({
       padding: 0.2rem 0.6rem;
       border-radius: 8px;
       cursor: pointer;
-    `
+    `,
   };
   const sortableColumns: string[] = columns
     .filter((column: ColumnType) => column.sorter)
@@ -79,17 +79,17 @@ export const MobileTableSort: FC<Props> = ({
   const handleSort = (selectedItem: string) => {
     const newOrder = getNextSortOrder(params?.sort_direction ?? "ascend");
     const selectedColumn = columns.find(
-      (col: ColumnType) => col.title === selectedItem
+      (col: ColumnType) => col.title === selectedItem,
     );
 
     const sortParams: ISortInfo = {
       sort_direction: newOrder,
-      sort_field: String(selectedColumn?.key) || ""
+      sort_field: String(selectedColumn?.key) || "",
     };
 
     setParams((prev) => ({
       ...prev,
-      sort: sortParams
+      sort: sortParams,
     }));
 
     onChangeSortMobile?.(sortParams.sort_direction, sortParams.sort_field);

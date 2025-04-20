@@ -5,7 +5,7 @@ describe("Typography Component", () => {
   describe("Text", () => {
     it("renders basic text correctly", () => {
       const { container } = render(
-        <Typography.Text>Sample Text</Typography.Text>
+        <Typography.Text>Sample Text</Typography.Text>,
       );
 
       expect(container.firstChild).toHaveClass("ant-typography");
@@ -17,7 +17,7 @@ describe("Typography Component", () => {
 
       types.forEach((type) => {
         const { container } = render(
-          <Typography.Text type={type}>Text</Typography.Text>
+          <Typography.Text type={type}>Text</Typography.Text>,
         );
 
         expect(container.firstChild).toHaveClass(`ant-typography-${type}`);
@@ -32,7 +32,7 @@ describe("Typography Component", () => {
           style={{ color: "red" }}
         >
           Disabled
-        </Typography.Text>
+        </Typography.Text>,
       );
 
       expect(container.firstChild).toHaveClass("ant-typography-disabled");
@@ -43,7 +43,7 @@ describe("Typography Component", () => {
     it("renders with different levels", () => {
       ([1, 2, 3, 4, 5] as const).forEach((level) => {
         const { container } = render(
-          <Typography.Title level={level}>Title {level}</Typography.Title>
+          <Typography.Title level={level}>Title {level}</Typography.Title>,
         );
 
         expect(container.firstChild?.nodeName.toLowerCase()).toBe(`h${level}`);
@@ -59,7 +59,7 @@ describe("Typography Component", () => {
           style={{ color: "red" }}
         >
           Custom Title
-        </Typography.Title>
+        </Typography.Title>,
       );
 
       expect(container.firstChild).toHaveClass("custom-class");
@@ -70,7 +70,7 @@ describe("Typography Component", () => {
   describe("Paragraph", () => {
     it("renders paragraph correctly", () => {
       const { container } = render(
-        <Typography.Paragraph>Test Paragraph</Typography.Paragraph>
+        <Typography.Paragraph>Test Paragraph</Typography.Paragraph>,
       );
 
       expect(container.firstChild?.nodeName.toLowerCase()).toBe("div");
@@ -85,7 +85,7 @@ describe("Typography Component", () => {
           style={{ marginBottom: "20px" }}
         >
           Warning Paragraph
-        </Typography.Paragraph>
+        </Typography.Paragraph>,
       );
 
       expect(container.firstChild).toHaveClass("ant-typography-warning");

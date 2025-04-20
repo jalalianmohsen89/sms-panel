@@ -13,7 +13,7 @@ describe("Col Component", () => {
     const { container } = render(
       <Col xs={24} sm={12} md={8} lg={6}>
         Content
-      </Col>
+      </Col>,
     );
 
     expect(container.querySelector(".ant-col-xs-24")).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("Col Component", () => {
     const { container } = render(
       <Col span={12} offset={6}>
         Content
-      </Col>
+      </Col>,
     );
 
     expect(container.querySelector(".ant-col-offset-6")).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe("Col Component", () => {
     const { container } = render(
       <Col span={6} order={1}>
         Content
-      </Col>
+      </Col>,
     );
 
     expect(container.querySelector(".ant-col-order-1")).toBeInTheDocument();
@@ -46,7 +46,7 @@ describe("Col Component", () => {
     const { container } = render(
       <Col span={6} push={2} pull={2}>
         Content
-      </Col>
+      </Col>,
     );
 
     expect(container.querySelector(".ant-col-push-2")).toBeInTheDocument();

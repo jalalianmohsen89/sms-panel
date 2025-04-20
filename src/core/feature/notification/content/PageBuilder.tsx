@@ -1,4 +1,4 @@
-import { typeValueColumns } from "@/core/components/composite";
+import ConvertDate from "@/core/components/composite/page-builder/columns/convert-date";
 import {
   IPageBuilderColumns,
   IPageBuilderFilter,
@@ -41,7 +41,7 @@ export const columnsNotification: IPageBuilderColumns[] = [
     id: "createdAt",
     title: "تاریخ",
     value: "createdAt",
-    typeValue: (row: any) => typeValueColumns[0]?.value?.(row),
+    render: (row: any) => <ConvertDate date={row.createdAt} />,
   },
   // {
   //   id: "actions",

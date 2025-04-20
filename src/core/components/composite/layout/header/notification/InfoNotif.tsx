@@ -17,7 +17,7 @@ const InfoNotif: FC<Props> = ({
   fullName,
   description,
   date,
-  position
+  position,
 }) => (
   <Flex
     className={css`

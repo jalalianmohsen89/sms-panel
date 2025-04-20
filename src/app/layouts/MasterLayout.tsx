@@ -28,7 +28,7 @@ export const MasterLayout: FC<WithChildren> = ({ children }) => {
           className="backgroundPattern"
           style={{
             backgroundImage: `url(${currentPattern?.pattern})`,
-            opacity: currentPattern?.patternOpacity
+            opacity: currentPattern?.patternOpacity,
           }}
         />
         <Layout

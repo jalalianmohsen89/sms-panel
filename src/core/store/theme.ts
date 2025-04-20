@@ -25,8 +25,8 @@ const createThemeSlice: StateCreator<IThemeSlice> = (set, get) => ({
       if (savedTheme) {
         set({ theme: savedTheme });
       }
-    }
-  }
+    },
+  },
 });
 
 export default createThemeSlice;

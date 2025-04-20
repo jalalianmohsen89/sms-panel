@@ -6,7 +6,7 @@ describe("AutoComplete Component", () => {
   it("renders with options", async() => {
     const options = [
       { value: "option1", label: "Option 1" },
-      { value: "option2", label: "Option 2" }
+      { value: "option2", label: "Option 2" },
     ];
 
     render(<AutoComplete options={options} data-testid="auto-complete" />);
@@ -15,7 +15,7 @@ describe("AutoComplete Component", () => {
 
   it("renders with different sizes", () => {
     const { rerender } = render(
-      <AutoComplete size="large" data-testid="auto-complete" />
+      <AutoComplete size="large" data-testid="auto-complete" />,
     );
     const component = screen.getByTestId("auto-complete");
 
@@ -29,7 +29,7 @@ describe("AutoComplete Component", () => {
     render(
       <AutoComplete data-testid="auto-complete">
         <input data-testid="child-input" />
-      </AutoComplete>
+      </AutoComplete>,
     );
     expect(screen.getByTestId("child-input")).toBeDefined();
     expect(screen.getByTestId("auto-complete")).toBeDefined();

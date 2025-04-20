@@ -9,18 +9,18 @@ export const smsRoutes: IModuleRoutes[] = [
   // pages
 
   {
-    path: "send_file",
+    path: "send_group_file",
     component: <SendFile />,
-    permission: "UI::Sms::SendFile"
+    permission: "UI::Sms::SendFile",
   },
   {
     path: "report",
     component: <Report />,
-    permission: "UI::Sms::Report"
+    permission: "UI::Sms::Report",
   },
   {
     path: "send_personal",
     component: <SendPersonal />,
-    permission: "UI::Sms::SendPersonal"
-  }
+    permission: "UI::Sms::SendPersonal",
+  },
 ];

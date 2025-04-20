@@ -8,13 +8,13 @@ describe("Anchor Component", () => {
       {
         key: "1",
         href: "#part-1",
-        title: "Part 1"
+        title: "Part 1",
       },
       {
         key: "2",
         href: "#part-2",
-        title: "Part 2"
-      }
+        title: "Part 2",
+      },
     ];
 
     render(<Anchor items={items} />);
@@ -27,7 +27,7 @@ describe("Anchor Component", () => {
       <Anchor>
         <Anchor.Link href="#part-1" title="Part 1" />
         <Anchor.Link href="#part-2" title="Part 2" />
-      </Anchor>
+      </Anchor>,
     );
 
     expect(screen.getByText("Part 1")).toBeDefined();
@@ -40,8 +40,8 @@ describe("Anchor Component", () => {
       {
         key: "1",
         href: "#part-1",
-        title: "Part 1"
-      }
+        title: "Part 1",
+      },
     ];
 
     render(<Anchor items={items} onClick={onClick} />);
@@ -57,12 +57,12 @@ describe("Anchor Component", () => {
       {
         key: "1",
         href: "#part-1",
-        title: "Part 1"
-      }
+        title: "Part 1",
+      },
     ];
 
     const { rerender } = render(
-      <Anchor items={items} direction="vertical" className="anchor-vertical" />
+      <Anchor items={items} direction="vertical" className="anchor-vertical" />,
     );
 
     // انتخاب عنصر اصلی با کلاس
@@ -75,7 +75,7 @@ describe("Anchor Component", () => {
         items={items}
         direction="horizontal"
         className="anchor-horizontal"
-      />
+      />,
     );
 
     expect(anchor).toHaveClass("anchor-horizontal");
@@ -86,8 +86,8 @@ describe("Anchor Component", () => {
       {
         key: "1",
         href: "#part-1",
-        title: "Part 1"
-      }
+        title: "Part 1",
+      },
     ];
 
     render(<Anchor items={items} className="custom-class" />);
@@ -100,7 +100,7 @@ describe("Anchor Component", () => {
     render(
       <div data-testid="anchor-wrapper">
         <Anchor />
-      </div>
+      </div>,
     );
     const wrapper = screen.getByTestId("anchor-wrapper");
 
@@ -111,7 +111,7 @@ describe("Anchor Component", () => {
     render(
       <div data-testid="anchor-wrapper">
         <Anchor items={[]} />
-      </div>
+      </div>,
     );
     const anchor = screen.getByTestId("anchor-wrapper");
 
@@ -125,7 +125,7 @@ describe("Anchor Component", () => {
           <Anchor.Link href="#part-1-1" title="Part 1.1" />
         </Anchor.Link>
         <Anchor.Link href="#part-2" title="Part 2" />
-      </Anchor>
+      </Anchor>,
     );
 
     expect(screen.getByText("Part 1")).toBeDefined();
@@ -138,8 +138,8 @@ describe("Anchor Component", () => {
       {
         key: "1",
         href: "#custom-part-1",
-        title: "Custom Part 1"
-      }
+        title: "Custom Part 1",
+      },
     ];
 
     render(<Anchor items={items} />);

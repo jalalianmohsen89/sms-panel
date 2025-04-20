@@ -24,17 +24,17 @@ describe("Badge Component", () => {
         <Badge status="success" />
         <Badge status="error" />
         <Badge status="warning" />
-      </div>
+      </div>,
     );
 
     expect(
-      container.querySelector(".ant-badge-status-success")
+      container.querySelector(".ant-badge-status-success"),
     ).toBeInTheDocument();
     expect(
-      container.querySelector(".ant-badge-status-error")
+      container.querySelector(".ant-badge-status-error"),
     ).toBeInTheDocument();
     expect(
-      container.querySelector(".ant-badge-status-warning")
+      container.querySelector(".ant-badge-status-warning"),
     ).toBeInTheDocument();
   });
 
@@ -56,7 +56,7 @@ describe("Badge Component", () => {
     const { container } = render(
       <Badge count={5}>
         <div className="child-content">Content</div>
-      </Badge>
+      </Badge>,
     );
 
     expect(container.querySelector(".child-content")).toBeInTheDocument();

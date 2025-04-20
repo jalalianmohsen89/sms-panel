@@ -2,7 +2,7 @@ import { FC } from "react";
 import {
   ColorPicker as BaseColorPicker,
   ColorPickerProps,
-  GetProp
+  GetProp,
 } from "antd";
 import { generate, green, presetPalettes, red } from "@ant-design/colors";
 import { theme as themeContent } from "@/core/theme";
@@ -67,14 +67,14 @@ export const ColorPicker: FC<Props> = (props) => {
   const presetsFn = genPresets({
     primary: generate(token.colorPrimary),
     red,
-    green
+    green,
   });
 
   function genPresets(presets = presetPalettes) {
     return Object.entries(presets).map<Presets>(([label, colors]) => ({
       label,
       colors,
-      key: label
+      key: label,
     }));
   }
 
@@ -84,7 +84,7 @@ export const ColorPicker: FC<Props> = (props) => {
       <BaseColorPicker
         value={value}
         {...(withPresets && {
-          presets: presetsFn
+          presets: presetsFn,
         })}
         {...otherProps}
         onChange={changeColor}

@@ -14,8 +14,8 @@ beforeAll(() => {
       removeListener: vi.fn(),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn()
-    }))
+      dispatchEvent: vi.fn(),
+    })),
   });
 });
 
@@ -38,8 +38,8 @@ describe("Grid Component", () => {
         md: expect.any(Boolean),
         lg: expect.any(Boolean),
         xl: expect.any(Boolean),
-        xxl: expect.any(Boolean)
-      })
+        xxl: expect.any(Boolean),
+      }),
     );
   });
 

@@ -11,7 +11,7 @@ describe("Button Component", () => {
         <Button type="default">Default</Button>
         <Button type="dashed">Dashed</Button>
         <Button type="link">Link</Button>
-      </>
+      </>,
     );
 
     expect(container.querySelector(".ant-btn-primary")).toBeInTheDocument();
@@ -26,7 +26,7 @@ describe("Button Component", () => {
         <Button size="small">Small</Button>
         <Button>Default</Button>
         <Button size="large">Large</Button>
-      </>
+      </>,
     );
 
     expect(container.querySelector(".ant-btn-sm")).toBeInTheDocument();
@@ -36,7 +36,7 @@ describe("Button Component", () => {
 
   it("renders with icon", () => {
     const { container } = render(
-      <Button icon={<SearchOutlined />}>Search</Button>
+      <Button icon={<SearchOutlined />}>Search</Button>,
     );
 
     expect(container.querySelector(".anticon-search")).toBeInTheDocument();
@@ -45,7 +45,7 @@ describe("Button Component", () => {
   it("handles click events", () => {
     const handleClick = vi.fn();
     const { container } = render(
-      <Button onClick={handleClick}>Click Me</Button>
+      <Button onClick={handleClick}>Click Me</Button>,
     );
 
     const button = container.querySelector(".ant-btn");
@@ -76,7 +76,7 @@ describe("Button Component", () => {
 
   it("renders with custom className", () => {
     const { container } = render(
-      <Button className="custom-button">Custom</Button>
+      <Button className="custom-button">Custom</Button>,
     );
 
     expect(container.querySelector(".custom-button")).toBeInTheDocument();

@@ -11,11 +11,11 @@ describe("Divider Component", () => {
 
   it("renders with different orientations", () => {
     const { container } = render(
-      <Divider orientation="left">Left Text</Divider>
+      <Divider orientation="left">Left Text</Divider>,
     );
 
     expect(
-      container.querySelector(".ant-divider-with-text-left")
+      container.querySelector(".ant-divider-with-text-left"),
     ).toBeInTheDocument();
   });
 
@@ -23,10 +23,10 @@ describe("Divider Component", () => {
     const { container } = render(<Divider>Text Content</Divider>);
 
     expect(
-      container.querySelector(".ant-divider-with-text")
+      container.querySelector(".ant-divider-with-text"),
     ).toBeInTheDocument();
     expect(
-      container.querySelector(".ant-divider-inner-text")
+      container.querySelector(".ant-divider-inner-text"),
     ).toHaveTextContent("Text Content");
   });
 
@@ -46,7 +46,7 @@ describe("Divider Component", () => {
     const { container } = render(<Divider type="vertical" />);
 
     expect(
-      container.querySelector(".ant-divider-vertical")
+      container.querySelector(".ant-divider-vertical"),
     ).toBeInTheDocument();
   });
 });

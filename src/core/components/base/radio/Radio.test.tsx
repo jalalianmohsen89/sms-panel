@@ -19,7 +19,7 @@ vi.mock("antd", () => {
     disabled,
     optionType,
     buttonStyle,
-    className
+    className,
   }: {
     children?: React.ReactNode;
     size?: "large" | "middle" | "small";
@@ -47,7 +47,7 @@ vi.mock("antd", () => {
     checked,
     onChange,
     id,
-    className
+    className,
   }: {
     children?: React.ReactNode;
     value?: string | number;
@@ -96,7 +96,7 @@ describe("Radio Component", () => {
       <Radio.Group>
         <Radio value="1">Option 1</Radio>
         <Radio value="2">Option 2</Radio>
-      </Radio.Group>
+      </Radio.Group>,
     );
 
     expect(getByTestId("radio-group")).toHaveClass("ant-radio-group");
@@ -110,22 +110,22 @@ describe("Radio Component", () => {
 
   it("applies button style", () => {
     const { getByTestId } = render(
-      <Radio.Group optionType="button" buttonStyle="solid" />
+      <Radio.Group optionType="button" buttonStyle="solid" />,
     );
 
     expect(getByTestId("radio-group")).toHaveAttribute(
       "data-button-style",
-      "solid"
+      "solid",
     );
     expect(getByTestId("radio-group")).toHaveAttribute(
       "data-option-type",
-      "button"
+      "button",
     );
   });
 
   it("handles block display", () => {
     const { container } = render(
-      <Radio.Group className="ant-radio-group-block" />
+      <Radio.Group className="ant-radio-group-block" />,
     );
 
     expect(container.firstChild).toHaveClass("ant-radio-group-block");

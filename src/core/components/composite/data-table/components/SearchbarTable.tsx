@@ -13,7 +13,7 @@ export const SearchbarTable: FC<Props> = ({
   isMobile = false,
   text,
   setSearchText,
-  onPressEnter
+  onPressEnter,
 }) => (
   <Flex
     className={

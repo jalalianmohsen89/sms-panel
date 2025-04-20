@@ -13,15 +13,15 @@ beforeAll(() => {
       removeListener: vi.fn(),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn()
-    }))
+      dispatchEvent: vi.fn(),
+    })),
   });
 });
 
 describe("Image Component", () => {
   it("renders basic image", () => {
     const { container } = render(
-      <Image src="test-image.jpg" alt="test image" />
+      <Image src="test-image.jpg" alt="test image" />,
     );
     const img = container.querySelector(".ant-image-img");
 
@@ -31,7 +31,7 @@ describe("Image Component", () => {
 
   it("handles custom dimensions", () => {
     const { container } = render(
-      <Image src="test-image.jpg" width={200} height={100} />
+      <Image src="test-image.jpg" width={200} height={100} />,
     );
     const img = container.querySelector(".ant-image-img");
 
@@ -42,7 +42,7 @@ describe("Image Component", () => {
   it("handles click events", () => {
     const handleClick = vi.fn();
     const { container } = render(
-      <Image src="test-image.jpg" onClick={handleClick} />
+      <Image src="test-image.jpg" onClick={handleClick} />,
     );
     const img = container.querySelector(".ant-image-img");
 
@@ -52,7 +52,7 @@ describe("Image Component", () => {
 
   it("shows fallback on error", () => {
     const { container } = render(
-      <Image src="invalid-image.jpg" fallback="fallback-image.jpg" />
+      <Image src="invalid-image.jpg" fallback="fallback-image.jpg" />,
     );
     const img = container.querySelector(".ant-image-img");
 
@@ -66,7 +66,7 @@ describe("Image Component", () => {
 
   it("renders with preview disabled", () => {
     const { container } = render(
-      <Image src="test-image.jpg" preview={false} />
+      <Image src="test-image.jpg" preview={false} />,
     );
 
     expect(container.querySelector(".ant-image-mask")).not.toBeInTheDocument();
@@ -77,7 +77,7 @@ describe("Image Component", () => {
       <Image
         src="test-image.jpg"
         placeholder={<div className="custom-placeholder">Loading...</div>}
-      />
+      />,
     );
 
     expect(container.querySelector(".custom-placeholder")).toBeInTheDocument();

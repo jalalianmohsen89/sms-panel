@@ -35,22 +35,22 @@ export const RangePickerJalali: FC<Props> = ({
 
   const handleChange = (
     dates: [dayjs.Dayjs, dayjs.Dayjs] | null,
-    dateStrings: [string, string]
+    dateStrings: [string, string],
   ) => {
     if (onChange && dates) {
       onChange(
         {
           date1: dates[0].toDate(),
-          date2: dates[1].toDate()
+          date2: dates[1].toDate(),
         },
-        dateStrings
+        dateStrings,
       );
     }
   };
 
   // تبدیل مقدار اولیه و مقدار فعلی به dayjs
   const getDayjsValue = (
-    value: any
+    value: any,
   ): [dayjs.Dayjs, dayjs.Dayjs] | undefined => {
     if (!value || !Array.isArray(value) || value.length !== 2) return undefined;
 

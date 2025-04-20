@@ -4,13 +4,13 @@ import {
   Dropdown,
   Flex,
   Space,
-  Typography
+  Typography,
 } from "@/core/components/base";
 import {
   AvatarProfile,
   DropdownOption,
   DropdownProfileContainer,
-  UserRole
+  UserRole,
 } from "@/core/components/composite/layout/profile/styled.ts";
 import useStore from "@/core/store";
 import { theme as themeContent } from "@/core/theme";

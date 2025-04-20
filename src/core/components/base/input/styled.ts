@@ -5,14 +5,14 @@ import Password from "antd/es/input/Password";
 const style = {
   height: "35px",
   "@media (min-width: 991px)": {
-    height: "38px"
-  }
+    height: "38px",
+  },
 };
 
 export const InputCustomeStyle = styled(Input)({
-  ...style
+  ...style,
 });
 
 export const PasswordCustomeStyle = styled(Password)({
-  ...style
+  ...style,
 });

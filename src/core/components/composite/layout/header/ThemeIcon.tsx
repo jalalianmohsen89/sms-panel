@@ -1,7 +1,7 @@
 import {
   MoonIcon,
   SunnyIcon,
-  ToolsItemContainer
+  ToolsItemContainer,
 } from "@/core/components/composite/layout/header/styled";
 import useStore from "@/core/store";
 import { theme as themeContent } from "@/core/theme";

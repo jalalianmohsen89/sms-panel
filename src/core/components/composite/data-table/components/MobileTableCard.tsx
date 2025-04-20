@@ -6,7 +6,7 @@ import {
   Space,
   Typography,
   ExpandableConfig,
-  GlobalToken
+  GlobalToken,
 } from "@/core/components/base";
 import { MobileColumns } from "../styled";
 import { css } from "@emotion/css";
@@ -34,7 +34,7 @@ export const MobileTablesCard = <T extends object>({
   columns,
   row,
   index,
-  onChangeCheckbox
+  onChangeCheckbox,
 }: Props<T>) => {
   // ---------------------- variables ---------------------
   const [isExpandedRow, setIsExpandedRow] = useState(false);
@@ -56,7 +56,7 @@ export const MobileTablesCard = <T extends object>({
               onChangeCheckbox(
                 row,
                 event.target.checked,
-                (index + 1).toString()
+                (index + 1).toString(),
               )
             }
           />

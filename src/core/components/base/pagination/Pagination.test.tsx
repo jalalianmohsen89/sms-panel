@@ -13,7 +13,7 @@ vi.mock("antd", () => ({
     disabled = false,
     className,
     style,
-    showQuickJumper
+    showQuickJumper,
   }: {
     total?: number;
     current?: number;
@@ -71,7 +71,7 @@ vi.mock("antd", () => ({
         )}
       </ul>
     </nav>
-  )
+  ),
 }));
 
 describe("Pagination Component", () => {
@@ -105,7 +105,7 @@ describe("Pagination Component", () => {
         total={100}
         className="custom-pagination"
         style={{ margin: "10px" }}
-      />
+      />,
     );
 
     const pagination = screen.getByTestId("pagination");

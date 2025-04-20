@@ -32,7 +32,7 @@ const initialState: IDevToolsState = {
   isOpen: false,
   pageName: "",
   pageUrl: "",
-  apis: []
+  apis: [],
 };
 
 const createDevToolsSlice: StateCreator<IDevtools> = (set) => ({
@@ -50,7 +50,7 @@ const createDevToolsSlice: StateCreator<IDevtools> = (set) => ({
         if (!find) {
           updatedApis.push({
             ...apiData,
-            list: JSON.parse(JSON.stringify(apiData.list))
+            list: JSON.parse(JSON.stringify(apiData.list)),
           });
         } else {
           updatedApis.forEach((item) => {
@@ -63,8 +63,8 @@ const createDevToolsSlice: StateCreator<IDevtools> = (set) => ({
         return {
           data: {
             ...state.data,
-            apis: updatedApis
-          }
+            apis: updatedApis,
+          },
         };
       } else {
         return {
@@ -75,10 +75,10 @@ const createDevToolsSlice: StateCreator<IDevtools> = (set) => ({
             apis: [
               {
                 ...apiData,
-                list: JSON.parse(JSON.stringify(apiData.list))
-              }
-            ]
-          }
+                list: JSON.parse(JSON.stringify(apiData.list)),
+              },
+            ],
+          },
         };
       }
     });
@@ -92,10 +92,10 @@ const createDevToolsSlice: StateCreator<IDevtools> = (set) => ({
     set((state) => ({
       data: {
         ...state.data,
-        isOpen: !state.data.isOpen
-      }
+        isOpen: !state.data.isOpen,
+      },
     }));
-  }
+  },
 });
 
 export default createDevToolsSlice;

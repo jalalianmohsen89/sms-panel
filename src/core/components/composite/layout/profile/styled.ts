@@ -7,19 +7,19 @@ const { Text } = Typography;
 export const DropdownProfileContainer = styled(Flex)({
   gap: 10,
   padding: "1rem 0",
-  userSelect: "none"
+  userSelect: "none",
 });
 
 export const UserRole = styled(Text)<TokenType>(({ token }) => ({
   fontSize: "11px",
   fontWeight: "bold",
-  color: token.colorPrimaryText
+  color: token.colorPrimaryText,
 }));
 
 export const AvatarProfile = styled(Avatar)<TokenType>(({ token }) => ({
   gap: 20,
   cursor: "pointer",
-  backgroundColor: token.colorPrimary
+  backgroundColor: token.colorPrimary,
 }));
 
 export const DropdownOption = styled(Flex)<TokenType>(({ token }) => ({
@@ -31,6 +31,6 @@ export const DropdownOption = styled(Flex)<TokenType>(({ token }) => ({
   transition: "all 0.3s ease-in-out",
 
   "&:hover": {
-    backgroundColor: token.colorBgContainerDisabled
-  }
+    backgroundColor: token.colorBgContainerDisabled,
+  },
 }));

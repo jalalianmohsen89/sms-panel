@@ -3,7 +3,7 @@ import {
   Space,
   Tooltip,
   Typography,
-  useBreakpoint
+  useBreakpoint,
 } from "@/core/components/base";
 import { css } from "@emotion/css";
 import { FC, ReactNode } from "react";
@@ -28,7 +28,7 @@ export const ActionMore: FC<Props> = ({
   isPageBuilder = false,
   row,
   list,
-  onSelectAction
+  onSelectAction,
 }) => {
   // -------------------- variables --------------------------
   const { token } = themeContent.useToken();

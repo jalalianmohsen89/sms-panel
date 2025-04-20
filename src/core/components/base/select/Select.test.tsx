@@ -14,7 +14,7 @@ vi.mock("antd", () => ({
     placeholder,
     status,
     style,
-    className
+    className,
   }: {
     value?: string | string[];
     defaultValue?: string | string[];
@@ -49,13 +49,13 @@ vi.mock("antd", () => ({
         </option>
       ))}
     </select>
-  )
+  ),
 }));
 
 describe("Select Component", () => {
   const defaultOptions = [
     { label: "Option 1", value: "1" },
-    { label: "Option 2", value: "2" }
+    { label: "Option 2", value: "2" },
   ];
 
   it("renders basic select", () => {
@@ -67,7 +67,7 @@ describe("Select Component", () => {
   it("handles value change", () => {
     const handleChange = vi.fn();
     const { getByTestId } = render(
-      <Select options={defaultOptions} onChange={handleChange} />
+      <Select options={defaultOptions} onChange={handleChange} />,
     );
 
     fireEvent.change(getByTestId("select"), { target: { value: "1" } });
@@ -76,7 +76,7 @@ describe("Select Component", () => {
 
   it("renders in multiple mode", () => {
     const { getByTestId } = render(
-      <Select mode="multiple" options={defaultOptions} />
+      <Select mode="multiple" options={defaultOptions} />,
     );
 
     expect(getByTestId("select")).toHaveAttribute("multiple");
@@ -86,7 +86,7 @@ describe("Select Component", () => {
   it("shows placeholder", () => {
     const placeholder = "Select an option";
     const { getByText } = render(
-      <Select options={defaultOptions} placeholder={placeholder} />
+      <Select options={defaultOptions} placeholder={placeholder} />,
     );
 
     expect(getByText(placeholder)).toBeInTheDocument();
@@ -94,7 +94,7 @@ describe("Select Component", () => {
 
   it("applies error status", () => {
     const { getByTestId } = render(
-      <Select options={defaultOptions} status="error" />
+      <Select options={defaultOptions} status="error" />,
     );
 
     expect(getByTestId("select")).toHaveClass("ant-select-error");
@@ -102,7 +102,7 @@ describe("Select Component", () => {
 
   it("displays default value", () => {
     const { getByTestId } = render(
-      <Select options={defaultOptions} defaultValue="1" />
+      <Select options={defaultOptions} defaultValue="1" />,
     );
 
     expect(getByTestId("select")).toHaveValue("1");
@@ -114,7 +114,7 @@ describe("Select Component", () => {
         options={defaultOptions}
         style={{ width: "200px" }}
         className="custom-select"
-      />
+      />,
     );
     const select = getByTestId("select");
 
@@ -123,7 +123,7 @@ describe("Select Component", () => {
 
   it("handles dropdownMatchSelectWidth prop", () => {
     const { getByTestId } = render(
-      <Select options={defaultOptions} dropdownMatchSelectWidth={false} />
+      <Select options={defaultOptions} dropdownMatchSelectWidth={false} />,
     );
 
     expect(getByTestId("select")).toBeInTheDocument();

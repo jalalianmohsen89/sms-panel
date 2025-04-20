@@ -13,8 +13,8 @@ beforeAll(() => {
       removeListener: vi.fn(),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn()
-    }))
+      dispatchEvent: vi.fn(),
+    })),
   });
 });
 
@@ -25,7 +25,7 @@ describe("Form Component", () => {
         <Form.Item>
           <input placeholder="test input" />
         </Form.Item>
-      </Form>
+      </Form>,
     );
 
     const form = baseElement.querySelector(".ant-form");
@@ -39,7 +39,7 @@ describe("Form Component", () => {
         <Form.Item label="Test">
           <input placeholder="test input" />
         </Form.Item>
-      </Form>
+      </Form>,
     );
 
     const form = baseElement.querySelector(".ant-form-vertical");
@@ -53,7 +53,7 @@ describe("Form Component", () => {
         <Form.Item label="Username">
           <input placeholder="username" />
         </Form.Item>
-      </Form>
+      </Form>,
     );
 
     const label = baseElement.querySelector(".ant-form-item-label");
@@ -68,7 +68,7 @@ describe("Form Component", () => {
         <Form.Item name="username">
           <input />
         </Form.Item>
-      </Form>
+      </Form>,
     );
 
     const input = baseElement.querySelector("input");

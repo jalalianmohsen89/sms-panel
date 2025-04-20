@@ -2,7 +2,7 @@ import {
   ChevronDoubleLeft,
   ChevronDoubleRight,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
 } from "@/core/icons";
 
 export const locale = {
@@ -35,15 +35,15 @@ export const locale = {
       "آذر",
       "دی",
       "بهمن",
-      "اسفند"
+      "اسفند",
     ],
-    shortWeekDays: ["یک", "دو", "سه", "چهار", "پنج", "جمعه", "شنبه"]
-  }
+    shortWeekDays: ["یک", "دو", "سه", "چهار", "پنج", "جمعه", "شنبه"],
+  },
 };
 
 export const icons = {
   prevIcon: <ChevronRight size={16} />,
   nextIcon: <ChevronLeft size={16} />,
   superPrevIcon: <ChevronDoubleRight size={16} />,
-  superNextIcon: <ChevronDoubleLeft size={16} />
+  superNextIcon: <ChevronDoubleLeft size={16} />,
 };

@@ -24,29 +24,29 @@ const initializeToast = () => {
     success: {
       backgroundColor: "#e6ffe6", // سبز خیلی ملایم
       color: "#2d862d", // سبز تیره‌تر برای متن
-      border: "1px solid #b3ffb3" // سبز روشن‌تر برای خط دور
+      border: "1px solid #b3ffb3", // سبز روشن‌تر برای خط دور
     },
     error: {
       backgroundColor: "#ffe6e6", // قرمز خیلی ملایم
       color: "#b32424", // قرمز تیره‌تر برای متن
-      border: "1px solid #ffcccc" // قرمز روشن‌تر برای خط دور
+      border: "1px solid #ffcccc", // قرمز روشن‌تر برای خط دور
     },
     info: {
       backgroundColor: "#e6f7ff", // آبی خیلی ملایم
       color: "#1a75ff", // آبی متوسط برای متن
-      border: "1px solid #cceeff" // آبی روشن‌تر برای خط دور
+      border: "1px solid #cceeff", // آبی روشن‌تر برای خط دور
     },
     warning: {
       backgroundColor: "#fff5e6", // نارنجی/زرد خیلی ملایم
       color: "#e68a00", // نارنجی تیره‌تر برای متن
-      border: "1px solid #ffe6cc" // نارنجی روشن‌تر برای خط دور
-    }
+      border: "1px solid #ffe6cc", // نارنجی روشن‌تر برای خط دور
+    },
   };
 
   const showToast = (
     type: ToastType,
     message: string,
-    options?: ToastOptions
+    options?: ToastOptions,
   ) => {
     notification[type]({
       message,
@@ -55,7 +55,7 @@ const initializeToast = () => {
       placement: options?.placement ?? "topLeft",
       style: { ...customThemeStyles[type], ...options?.style }, // ترکیب تم با استایل سفارشی
       className: options?.className || "custom-toast",
-      key: options?.key ?? generateKey()
+      key: options?.key ?? generateKey(),
     });
   };
 
@@ -68,7 +68,7 @@ const initializeToast = () => {
     info: (message: string, options?: ToastOptions) =>
       showToast("info", message, options),
     warning: (message: string, options?: ToastOptions) =>
-      showToast("warning", message, options)
+      showToast("warning", message, options),
   };
 };
 

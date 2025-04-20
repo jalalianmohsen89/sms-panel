@@ -13,8 +13,8 @@ beforeAll(() => {
       removeListener: () => vi.fn(), // Deprecated
       addEventListener: () => vi.fn(),
       removeEventListener: () => vi.fn(),
-      dispatchEvent: () => false
-    })
+      dispatchEvent: () => false,
+    }),
   });
 });
 
@@ -62,7 +62,7 @@ describe("Avatar Component", () => {
         src="https://invalid-url.com/avatar.png"
         alt="Invalid Avatar"
         onError={handleError}
-      />
+      />,
     );
 
     // Mocking image element
@@ -83,7 +83,7 @@ describe("Avatar Component", () => {
       <Avatar.Group>
         <Avatar>U1</Avatar>
         <Avatar>U2</Avatar>
-      </Avatar.Group>
+      </Avatar.Group>,
     );
     const group = document.querySelector(".ant-avatar-group");
 

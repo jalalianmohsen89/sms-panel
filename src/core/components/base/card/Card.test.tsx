@@ -9,7 +9,7 @@ describe("Card Component", () => {
 
     expect(container.querySelector(".ant-card")).toBeInTheDocument();
     expect(container.querySelector(".ant-card-body")).toHaveTextContent(
-      "Basic Card"
+      "Basic Card",
     );
   });
 
@@ -17,26 +17,26 @@ describe("Card Component", () => {
     const { container } = render(<Card title="Card Title">Content</Card>);
 
     expect(container.querySelector(".ant-card-head-title")).toHaveTextContent(
-      "Card Title"
+      "Card Title",
     );
   });
 
   it("renders card with cover", () => {
     const { container } = render(
-      <Card cover={<img alt="example" src="test.png" />}>Content</Card>
+      <Card cover={<img alt="example" src="test.png" />}>Content</Card>,
     );
 
     expect(container.querySelector(".ant-card-cover")).toBeInTheDocument();
     expect(container.querySelector(".ant-card-cover img")).toHaveAttribute(
       "src",
-      "test.png"
+      "test.png",
     );
   });
 
   it("renders card with actions", () => {
     const actions = [
       <EditOutlined key="edit" />,
-      <EllipsisOutlined key="ellipsis" />
+      <EllipsisOutlined key="ellipsis" />,
     ];
     const { container } = render(<Card actions={actions}>Content</Card>);
 
@@ -48,14 +48,14 @@ describe("Card Component", () => {
     const { container } = render(
       <Card>
         <Card.Meta title="Meta Title" description="Meta Description" />
-      </Card>
+      </Card>,
     );
 
     expect(container.querySelector(".ant-card-meta-title")).toHaveTextContent(
-      "Meta Title"
+      "Meta Title",
     );
     expect(
-      container.querySelector(".ant-card-meta-description")
+      container.querySelector(".ant-card-meta-description"),
     ).toHaveTextContent("Meta Description");
   });
 
@@ -63,12 +63,12 @@ describe("Card Component", () => {
     const { container } = render(
       <Card>
         <Card.Grid>Grid Content</Card.Grid>
-      </Card>
+      </Card>,
     );
 
     expect(container.querySelector(".ant-card-grid")).toBeInTheDocument();
     expect(container.querySelector(".ant-card-grid")).toHaveTextContent(
-      "Grid Content"
+      "Grid Content",
     );
   });
 
@@ -77,7 +77,7 @@ describe("Card Component", () => {
       <>
         <Card size="small">Small Card</Card>
         <Card size="default">Default Card</Card>
-      </>
+      </>,
     );
 
     expect(container.querySelector(".ant-card-small")).toBeInTheDocument();

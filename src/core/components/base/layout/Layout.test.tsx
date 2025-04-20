@@ -9,7 +9,7 @@ describe("Layout Component", () => {
         <Layout.Content data-testid="content">Main Content</Layout.Content>
         <Layout.Sider data-testid="sider">Sidebar Content</Layout.Sider>
         <Layout.Footer data-testid="footer">Footer Content</Layout.Footer>
-      </Layout>
+      </Layout>,
     );
 
     expect(screen.getByTestId("header")).toBeInTheDocument();
@@ -27,7 +27,7 @@ describe("Layout Component", () => {
     const { container } = render(
       <Layout data-testid="layout" className="custom-class">
         <Layout.Content>Main Content</Layout.Content>
-      </Layout>
+      </Layout>,
     );
 
     const layout = container.querySelector(".ant-layout");

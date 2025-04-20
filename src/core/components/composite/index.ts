@@ -18,7 +18,6 @@ export {
   filterTypeOptions,
   dataMapsList,
   pages,
-  typeValueColumns,
   pageBuilders,
 } from "@/core/components/composite/page-builder/content";
 

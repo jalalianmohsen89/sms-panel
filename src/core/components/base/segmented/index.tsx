@@ -12,5 +12,5 @@ export type Props<T extends object | string | number> = Pick<
 >;
 
 export const Segmented = <T extends object | string | number>(
-  props: Props<T>
+  props: Props<T>,
 ) => <BaseSegmented {...props} />;

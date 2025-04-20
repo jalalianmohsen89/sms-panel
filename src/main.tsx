@@ -12,5 +12,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <Provider store={store as any}>
       <ThemeProvider />
     </Provider>
-  </QueryClientProvider>
+  </QueryClientProvider>,
 );

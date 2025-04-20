@@ -25,7 +25,7 @@ describe("Upload Component", () => {
   it("disables upload input when disabled prop is true", () => {
     const { container } = render(<Upload disabled />);
     const input = container.querySelector(
-      "input[type='file']"
+      "input[type='file']",
     ) as HTMLInputElement;
 
     expect(input).toBeDisabled();
@@ -35,7 +35,7 @@ describe("Upload Component", () => {
     const mockBeforeUpload = vi.fn(() => false); // Reject upload
     const { container } = render(<Upload beforeUpload={mockBeforeUpload} />);
     const input = container.querySelector(
-      "input[type='file']"
+      "input[type='file']",
     ) as HTMLInputElement;
 
     const file = new File(["test"], "test-file.txt", { type: "text/plain" });

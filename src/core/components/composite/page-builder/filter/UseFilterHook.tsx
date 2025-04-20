@@ -6,7 +6,7 @@ import {
   RangePickerJalali,
   Input,
   Select,
-  Switch
+  Switch,
 } from "@/core/components/base";
 import { css } from "@emotion/css";
 import { IPageBuilderFilter, TYPES } from "../types";
@@ -32,7 +32,7 @@ const useFilterHook = (props: Props) => {
         setValue((event.target as HTMLInputElement).value);
         props.onChangeValue?.(
           (event.target as HTMLInputElement).value,
-          props.field
+          props.field,
         );
       }}
     />
@@ -135,7 +135,7 @@ const useFilterHook = (props: Props) => {
     mutationFn: fetchData,
     onSuccess: ({ data }) => {
       setOptions(props.mapper?.(data) ?? data);
-    }
+    },
   });
 
   // ---------------------- useEffects ---------------------

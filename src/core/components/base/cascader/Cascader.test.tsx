@@ -10,10 +10,10 @@ describe("Cascader Component", () => {
       children: [
         {
           value: "hangzhou",
-          label: "Hangzhou"
-        }
-      ]
-    }
+          label: "Hangzhou",
+        },
+      ],
+    },
   ];
 
   it("renders basic cascader", () => {
@@ -28,7 +28,7 @@ describe("Cascader Component", () => {
         <Cascader options={mockOptions} size="small" />
         <Cascader options={mockOptions} size="middle" />
         <Cascader options={mockOptions} size="large" />
-      </>
+      </>,
     );
 
     expect(container.querySelector(".ant-select-lg")).toBeInTheDocument();
@@ -43,11 +43,11 @@ describe("Cascader Component", () => {
 
   it("renders without border", () => {
     const { container } = render(
-      <Cascader options={mockOptions} bordered={false} />
+      <Cascader options={mockOptions} bordered={false} />,
     );
 
     expect(
-      container.querySelector(".ant-select-borderless")
+      container.querySelector(".ant-select-borderless"),
     ).toBeInTheDocument();
   });
 
@@ -56,11 +56,11 @@ describe("Cascader Component", () => {
       <Cascader
         options={mockOptions}
         defaultValue={["zhejiang", "hangzhou"]}
-      />
+      />,
     );
 
     expect(container.querySelector(".ant-cascader")).toHaveTextContent(
-      "Hangzhou"
+      "Hangzhou",
     );
   });
 
@@ -72,11 +72,11 @@ describe("Cascader Component", () => {
 
   it("shows/hides arrow", () => {
     const { container } = render(
-      <Cascader options={mockOptions} showArrow={false} />
+      <Cascader options={mockOptions} showArrow={false} />,
     );
 
     expect(
-      container.querySelector(".ant-cascader-arrow")
+      container.querySelector(".ant-cascader-arrow"),
     ).not.toBeInTheDocument();
   });
 });

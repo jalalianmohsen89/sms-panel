@@ -10,8 +10,8 @@ const LoginForm = () => (
       rules={[
         {
           required: true,
-          message: "لطفا نام کاربری خود را وارد کنید !"
-        }
+          message: "لطفا نام کاربری خود را وارد کنید !",
+        },
       ]}
     >
       <Input />
@@ -23,8 +23,8 @@ const LoginForm = () => (
       rules={[
         {
           required: true,
-          message: "لطفا رمز عبور خود را وارد کنید !"
-        }
+          message: "لطفا رمز عبور خود را وارد کنید !",
+        },
       ]}
     >
       <Password />

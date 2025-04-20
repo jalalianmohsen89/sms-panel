@@ -8,7 +8,7 @@ describe("Checkbox Component", () => {
 
     expect(container.querySelector(".ant-checkbox")).toBeInTheDocument();
     expect(container.querySelector(".ant-checkbox-wrapper")).toHaveTextContent(
-      "Test Checkbox"
+      "Test Checkbox",
     );
   });
 
@@ -16,14 +16,14 @@ describe("Checkbox Component", () => {
     const { container } = render(<Checkbox defaultChecked>Checked</Checkbox>);
 
     expect(
-      container.querySelector(".ant-checkbox-checked")
+      container.querySelector(".ant-checkbox-checked"),
     ).toBeInTheDocument();
   });
 
   it("handles onChange event", () => {
     const handleChange = vi.fn();
     const { container } = render(
-      <Checkbox onChange={handleChange}>Click me</Checkbox>
+      <Checkbox onChange={handleChange}>Click me</Checkbox>,
     );
 
     const checkbox = container.querySelector("input[type='checkbox']");
@@ -35,7 +35,7 @@ describe("Checkbox Component", () => {
   it("renders checkbox group", () => {
     const options = [
       { label: "Apple", value: "apple" },
-      { label: "Pear", value: "pear" }
+      { label: "Pear", value: "pear" },
     ];
 
     const { container } = render(<Checkbox.Group options={options} />);
@@ -47,7 +47,7 @@ describe("Checkbox Component", () => {
     const { container } = render(<Checkbox indeterminate>Partial</Checkbox>);
 
     expect(
-      container.querySelector(".ant-checkbox-indeterminate")
+      container.querySelector(".ant-checkbox-indeterminate"),
     ).toBeInTheDocument();
   });
 
@@ -55,7 +55,7 @@ describe("Checkbox Component", () => {
     const { container } = render(<Checkbox disabled>Disabled</Checkbox>);
 
     expect(
-      container.querySelector(".ant-checkbox-disabled")
+      container.querySelector(".ant-checkbox-disabled"),
     ).toBeInTheDocument();
   });
 
@@ -64,7 +64,7 @@ describe("Checkbox Component", () => {
     const options = ["Apple", "Pear"];
 
     const { container } = render(
-      <Checkbox.Group options={options} onChange={handleChange} />
+      <Checkbox.Group options={options} onChange={handleChange} />,
     );
 
     const firstCheckbox = container.querySelector("input[type='checkbox']");

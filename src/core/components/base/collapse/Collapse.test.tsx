@@ -7,13 +7,13 @@ describe("Collapse Component", () => {
     {
       key: "1",
       label: "Panel 1",
-      children: "Content 1"
+      children: "Content 1",
     },
     {
       key: "2",
       label: "Panel 2",
-      children: "Content 2"
-    }
+      children: "Content 2",
+    },
   ];
 
   it("renders basic collapse", () => {
@@ -27,14 +27,14 @@ describe("Collapse Component", () => {
     const { container } = render(<Collapse items={mockItems} activeKey="1" />);
 
     expect(
-      container.querySelector(".ant-collapse-item-active")
+      container.querySelector(".ant-collapse-item-active"),
     ).toBeInTheDocument();
   });
 
   it("handles onChange event", () => {
     const handleChange = vi.fn();
     const { container } = render(
-      <Collapse items={mockItems} onChange={handleChange} />
+      <Collapse items={mockItems} onChange={handleChange} />,
     );
 
     const header = container.querySelector(".ant-collapse-header");
@@ -58,7 +58,7 @@ describe("Collapse Component", () => {
   it("renders with custom expandIcon", () => {
     const CustomIcon = () => <span className="custom-icon">+</span>;
     const { container } = render(
-      <Collapse items={mockItems} expandIcon={CustomIcon} />
+      <Collapse items={mockItems} expandIcon={CustomIcon} />,
     );
 
     expect(container.querySelector(".custom-icon")).toBeInTheDocument();
@@ -66,14 +66,14 @@ describe("Collapse Component", () => {
 
   it("renders with destroyInactivePanel", () => {
     const { container } = render(
-      <Collapse items={mockItems} destroyInactivePanel />
+      <Collapse items={mockItems} destroyInactivePanel />,
     );
     const header = container.querySelector(".ant-collapse-header");
 
     fireEvent.click(header!);
     fireEvent.click(header!);
     expect(
-      container.querySelector(".ant-collapse-content")
+      container.querySelector(".ant-collapse-content"),
     ).not.toBeInTheDocument();
   });
 });

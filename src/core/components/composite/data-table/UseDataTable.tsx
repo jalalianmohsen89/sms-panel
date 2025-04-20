@@ -3,7 +3,7 @@ import {
   Empty,
   Pagination,
   Row,
-  useBreakpoint
+  useBreakpoint,
 } from "@/core/components/base";
 import apiService from "@/core/services";
 import { useStore } from "@/core/store";
@@ -15,7 +15,7 @@ import {
   MobileTablesCard,
   MobileTableSelection,
   MobileTableSort,
-  SearchbarTable
+  SearchbarTable,
 } from "./components";
 import { Props } from "./index";
 import { IPagination, IParams } from "./types";
@@ -50,13 +50,15 @@ const useDataTable = <T extends WithOptionalId>({
   const [paginationData, setPaginationData] = useState<IPagination>({
     page: 1,
     current: 1,
-    pageSize: 15
+    pageSize: 15,
   });
   // const [sort, setSort] = useState<ISortInfo>({
   //   sort_direction: "ascend",
   //   sort_field: ""
   // });
-  const [params, setParams] = useState<IParams>({});
+  const [params, setParams] = useState<IParams>(
+    withPagination ? { page: 1, limit: 15 } : {},
+  );
   const breakpoints = useBreakpoint();
   const isMobile = !breakpoints.md;
   const { token } = themeContent.useToken();
@@ -92,9 +94,9 @@ const useDataTable = <T extends WithOptionalId>({
           idx !==
           selectedRow.findIndex((row: any) =>
             Object.keys(row).every(
-              (key: string) => (row as any)[key] === (item as any)[key]
-            )
-          )
+              (key: string) => (row as any)[key] === (item as any)[key],
+            ),
+          ),
       );
 
       setSelectionKey(keys);
@@ -129,13 +131,13 @@ const useDataTable = <T extends WithOptionalId>({
               setParams({
                 ...params,
                 page,
-                limit: pageSize
+                limit: pageSize,
               });
               setPaginationData({
                 page,
                 current: page,
                 pageSize,
-                total: paginationData?.total
+                total: paginationData?.total,
               });
             }}
           />
@@ -153,7 +155,7 @@ const useDataTable = <T extends WithOptionalId>({
       if (onSelected) {
         onSelected(data, selectedRowKeys);
       }
-    }
+    },
   };
 
   // -------------------- methods --------------------------
@@ -198,17 +200,17 @@ const useDataTable = <T extends WithOptionalId>({
   );
 
   const onChangeTable = (pagination: any) => {
-    if (pagination?.current) {
+    if (withPagination && pagination?.current) {
       setParams({
         ...params,
         page: pagination?.current,
-        limit: +pagination?.pageSize
+        limit: +pagination?.pageSize,
       });
       setPaginationData({
         page: +pagination?.current,
         current: +pagination?.current,
         pageSize: +pagination?.pageSize,
-        total: pagination?.total
+        total: pagination?.total,
       });
     }
   };
@@ -222,7 +224,7 @@ const useDataTable = <T extends WithOptionalId>({
           page: +data.pagination.page,
           current: +data.pagination.page,
           pageSize: +data.pagination.limit,
-          total: data.pagination.total
+          total: data.pagination.total,
         });
         // setRows(
         //   dataMap?.(data).filter(
@@ -241,7 +243,7 @@ const useDataTable = <T extends WithOptionalId>({
               1;
 
             return item;
-          })
+          }),
         );
       } else {
         setRows(dataMap?.(data));
@@ -253,11 +255,11 @@ const useDataTable = <T extends WithOptionalId>({
           name: "getData",
           url: location.pathname,
           params: "",
-          list: data
+          list: data,
         },
-        location
+        location,
       );
-    }
+    },
   });
 
   // -------------------- useEffect --------------------------
@@ -265,12 +267,27 @@ const useDataTable = <T extends WithOptionalId>({
     const queryParams = new URLSearchParams(location.search);
 
     // تبدیل پارامترهای کوئری به یک شیء
-    const paramsObject = Object.fromEntries(queryParams.entries());
+    let paramsObject = Object.fromEntries(queryParams.entries()) as any;
 
+    const pagination = {
+      page: paginationData.page,
+      limit: paginationData.pageSize,
+    };
+
+    if (withPagination) {
+      paramsObject = {
+        ...pagination,
+        ...paramsObject,
+      };
+    }
     setParams({
-      ...{ page: paginationData.current, limit: paginationData.pageSize },
-      ...paramsObject
+      ...paramsObject,
     });
+
+    return () => {
+      paramsObject = undefined;
+      setParams({});
+    };
   }, [location.search]);
 
   useEffect(() => {
@@ -293,13 +310,14 @@ const useDataTable = <T extends WithOptionalId>({
     const firstColumn = {
       title: "ردیف ",
       dataIndex: "index",
-      key: "index"
+      key: "index",
     };
     const find = props.columns.find((item: any) => item.key === "index");
 
     if (!find) {
       props.columns.unshift(firstColumn);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [paginationData]);
 
   // useEffect(() => {
@@ -318,8 +336,12 @@ const useDataTable = <T extends WithOptionalId>({
   useEffect(() => {
     if (dataSource)
       setRows(
-        dataSource.map((row, index) => ({ ...row, key: row?.id || index }))
+        dataSource.map((row, index) => ({ ...row, key: row?.id || index })),
       );
+
+    return () => {
+      setRows([]);
+    };
   }, [dataSource]);
 
   return {
@@ -333,7 +355,7 @@ const useDataTable = <T extends WithOptionalId>({
     paginationData,
     otherProps,
     featuresMobileColumns,
-    onChangeTable
+    onChangeTable,
   };
 };
 

@@ -16,7 +16,7 @@ export {
   IoPencil as Pencil,
   IoPerson as Person,
   IoTrash as Trash,
-  IoCodeOutline as CodeOutline
+  IoCodeOutline as CodeOutline,
 } from "react-icons/io5";
 
 export {
@@ -27,7 +27,8 @@ export {
   HiChevronDoubleRight as ChevronDoubleRight,
   HiChevronLeft as ChevronLeft,
   HiChevronRight as ChevronRight,
-  HiDeviceMobile as Mobile
+  HiDeviceMobile as Mobile,
+  HiUsers as Users,
 } from "react-icons/hi";
 export { HiOutlineMegaphone as Megaphone } from "react-icons/hi2";
 
@@ -36,7 +37,7 @@ export { BsShieldLockFill as ShiedLockFill } from "react-icons/bs";
 
 export {
   RiFilterFill as FilterFill,
-  RiFilterOffFill as FilterOffFill
+  RiFilterOffFill as FilterOffFill,
 } from "react-icons/ri";
 
 export { MdSms as SMS } from "react-icons/md";
@@ -44,10 +45,12 @@ export { MdSms as SMS } from "react-icons/md";
 export {
   BiBold as Bold,
   BiItalic as Italic,
-  BiUnderline as Underline
+  BiUnderline as Underline,
 } from "react-icons/bi";
 export { IoMdCloudUpload as Upload, IoMdTime as Time } from "react-icons/io";
 
 export { MdTitle as Title } from "react-icons/md";
 export { TbSend2 as Send, TbMessage2 as Message } from "react-icons/tb";
 export { BsEnvelopeArrowUp as EnvelopeArrowUp } from "react-icons/bs";
+
+export { FaEye as Eye } from "react-icons/fa";

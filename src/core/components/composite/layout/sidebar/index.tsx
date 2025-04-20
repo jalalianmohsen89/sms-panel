@@ -8,7 +8,7 @@ import {
   // Segments,
   SettingModal,
   SidebarContainer,
-  SiderBox
+  SiderBox,
 } from "@/core/components/composite/layout/sidebar/styled";
 import { navigation } from "@/core/content";
 import { usePattern } from "@/core/context/PatternContext.tsx";
@@ -38,8 +38,8 @@ export const Sidebar = () => {
     navigate(`/${event.keyPath[1]}/${event.keyPath[0]}`, {
       state: {
         openKeys: event.keyPath[1],
-        selectedKeys: event.keyPath[0]
-      } // ارسال state به صفحه جدید
+        selectedKeys: event.keyPath[0],
+      }, // ارسال state به صفحه جدید
     });
   };
 

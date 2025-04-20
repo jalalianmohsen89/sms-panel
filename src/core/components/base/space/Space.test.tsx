@@ -14,7 +14,7 @@ vi.mock("antd", () => ({
     wrap,
     className,
     style,
-    onClick
+    onClick,
   }: {
     children?: React.ReactNode;
     direction?: "vertical" | "horizontal";
@@ -44,7 +44,7 @@ vi.mock("antd", () => ({
         </React.Fragment>
       ))}
     </div>
-  )
+  ),
 }));
 
 describe("Space Component", () => {
@@ -83,7 +83,7 @@ describe("Space Component", () => {
       <Space split="|">
         <div>Item 1</div>
         <div>Item 2</div>
-      </Space>
+      </Space>,
     );
 
     expect(container.querySelector(".ant-space-split")).toHaveTextContent("|");
@@ -100,7 +100,7 @@ describe("Space Component", () => {
       <Space>
         <div>Item 1</div>
         <div>Item 2</div>
-      </Space>
+      </Space>,
     );
     const items = getAllByText(/Item/);
 
@@ -109,7 +109,7 @@ describe("Space Component", () => {
 
   it("applies custom styling", () => {
     const { getByTestId } = render(
-      <Space className="custom-space" style={{ margin: "10px" }} />
+      <Space className="custom-space" style={{ margin: "10px" }} />,
     );
     const space = getByTestId("space");
 

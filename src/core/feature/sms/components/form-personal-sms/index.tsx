@@ -11,7 +11,7 @@ import {
   Select,
   Toast,
   Typography,
-  useForm
+  useForm,
 } from "@/core/components/base";
 import { css } from "@emotion/css";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -24,7 +24,7 @@ const FormPersonalSms = () => {
   const [formProps, setFormProps] = useState<any>({});
   const options: CheckboxGroupProps<string>["options"] = [
     { label: "هم اکنون", value: "1" },
-    { label: "در تاریخ مشخص", value: "2" }
+    { label: "در تاریخ مشخص", value: "2" },
   ];
   // --------------------- hooks ---------------------------
   const [form] = useForm();
@@ -34,7 +34,7 @@ const FormPersonalSms = () => {
     mutationFn: sendPersonalSms,
     onSuccess: () => {
       Toast.success("پیامک با موفقیت ارسال شد");
-    }
+    },
   });
 
   const { data: userNumbers } = useQuery({
@@ -43,8 +43,8 @@ const FormPersonalSms = () => {
     select: ({ data }) =>
       data.data.map((item: any) => ({
         label: item.number,
-        value: item.number.toString()
-      }))
+        value: item.number.toString(),
+      })),
   });
 
   // -------------------- methods --------------------------
@@ -90,7 +90,7 @@ const FormPersonalSms = () => {
                 onChange={(e) =>
                   setFormProps({
                     ...formProps,
-                    to: e.target.value
+                    to: e.target.value,
                   })
                 }
               />
@@ -104,7 +104,7 @@ const FormPersonalSms = () => {
                 onChange={(option) =>
                   setFormProps({
                     ...formProps,
-                    number: option
+                    number: option,
                   })
                 }
               />

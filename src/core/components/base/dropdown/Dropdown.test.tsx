@@ -14,8 +14,8 @@ beforeAll(() => {
       removeListener: vi.fn(),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn()
-    }))
+      dispatchEvent: vi.fn(),
+    })),
   });
 });
 
@@ -23,15 +23,15 @@ describe("Dropdown Component", () => {
   const menuItems = {
     items: [
       { key: "1", label: "Item 1" },
-      { key: "2", label: "Item 2" }
-    ]
+      { key: "2", label: "Item 2" },
+    ],
   };
 
   it("renders basic dropdown", () => {
     const { baseElement } = render(
       <Dropdown menu={menuItems}>
         <a>Click me</a>
-      </Dropdown>
+      </Dropdown>,
     );
 
     const trigger = baseElement.querySelector("a");
@@ -48,7 +48,7 @@ describe("Dropdown Component", () => {
         onOpenChange={onOpenChange}
       >
         <a>Click me</a>
-      </Dropdown>
+      </Dropdown>,
     );
 
     const trigger = baseElement.querySelector("a");
@@ -66,7 +66,7 @@ describe("Dropdown Component", () => {
     const { baseElement } = render(
       <Dropdown menu={menuItems} placement="bottomRight">
         <a>Click me</a>
-      </Dropdown>
+      </Dropdown>,
     );
 
     const trigger = baseElement.querySelector("a");

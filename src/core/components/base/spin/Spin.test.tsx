@@ -13,7 +13,7 @@ vi.mock("antd", () => ({
     style,
     children,
     indicator,
-    tip
+    tip,
   }: {
     spinning?: boolean;
     size?: "small" | "default" | "large";
@@ -43,7 +43,7 @@ vi.mock("antd", () => ({
         </div>
       )}
     </div>
-  )
+  ),
 }));
 
 describe("Spin Component", () => {
@@ -73,7 +73,7 @@ describe("Spin Component", () => {
 
   it("renders custom indicator", () => {
     const { getByTestId } = render(
-      <Spin indicator={<div>Custom Spinner</div>} />
+      <Spin indicator={<div>Custom Spinner</div>} />,
     );
 
     expect(getByTestId("custom-indicator")).toHaveTextContent("Custom Spinner");
@@ -89,7 +89,7 @@ describe("Spin Component", () => {
     const { container } = render(
       <Spin>
         <div>Content</div>
-      </Spin>
+      </Spin>,
     );
 
     expect(container.querySelector(".ant-spin-container")).toBeInTheDocument();
@@ -99,7 +99,7 @@ describe("Spin Component", () => {
     const { container } = render(
       <Spin spinning>
         <div>Content</div>
-      </Spin>
+      </Spin>,
     );
 
     expect(container.querySelector(".ant-spin-blur")).toBeInTheDocument();
@@ -107,7 +107,7 @@ describe("Spin Component", () => {
 
   it("applies custom styling", () => {
     const { getByTestId } = render(
-      <Spin className="custom-spin" style={{ margin: "20px" }} />
+      <Spin className="custom-spin" style={{ margin: "20px" }} />,
     );
     const spin = getByTestId("spin");
 

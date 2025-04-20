@@ -20,7 +20,7 @@ export function hexToRgba(hex: string, opacity: number) {
   const color = {
     r: parseInt(hexValue.substring(0, 2), 16),
     g: parseInt(hexValue.substring(2, 4), 16),
-    b: parseInt(hexValue.substring(4, 6), 16)
+    b: parseInt(hexValue.substring(4, 6), 16),
   };
 
   return `rgba(${color.r}, ${color.g}, ${color.b},${opacity})`;
@@ -38,7 +38,7 @@ export function dateFormat(date: number): string {
     day: "2-digit",
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit"
+    second: "2-digit",
   };
 
   return (

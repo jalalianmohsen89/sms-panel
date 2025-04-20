@@ -14,7 +14,7 @@ vi.mock("antd", () => ({
     size,
     onChange,
     className,
-    style
+    style,
   }: {
     dataSource?: Array<any>;
     columns?: Array<any>;
@@ -71,23 +71,23 @@ vi.mock("antd", () => ({
         </div>
       )}
     </div>
-  )
+  ),
 }));
 
 describe("Table Component", () => {
   const mockData = [
     { id: 1, name: "John", age: 30 },
-    { id: 2, name: "Jane", age: 25 }
+    { id: 2, name: "Jane", age: 25 },
   ];
 
   const mockColumns = [
     { title: "Name", dataIndex: "name" },
-    { title: "Age", dataIndex: "age" }
+    { title: "Age", dataIndex: "age" },
   ];
 
   it("renders basic table", () => {
     const { getByTestId } = render(
-      <Table dataSource={mockData} columns={mockColumns} />
+      <Table dataSource={mockData} columns={mockColumns} />,
     );
 
     expect(getByTestId("table")).toHaveClass("ant-table");
@@ -95,7 +95,7 @@ describe("Table Component", () => {
 
   it("renders correct number of rows", () => {
     const { getAllByTestId } = render(
-      <Table dataSource={mockData} columns={mockColumns} />
+      <Table dataSource={mockData} columns={mockColumns} />,
     );
 
     expect(getAllByTestId("table-row")).toHaveLength(2);
@@ -103,7 +103,7 @@ describe("Table Component", () => {
 
   it("shows loading state", () => {
     const { getByTestId } = render(
-      <Table dataSource={mockData} columns={mockColumns} loading />
+      <Table dataSource={mockData} columns={mockColumns} loading />,
     );
 
     expect(getByTestId("table")).toHaveAttribute("data-loading", "true");
@@ -117,7 +117,7 @@ describe("Table Component", () => {
         columns={mockColumns}
         pagination={{ current: 1, pageSize: 10 }}
         onChange={handleChange}
-      />
+      />,
     );
 
     const pagination = getByTestId("table-pagination");
@@ -128,7 +128,7 @@ describe("Table Component", () => {
 
   it("renders with borders", () => {
     const { getByTestId } = render(
-      <Table dataSource={mockData} columns={mockColumns} bordered />
+      <Table dataSource={mockData} columns={mockColumns} bordered />,
     );
 
     expect(getByTestId("table")).toHaveClass("ant-table-bordered");
@@ -136,7 +136,7 @@ describe("Table Component", () => {
 
   it("applies size variant", () => {
     const { getByTestId } = render(
-      <Table dataSource={mockData} columns={mockColumns} size="small" />
+      <Table dataSource={mockData} columns={mockColumns} size="small" />,
     );
 
     expect(getByTestId("table")).toHaveClass("ant-table-small");
@@ -145,7 +145,7 @@ describe("Table Component", () => {
   it("handles column sorting", () => {
     const handleChange = vi.fn();
     const sortableColumns = [
-      { title: "Name", dataIndex: "name", sorter: true }
+      { title: "Name", dataIndex: "name", sorter: true },
     ];
 
     const { getByText } = render(
@@ -153,7 +153,7 @@ describe("Table Component", () => {
         dataSource={mockData}
         columns={sortableColumns}
         onChange={handleChange}
-      />
+      />,
     );
 
     fireEvent.click(getByText("Name"));
@@ -165,12 +165,12 @@ describe("Table Component", () => {
       {
         title: "Name",
         dataIndex: "name",
-        render: (text: string) => <span>Custom-{text}</span>
-      }
+        render: (text: string) => <span>Custom-{text}</span>,
+      },
     ];
 
     const { getByText } = render(
-      <Table dataSource={mockData} columns={columnsWithRender} />
+      <Table dataSource={mockData} columns={columnsWithRender} />,
     );
 
     expect(getByText("Custom-John")).toBeInTheDocument();
@@ -183,7 +183,7 @@ describe("Table Component", () => {
         columns={mockColumns}
         className="custom-table"
         style={{ margin: "20px" }}
-      />
+      />,
     );
 
     const table = getByTestId("table");

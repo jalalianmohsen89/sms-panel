@@ -6,7 +6,7 @@ describe("Modal Component", () => {
     render(
       <Modal open title="Test Modal" onCancel={() => vi.fn()}>
         Modal Content
-      </Modal>
+      </Modal>,
     );
 
     expect(screen.getByText("Test Modal")).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe("Modal Component", () => {
     const { queryByText } = render(
       <Modal open={false} title="Hidden Modal">
         Hidden Content
-      </Modal>
+      </Modal>,
     );
 
     expect(queryByText("Hidden Modal")).not.toBeInTheDocument();
@@ -31,7 +31,7 @@ describe("Modal Component", () => {
     render(
       <Modal open title="Test Modal" onOk={handleOk} onCancel={handleCancel}>
         Modal Content
-      </Modal>
+      </Modal>,
     );
 
     const okButton = screen.getByText("OK");
@@ -48,7 +48,7 @@ describe("Modal Component", () => {
     render(
       <Modal open title="Styled Modal" style={{ backgroundColor: "red" }}>
         Modal Content
-      </Modal>
+      </Modal>,
     );
 
     const modalElement = screen.getByText("Styled Modal").closest(".ant-modal");
@@ -59,7 +59,7 @@ describe("Modal Component", () => {
 
   it("renders different modal types", () => {
     const { container } = render(
-      <Modal open type="success" title="Success Modal" />
+      <Modal open type="success" title="Success Modal" />,
     );
 
     // بررسی اینکه Modal نمایش داده شده است

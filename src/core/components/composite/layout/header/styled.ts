@@ -18,8 +18,8 @@ export const MasterHeader = styled(Header)<TokenType & PatternType>(
     borderBottom: `1px solid ${token?.colorBorder}`,
     position: "sticky",
     top: 0,
-    zIndex: 5
-  })
+    zIndex: 5,
+  }),
 );
 
 export const ToolsContainer = styled(Flex)({
@@ -27,7 +27,7 @@ export const ToolsContainer = styled(Flex)({
   maxWidth: "300px",
   alignItems: "center",
   justifyContent: "flex-end",
-  gap: 10
+  gap: 10,
 });
 
 export const ToolsItemContainer = styled(Flex)({
@@ -36,7 +36,7 @@ export const ToolsItemContainer = styled(Flex)({
   alignItems: "center",
   justifyContent: "center",
   borderRadius: "50%",
-  cursor: "pointer"
+  cursor: "pointer",
 });
 
 export const SunnyIcon = styled(Sunny)<TokenType>(({ token }) => ({
@@ -44,21 +44,21 @@ export const SunnyIcon = styled(Sunny)<TokenType>(({ token }) => ({
   transition: "all 0.3s ease-in-out",
   "&:hover": {
     color: token.colorWarningText,
-    animation: "sunny 2s ease-in-out infinite"
+    animation: "sunny 2s ease-in-out infinite",
   },
   "@keyframes sunny": {
     "0%": {
-      transform: "rotate(0deg)"
+      transform: "rotate(0deg)",
     },
 
     "50%": {
-      transform: "rotate(180deg)"
+      transform: "rotate(180deg)",
     },
 
     "100%": {
-      transform: "rotate(0deg)"
-    }
-  }
+      transform: "rotate(0deg)",
+    },
+  },
 }));
 
 export const MoonIcon = styled(Moon)<TokenType>(({ token }) => ({
@@ -69,39 +69,39 @@ export const MoonIcon = styled(Moon)<TokenType>(({ token }) => ({
     animation: "moon 2s ease-in-out infinite",
     "@keyframes moon": {
       "0%": {
-        transform: "rotate(0deg)"
+        transform: "rotate(0deg)",
       },
 
       "50%": {
-        transform: "rotate(360deg)"
+        transform: "rotate(360deg)",
       },
       "100%": {
-        transform: "rotate(0deg)"
-      }
-    }
-  }
+        transform: "rotate(0deg)",
+      },
+    },
+  },
 }));
 
 export const NotificationIcon = styled(Notifications)({
   "&:hover": {
-    animation: "notif 1s ease-in-out 3"
+    animation: "notif 1s ease-in-out 3",
   },
   "@keyframes notif": {
     "0%": {
-      transform: "rotateZ(-45deg)"
+      transform: "rotateZ(-45deg)",
     },
 
     "50%": {
-      transform: "rotateZ(45deg)"
+      transform: "rotateZ(45deg)",
     },
     "100%": {
-      transform: "rotateZ(-45deg)"
-    }
-  }
+      transform: "rotateZ(-45deg)",
+    },
+  },
 });
 
 export const AvatarUser = styled(Avatar)({
   gap: 20,
   cursor: "pointer",
-  backgroundColor: "orange"
+  backgroundColor: "orange",
 });

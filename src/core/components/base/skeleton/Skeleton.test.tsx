@@ -13,7 +13,7 @@ vi.mock("antd", () => {
     avatar,
     title,
     paragraph,
-    round
+    round,
   }: {
     active?: boolean;
     loading?: boolean;
@@ -63,7 +63,7 @@ vi.mock("antd", () => {
 
   return {
     // eslint-disable-next-line @typescript-eslint/naming-convention
-    Skeleton: ActualSkeleton
+    Skeleton: ActualSkeleton,
   };
 });
 
@@ -84,7 +84,7 @@ describe("Skeleton Component", () => {
     const { getByTestId, queryByText } = render(
       <Skeleton loading>
         <div>Content</div>
-      </Skeleton>
+      </Skeleton>,
     );
 
     expect(getByTestId("skeleton")).toHaveAttribute("data-loading", "true");
@@ -95,7 +95,7 @@ describe("Skeleton Component", () => {
     const { getByText } = render(
       <Skeleton loading={false}>
         <div>Content</div>
-      </Skeleton>
+      </Skeleton>,
     );
 
     expect(getByText("Content")).toBeInTheDocument();
@@ -124,7 +124,7 @@ describe("Skeleton Component", () => {
       <Skeleton
         className="custom-skeleton"
         style={{ backgroundColor: "red" }}
-      />
+      />,
     );
 
     const skeleton = getByTestId("skeleton");

@@ -41,7 +41,6 @@ export interface IPage {
   pageId: string;
   pageUrl: string;
   apiUrl: string;
-  query: any;
   dataMap: IDataMap;
   createForm?: IPageBuilderActions;
 }
@@ -57,7 +56,8 @@ export interface IPageBuilderColumns {
   title: string;
   value?: string;
   width?: string;
-  typeValue?: (row: any) => any;
+  render?: (row: any) => any;
+  // typeValue?: (row: any) => any;
   clickColumn?: IPageBuilderActions;
   actions?: {
     action: string;

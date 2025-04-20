@@ -17,7 +17,7 @@ const Register = () => {
     onSuccess: () => {
       Toast.success("ثبت نام با موفقیت انجام شد");
       navigate("/auth/login");
-    }
+    },
   });
 
   // -------------------- methods --------------------------

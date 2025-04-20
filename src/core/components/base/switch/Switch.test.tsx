@@ -15,7 +15,7 @@ vi.mock("antd", () => ({
     className,
     style,
     checkedChildren,
-    unCheckedChildren
+    unCheckedChildren,
   }: {
     checked?: boolean;
     defaultChecked?: boolean;
@@ -46,7 +46,7 @@ vi.mock("antd", () => ({
         {checked ? checkedChildren : unCheckedChildren}
       </span>
     </button>
-  )
+  ),
 }));
 
 describe("Switch Component", () => {
@@ -95,7 +95,7 @@ describe("Switch Component", () => {
 
   it("shows checked children", () => {
     const { getByText } = render(
-      <Switch checked checkedChildren="ON" unCheckedChildren="OFF" />
+      <Switch checked checkedChildren="ON" unCheckedChildren="OFF" />,
     );
 
     expect(getByText("ON")).toBeInTheDocument();
@@ -103,7 +103,7 @@ describe("Switch Component", () => {
 
   it("shows unchecked children", () => {
     const { getByText } = render(
-      <Switch checked={false} checkedChildren="ON" unCheckedChildren="OFF" />
+      <Switch checked={false} checkedChildren="ON" unCheckedChildren="OFF" />,
     );
 
     expect(getByText("OFF")).toBeInTheDocument();

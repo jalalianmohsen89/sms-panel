@@ -1,8 +1,8 @@
-import { typeValueColumns } from "@/core/components/composite";
+import ConvertDate from "@/core/components/composite/page-builder/columns/convert-date";
 import {
   IPageBuilderColumns,
   IPageBuilderFilter,
-  TYPES
+  TYPES,
 } from "@/core/components/composite/page-builder/types";
 // import { actionIconList } from "@/core/content";
 import { ShowFormType } from "@/core/types";
@@ -17,32 +17,32 @@ export const filtersSms: IPageBuilderFilter[] = [
     sort: 1,
     defaultValue: "",
     dependenOn: null,
-    dependenValue: null
-  }
+    dependenValue: null,
+  },
 ];
 
 export const columnsSms: IPageBuilderColumns[] = [
   {
     id: "from",
     title: "از شماره",
-    value: "from"
+    value: "from",
   },
   {
     id: "to",
     title: "به شماره",
-    value: "to"
+    value: "to",
   },
   {
     id: "body",
     title: "متن پیام",
-    value: "body"
+    value: "body",
   },
   {
     id: "createdAt",
     title: "تاریخ",
     value: "createdAt",
-    typeValue: (row: any) => typeValueColumns[0]?.value?.(row)
-  }
+    render: (row: any) => <ConvertDate date={row.createdAt} />,
+  },
   // {
   //   id: "actions",
   //   title: "عملیات",
@@ -66,11 +66,11 @@ export const actionsColumnSms = [
   {
     id: "edit",
     showType: "modal" as ShowFormType,
-    value: () => <></>
+    value: () => <></>,
   },
   {
-    id: "delete",
+    id: "click",
     showType: "modal" as ShowFormType,
-    value: () => <></>
-  }
+    value: () => <></>,
+  },
 ];

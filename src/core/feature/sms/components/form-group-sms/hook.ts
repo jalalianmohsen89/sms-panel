@@ -45,7 +45,7 @@ const useFormGroup = () => {
     mutationFn: previewFile,
     onSuccess: ({ data }) => {
       setPreview(
-        data.result.map((item: any, index: number) => ({
+        data.data.result.map((item: any, index: number) => ({
           row: index + 1,
           mobile: item.mobile,
           message: item.message,
@@ -78,7 +78,7 @@ const useFormGroup = () => {
   const onFinish = (isSend: boolean) => {
     const formData = new FormData();
 
-    // formData.append("title", formProps.title);
+    formData.append("title", formProps.title);
     formData.append("number", formProps.number);
     formData.append("body", formProps.body);
     formData.append("file", formProps.file);

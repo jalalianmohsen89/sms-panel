@@ -14,8 +14,8 @@ beforeAll(() => {
       removeListener: vi.fn(),
       addEventListener: vi.fn(),
       removeEventListener: vi.fn(),
-      dispatchEvent: vi.fn()
-    }))
+      dispatchEvent: vi.fn(),
+    })),
   });
 });
 
@@ -24,7 +24,7 @@ describe("Drawer Component", () => {
     const { baseElement } = render(
       <Drawer open title="Test Drawer">
         Content
-      </Drawer>
+      </Drawer>,
     );
 
     const drawer = baseElement.querySelector(".ant-drawer");
@@ -39,7 +39,7 @@ describe("Drawer Component", () => {
     const { baseElement } = render(
       <Drawer open onClose={onClose}>
         Content
-      </Drawer>
+      </Drawer>,
     );
 
     const closeButton = baseElement.querySelector(".ant-drawer-close");
@@ -52,7 +52,7 @@ describe("Drawer Component", () => {
     const { baseElement } = render(
       <Drawer open placement="right">
         Content
-      </Drawer>
+      </Drawer>,
     );
 
     expect(baseElement.querySelector(".ant-drawer-right")).toBeInTheDocument();
@@ -62,7 +62,7 @@ describe("Drawer Component", () => {
     const { baseElement } = render(
       <Drawer open width={500}>
         Content
-      </Drawer>
+      </Drawer>,
     );
 
     const drawer = baseElement.querySelector(".ant-drawer-content-wrapper");
@@ -76,7 +76,7 @@ describe("Drawer Component", () => {
     render(
       <Drawer open afterOpenChange={afterOpenChange}>
         Content
-      </Drawer>
+      </Drawer>,
     );
     expect(afterOpenChange).toHaveBeenCalledWith(true);
   });
@@ -85,16 +85,16 @@ describe("Drawer Component", () => {
     const { container, rerender } = render(
       <Drawer open destroyOnClose>
         Content
-      </Drawer>
+      </Drawer>,
     );
 
     rerender(
       <Drawer open={false} destroyOnClose>
         Content
-      </Drawer>
+      </Drawer>,
     );
     expect(
-      container.querySelector(".ant-drawer-content")
+      container.querySelector(".ant-drawer-content"),
     ).not.toBeInTheDocument();
   });
 });

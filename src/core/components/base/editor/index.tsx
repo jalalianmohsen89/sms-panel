@@ -3,7 +3,7 @@ import { css } from "@emotion/css";
 import { FC, useEffect, useState } from "react";
 import {
   ToolbarEditorContainer,
-  ToolbarEditorItem
+  ToolbarEditorItem,
 } from "@/core/feature/sms/styled";
 import { theme as themeContent } from "@/core/theme";
 

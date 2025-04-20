@@ -15,7 +15,7 @@ const ThemeProvider: FC<Props> = ({ children }) => {
   const { theme } = useStore();
   const createTheme = useMemo(
     () => (theme === "dark" ? darkTheme : lightTheme),
-    [theme]
+    [theme],
   );
 
   // ---------------------- render ---------------------

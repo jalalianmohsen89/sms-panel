@@ -4,7 +4,7 @@ import {
   IPattern,
   PatternContextType,
   ThemeType,
-  WithChildren
+  WithChildren,
 } from "@/core/types";
 import { patterns } from "@/core/content";
 
@@ -16,7 +16,7 @@ const themeMode = localStorage.getItem("themeMode") || ("light" as ThemeType);
 export const PatternProvider: React.FC<WithChildren> = ({ children }) => {
   // ---------------------- variables ---------------------
   const [currentPattern, setCurrentPattern] = useState<IPattern>(
-    themeMode === "dark" ? patterns.digital : patterns.brick
+    themeMode === "dark" ? patterns.digital : patterns.brick,
   );
 
   // ---------------------- methods ---------------------

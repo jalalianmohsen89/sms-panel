@@ -14,17 +14,17 @@ export default defineConfig({
       "127.0.0.1",
       "panel.sk",
       "simakala.local",
-      "192.168.2.91" // IP سیستم شما
-    ]
+      "192.168.2.91", // IP سیستم شما
+    ],
   },
   resolve: {
     alias: {
-      "@": resolve(__dirname, "src")
-    }
+      "@": resolve(__dirname, "src"),
+    },
   },
   test: {
     environment: "jsdom",
     globals: true, // برای استفاده از global test و expect
-    setupFiles: "./src/setupTests.js" // فایل تنظیمات اولیه تست
-  }
+    setupFiles: "./src/setupTests.js", // فایل تنظیمات اولیه تست
+  },
 });

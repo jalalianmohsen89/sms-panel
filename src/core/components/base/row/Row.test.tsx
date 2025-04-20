@@ -11,7 +11,7 @@ vi.mock("antd", () => ({
     align,
     justify,
     wrap,
-    className
+    className,
   }: {
     children?: React.ReactNode;
     gutter?: number | [number, number];
@@ -29,7 +29,7 @@ vi.mock("antd", () => ({
     >
       {children}
     </div>
-  )
+  ),
 }));
 
 describe("Row Component", () => {
@@ -73,7 +73,7 @@ describe("Row Component", () => {
     const { getByText } = render(
       <Row>
         <div>Test Content</div>
-      </Row>
+      </Row>,
     );
 
     expect(getByText("Test Content")).toBeInTheDocument();
@@ -81,7 +81,7 @@ describe("Row Component", () => {
 
   it("combines multiple props correctly", () => {
     const { container } = render(
-      <Row gutter={16} align="top" justify="center" wrap={false} />
+      <Row gutter={16} align="top" justify="center" wrap={false} />,
     );
 
     expect(container.firstChild).toHaveAttribute("data-gutter", "16");

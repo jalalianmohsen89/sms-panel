@@ -9,7 +9,7 @@ describe("Menu Component", () => {
       <Menu>
         <Menu.Item key="item1">Item 1</Menu.Item>
         <Menu.Item key="item2">Item 2</Menu.Item>
-      </Menu>
+      </Menu>,
     );
 
     expect(screen.getByText("Item 1")).toBeInTheDocument();
@@ -23,7 +23,7 @@ describe("Menu Component", () => {
           <Menu.Item key="subitem1">Sub Item 1</Menu.Item>
           <Menu.Item key="subitem2">Sub Item 2</Menu.Item>
         </Menu.SubMenu>
-      </Menu>
+      </Menu>,
     );
 
     const submenu = screen.getByText("SubMenu");
@@ -42,7 +42,7 @@ describe("Menu Component", () => {
         <Menu.Item key="item1">Item 1</Menu.Item>
         <Menu.Divider />
         <Menu.Item key="item2">Item 2</Menu.Item>
-      </Menu>
+      </Menu>,
     );
 
     const divider = screen.getByRole("separator");
@@ -56,7 +56,7 @@ describe("Menu Component", () => {
     render(
       <Menu onClick={handleClick}>
         <Menu.Item key="item1">Item 1</Menu.Item>
-      </Menu>
+      </Menu>,
     );
 
     const item = screen.getByText("Item 1");
@@ -64,7 +64,7 @@ describe("Menu Component", () => {
     fireEvent.click(item);
 
     expect(handleClick).toHaveBeenCalledWith(
-      expect.objectContaining({ key: "item1" })
+      expect.objectContaining({ key: "item1" }),
     );
   });
 
@@ -73,7 +73,7 @@ describe("Menu Component", () => {
       <Menu mode="horizontal">
         <Menu.Item key="item1">Item 1</Menu.Item>
         <Menu.Item key="item2">Item 2</Menu.Item>
-      </Menu>
+      </Menu>,
     );
 
     const menu = container.querySelector(".ant-menu-horizontal");
@@ -86,7 +86,7 @@ describe("Menu Component", () => {
       <Menu mode="vertical">
         <Menu.Item key="item1">Item 1</Menu.Item>
         <Menu.Item key="item2">Item 2</Menu.Item>
-      </Menu>
+      </Menu>,
     );
 
     const menu = container.querySelector(".ant-menu-vertical");
@@ -98,7 +98,7 @@ describe("Menu Component", () => {
     render(
       <Menu style={{ backgroundColor: "red" }}>
         <Menu.Item key="item1">Styled Item</Menu.Item>
-      </Menu>
+      </Menu>,
     );
 
     const menu = screen.getByText("Styled Item").closest(".ant-menu");
