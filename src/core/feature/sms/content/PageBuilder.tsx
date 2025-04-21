@@ -1,3 +1,4 @@
+import { Typography } from "@/core/components/base";
 import ConvertDate from "@/core/components/composite/page-builder/columns/convert-date";
 import {
   IPageBuilderColumns,
@@ -9,10 +10,21 @@ import { ShowFormType } from "@/core/types";
 
 export const filtersSms: IPageBuilderFilter[] = [
   {
-    title: "جستجو",
-    field: "text",
-    type: TYPES.INPUT,
+    title: "نوع",
+    field: "type",
+    type: TYPES.SELECT,
     apiUrl: "",
+    data: [
+      {
+        value: "bulk",
+        label: "گروهی",
+      },
+      {
+        value: "single",
+        label: "فردی",
+      },
+    ],
+    required: true,
     size: "24,12,6",
     sort: 1,
     defaultValue: "",
@@ -23,24 +35,31 @@ export const filtersSms: IPageBuilderFilter[] = [
 
 export const columnsSms: IPageBuilderColumns[] = [
   {
-    id: "from",
-    title: "از شماره",
-    value: "from",
+    id: "title",
+    title: "عنوان",
+    value: "title",
   },
   {
-    id: "to",
-    title: "به شماره",
-    value: "to",
+    id: "number",
+    title: "شماره",
+    value: "number",
   },
   {
     id: "body",
     title: "متن پیام",
+    width: "20%",
     value: "body",
+  },
+  {
+    id: "type",
+    title: "نوع",
+    render: (row: any) => (
+      <Typography>{row.type === "bulk" ? "گروهی" : "فردی"}</Typography>
+    ),
   },
   {
     id: "createdAt",
     title: "تاریخ",
-    value: "createdAt",
     render: (row: any) => <ConvertDate date={row.createdAt} />,
   },
   // {
