@@ -5,7 +5,7 @@ import image11 from "@/core/assets/images/pic/image11.jpg";
 import image12 from "@/core/assets/images/pic/image12.jpeg";
 import image13 from "@/core/assets/images/pic/image13.jpeg";
 import image14 from "@/core/assets/images/pic/image14.jpeg";
-import { Create, Pencil, SMS, Trash } from "@/core/icons";
+import { Create, Eye, Pencil, SMS, Trash, Users } from "@/core/icons";
 import { IPatterns } from "@/core/types";
 
 export const permissionList = [
@@ -14,22 +14,48 @@ export const permissionList = [
   "UI::Sms::Report",
   "UI::Notification::Report",
   "UI::Notification::SendFile",
+  "UI::Users::List",
+  "UI::Users::Lines",
+  "UI::Lines::List",
 ];
 
 export const navigation = [
+  {
+    key: "users",
+    // eslint-disable-next-line react/jsx-pascal-case
+    icon: <Users />,
+    label: "کاربران",
+    children: [
+      {
+        key: "list",
+        label: "لیست کاربران",
+      },
+    ],
+  },
+  {
+    key: "lines",
+    // eslint-disable-next-line react/jsx-pascal-case
+    icon: <Users />,
+    label: "خطوط",
+    children: [
+      {
+        key: "all",
+        label: "لیست خطوط",
+      },
+    ],
+  },
   {
     key: "sms",
     // eslint-disable-next-line react/jsx-pascal-case
     icon: <SMS />,
     label: "پیامک ها",
-    style: { borderBottom: "1px solid #e8e8e8" },
     children: [
       {
         key: "send_personal",
         label: "ارسال پیامک",
       },
       {
-        key: "send_file",
+        key: "send_group_file",
         label: "ارسال به صورت فایل",
       },
       {
@@ -43,16 +69,15 @@ export const navigation = [
     // eslint-disable-next-line react/jsx-pascal-case
     icon: <SMS />,
     label: "اعلانات",
-    style: { borderBottom: "1px solid #e8e8e8" },
     children: [
       {
-        key: "send_file",
+        key: "send_notif_file",
         label: "ارسال به صورت فایل",
       },
-      {
-        key: "report",
-        label: " گزارش اعلانات",
-      },
+      // {
+      //   key: "report",
+      //   label: " گزارش اعلانات",
+      // },
     ],
   },
 ];
@@ -141,6 +166,10 @@ export const patterns: IPatterns = {
 };
 
 export const actionIconList = [
+  {
+    label: "مشاهده",
+    value: <Eye />,
+  },
   {
     label: "ویرایش",
     value: <Pencil />,
