@@ -1,15 +1,14 @@
 import {
   Flex,
-  Space,
   Tooltip,
   Typography,
   useBreakpoint,
 } from "@/core/components/base";
+import { EllipsisVertical } from "@/core/icons";
+import { theme as themeContent } from "@/core/theme";
 import { css } from "@emotion/css";
 import { FC, ReactNode } from "react";
-import { EllipsisVertical } from "@/core/icons";
 import { ActionContainer } from "../styled";
-import { theme as themeContent } from "@/core/theme";
 
 // ---------------------- types ---------------------
 type Props = {
@@ -65,13 +64,13 @@ export const ActionMore: FC<Props> = ({
           placement={isMobile ? "right" : "left"}
           arrow
         >
-          <Space
+          <div
             className={css`
               cursor: pointer;
             `}
           >
             <EllipsisVertical />
-          </Space>
+          </div>
         </Tooltip>
       ) : (
         <Flex
@@ -81,8 +80,9 @@ export const ActionMore: FC<Props> = ({
           `}
         >
           {list.map((item, index) => (
-            <Flex
+            <div
               className={css`
+                display: flex;
                 align-items: center;
                 cursor: pointer;
                 gap: 10px;
@@ -91,7 +91,7 @@ export const ActionMore: FC<Props> = ({
               onClick={() => onAction(row, item)}
             >
               <Tooltip title={item.title}>{item.icon}</Tooltip>
-            </Flex>
+            </div>
           ))}
         </Flex>
       )}

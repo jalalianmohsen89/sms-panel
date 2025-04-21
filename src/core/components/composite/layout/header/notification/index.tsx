@@ -5,21 +5,22 @@ import {
   Flex,
   Tooltip,
 } from "@/core/components/base";
-import { css, css as cssStyle } from "@emotion/css";
 import {
   NotificationIcon,
   ToolsItemContainer,
-} from "@/core/components/composite/layout/header/styled.ts";
+} from "@/core/components/composite/layout/header/styled";
 import { theme as themeContent } from "@/core/theme";
+import { css, css as cssStyle } from "@emotion/css";
 import { RiUser2Fill, RiUserAddFill } from "react-icons/ri";
+import ContentNotif from "./ContentNotif";
 import HeaderNotification from "./Header";
 import InfoNotif from "./InfoNotif";
-import ContentNotif from "./ContentNotif";
 
 export const Notification = () => {
   // -------------------- variables --------------------------
   const { token } = themeContent.useToken();
-  const dropdownRennder = () => (
+
+  const dropdownRennder = (
     <Flex
       vertical
       className={css`
@@ -139,9 +140,18 @@ export const Notification = () => {
             padding-top: 1rem;
             padding-left: 1rem
           `}
-        dropdownRender={dropdownRennder}
+        dropdownRender={() => dropdownRennder}
+        getPopupContainer={(triggerNode) =>
+          triggerNode.parentElement || document.body
+        }
       >
-        <NotificationIcon />
+        <div
+          className={css`
+            display: flex;
+          `}
+        >
+          <NotificationIcon size={16} />
+        </div>
       </Dropdown>
     </ToolsItemContainer>
   );

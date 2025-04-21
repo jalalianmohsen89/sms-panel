@@ -105,10 +105,11 @@ export const Profile: FC<Props> = ({ onSelectOption }) => {
         `}
         dropdownRender={dropdownRender}
       >
-        <Flex
-          align="center"
-          justify="space-between"
+        <div
           className={css`
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             padding: 0 1rem;
             width: 100%;
           `}
@@ -138,7 +139,7 @@ export const Profile: FC<Props> = ({ onSelectOption }) => {
           >
             <CodeOutline />
           </Space>
-        </Flex>
+        </div>
       </Dropdown>
     </Flex>
   );
