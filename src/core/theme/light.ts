@@ -20,7 +20,7 @@ export const lightTheme: ThemeConfig = {
     colorInfo: "#1A85F6",
     colorBorder: "rgba(9, 9, 9, 0.1)",
     colorTextSecondary: "#646B71",
-    fontFamily: "Vazir"
+    fontFamily: "Vazir",
   },
   components: {
     Alert: {
@@ -35,7 +35,7 @@ export const lightTheme: ThemeConfig = {
       colorWarningText: "#B37A0E",
       colorErrorBg: "#FEF2F4",
       colorErrorBorder: "#D93953",
-      colorErrorText: "#A72A3F"
+      colorErrorText: "#A72A3F",
     },
     Button: {
       primaryShadow: "none",
@@ -48,7 +48,7 @@ export const lightTheme: ThemeConfig = {
       colorErrorActive: "#A72A3F",
       colorErrorHover: "#EC7388",
       colorErrorBorderHover: "#EC7388",
-      colorErrorBg: "#FFD8DA"
+      colorErrorBg: "#FFD8DA",
     },
     Menu: {
       dangerItemSelectedColor: "#EC7388",
@@ -57,14 +57,14 @@ export const lightTheme: ThemeConfig = {
       colorIcon: "#1A85F6",
       groupTitleColor: "#646B71",
       colorSplit: "#E0E1E4",
-      groupTitleFontSize: 14
+      groupTitleFontSize: 14,
     },
     Input: {
       colorTextPlaceholder: "#646B71",
       colorBorder: "#E0E1E4",
       colorErrorText: "#D93953",
       colorError: "#D93953",
-      activeShadow: "#1A85F61a"
+      activeShadow: "#1A85F61a",
     },
     Select: {
       colorTextPlaceholder: "#646B71",
@@ -76,19 +76,19 @@ export const lightTheme: ThemeConfig = {
       activeOutlineColor: "#1A85F64d",
       colorErrorOutline: "#ffffff00",
       colorError: "#D93953",
-      colorWarningOutline: "#fdfdfd00"
+      colorWarningOutline: "#fdfdfd00",
     },
     Checkbox: {
       colorPrimary: "#1A85F6",
       colorBgContainerDisabled: "#E0E1E4",
       colorTextDisabled: "#646B71",
-      colorPrimaryHover: "#4D9BF8"
+      colorPrimaryHover: "#4D9BF8",
     },
     Radio: {
       colorPrimary: "#1A85F6",
       colorBgContainerDisabled: "#E0E1E4",
       colorTextDisabled: "#646B71",
-      colorPrimaryHover: "#4D9BF8"
+      colorPrimaryHover: "#4D9BF8",
     },
     Pagination: {
       itemActiveColorDisabled: "#7d7d7e",
@@ -96,83 +96,83 @@ export const lightTheme: ThemeConfig = {
       colorPrimary: "#1A85F6",
       colorTextDisabled: "#646B71",
       controlOutlineWidth: 0,
-      lineWidthFocus: 0
+      lineWidthFocus: 0,
     },
     Cascader: {
       colorSplit: "#E0E1E4",
       colorBorder: "#EC7388",
       optionSelectedBg: "#E9EFFC",
       colorHighlight: "#1A85F6",
-      colorTextDescription: "#090909"
+      colorTextDescription: "#090909",
     },
     Form: {
       labelRequiredMarkColor: "#D93953",
-      colorError: "#D93953"
+      colorError: "#D93953",
     },
     Upload: {
-      colorPrimaryHover: "#1A85F6"
+      colorPrimaryHover: "#1A85F6",
     },
     Descriptions: {
-      colorTextSecondary: "#646B71"
+      colorTextSecondary: "#646B71",
     },
     Empty: {
-      colorTextDescription: "#646B71"
+      colorTextDescription: "#646B71",
     },
     Popover: {
-      colorBgElevated: "#FFFFFF"
+      colorBgElevated: "#FFFFFF",
     },
     Segmented: {
       itemColor: "#090909",
-      itemSelectedBg: "#E9EFFC"
+      itemSelectedBg: "#E9EFFC",
     },
     Table: {
       colorLink: "#1D61BA",
       colorLinkHover: "#1A85F6",
-      borderColor: "#E0E1E4"
+      borderColor: "#E0E1E4",
     },
     Tabs: {
       itemSelectedColor: "#1A85F6",
       itemHoverColor: "#1D61BA",
-      inkBarColor: "#1D61BA"
+      inkBarColor: "#1D61BA",
     },
     Tooltip: {
       colorBgSpotlight: "#FFFFFF",
-      colorTextLightSolid: "#090909"
+      colorTextLightSolid: "#090909",
     },
     Tree: {
       colorText: "#090909",
       colorTextDisabled: "#646B71",
       directoryNodeSelectedBg: "#E9EFFC",
-      nodeSelectedBg: "#E0E1E4"
+      nodeSelectedBg: "#E0E1E4",
     },
     Drawer: {
       colorBgElevated: "#FFFFFF",
-      colorSplit: "#E0E1E4"
+      colorSplit: "#E0E1E4",
     },
     Message: {
-      contentBg: "#FFFFFF"
+      contentBg: "#FFFFFF",
     },
     Modal: {
       contentBg: "#FFFFFF",
       headerBg: "#F8F8F9",
-      colorText: "#646B71"
+      colorText: "#646B71",
     },
     Notification: {
-      colorBgElevated: "#FFFFFF"
+      colorBgElevated: "#FFFFFF",
     },
     Result: {
-      colorTextDescription: "#646B71"
+      colorTextDescription: "#646B71",
     },
     Spin: {
-      colorPrimary: "#1A85F6"
+      colorPrimary: "#1A85F6",
     },
     Dropdown: {
       colorBgElevated: "#FFFFFF",
       colorError: "#A72A3F",
-      colorTextDisabled: "#646B71"
+      colorTextDisabled: "#646B71",
     },
     Divider: {
-      colorSplit: "rgba(9, 9, 9, 0.1)"
+      colorSplit: "rgba(9, 9, 9, 0.1)",
     },
     DatePicker: {
       colorTextPlaceholder: "#646B71",
@@ -180,7 +180,7 @@ export const lightTheme: ThemeConfig = {
       colorText: "#090909",
       colorTextHeading: "#13c2c2",
       colorIcon: "#090909",
-      colorBgElevated: "#FFFFFF"
-    }
-  }
+      colorBgElevated: "#FFFFFF",
+    },
+  },
 };
