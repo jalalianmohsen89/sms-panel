@@ -113,7 +113,7 @@ export const DataTable = <T extends object>({
             <Table
               rowKey={rowKey}
               dataSource={rows}
-              scroll={{ x: "max-content" }}
+              scroll={{ x: "100%" }}
               {...(withPagination
                 ? {
                   pagination: paginationData,
