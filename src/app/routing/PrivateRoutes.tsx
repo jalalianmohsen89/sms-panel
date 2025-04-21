@@ -6,6 +6,12 @@ import Dashboard from "../Dashboard";
 import Devtools from "@/core/components/composite/devtools";
 
 export function PrivateRoutes() {
+  const LinesRoutes = lazy(
+    () => import("@/core/feature/lines/LinesRoutes.tsx"),
+  );
+  const UsersRoutes = lazy(
+    () => import("@/core/feature/users/UsersRoutes.tsx"),
+  );
   const NotificationRoutes = lazy(
     () => import("@/core/feature/notification/NotificationRoutes.tsx"),
   );
@@ -16,6 +22,24 @@ export function PrivateRoutes() {
     <Routes>
       <Route>
         {/* Pages */}
+
+        <Route
+          path="lines/*"
+          element={
+            <SuspensedView>
+              <LinesRoutes />
+            </SuspensedView>
+          }
+        />
+
+        <Route
+          path="users/*"
+          element={
+            <SuspensedView>
+              <UsersRoutes />
+            </SuspensedView>
+          }
+        />
 
         <Route
           path="notification/*"
