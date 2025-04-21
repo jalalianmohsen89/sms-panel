@@ -141,9 +141,6 @@ export const Notification = () => {
             padding-left: 1rem
           `}
         dropdownRender={() => dropdownRennder}
-        getPopupContainer={(triggerNode) =>
-          triggerNode.parentElement || document.body
-        }
       >
         <div
           className={css`
