@@ -120,3 +120,17 @@ body {
 .ql-formats button::before {
   font-family: "Vazir";
 }
+
+pre {
+  padding: unset !important;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  background: unset !important;
+  border: unset !important;
+  border-radius: 3px;
+  font-family: "Vazir";
+}
+
+table {
+  width: 100% !important;
+}
