@@ -4,7 +4,7 @@ import { ColumnType, Space } from "@/core/components/base";
 import { pageBuilders } from "@/core/components/composite/page-builder/content";
 import {
   ISortInfo,
-  SortOrder
+  SortOrder,
 } from "@/core/components/composite/data-table/types";
 import { createNestedObject } from "@/core/functions";
 import { ActionMore } from "@/core/components/composite/data-table/components";
@@ -12,8 +12,9 @@ import {
   IPageBuilder,
   IPageBuilderActions,
   IPageBuilderColumns,
-  ModalType
+  ModalType,
 } from "@/core/components/composite/page-builder/types";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   pageColumns?: any;
@@ -23,28 +24,29 @@ type Props = {
 const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
   // ---------------------- variables ---------------------
   const { token } = themeContent.useToken();
+  const navigate = useNavigate();
   const [pageData, setPageData] = useState<IPageBuilder>();
   const [columns, setColumns] = useState(pageColumns);
   const [refeatchData, setRefeatchData] = useState(false);
   const [modalProps, setModalProps] = useState<ModalType>({
     isOpen: false,
-    content: <></>
+    content: <></>,
   });
   const [drawerProps, setDrawerProps] = useState<ModalType>({
     isOpen: false,
-    content: <></>
+    content: <></>,
   });
 
   const [sortInfo, setSortInfo] = useState<ISortInfo>({
     sort_field: "",
-    sort_direction: null
+    sort_direction: null,
   });
 
   // ---------------------- methods ---------------------
   const onSelectedAction = (
     event: string,
     row: any,
-    item?: IPageBuilderColumns
+    item?: IPageBuilderColumns,
   ) => {
     const action = pageData?.actions?.find((item) => item.id === event);
 
@@ -52,6 +54,8 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
     case "click":
       checkAction(item!.clickColumn!, row);
       break;
+    case "view":
+      return navigate(action?.value(row) as string);
     case "edit":
       checkAction(action!, row);
       break;
@@ -71,8 +75,8 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
         content: action?.value({
           selectedRow: row,
           onCloseDrawer,
-          onSubmit
-        }) as ReactNode
+          onSubmit,
+        }) as ReactNode,
       });
     } else {
       setModalProps({
@@ -80,8 +84,8 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
         content: action?.value({
           selectedRow: row,
           onCloseModal,
-          onSubmit
-        }) as ReactNode
+          onSubmit,
+        }) as ReactNode,
       });
     }
   };
@@ -133,10 +137,10 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
         const column: ColumnType = {
           width: item.width,
           title: item.title,
-          key: item.id
+          key: item.id,
         };
 
-        if (item.typeValue) {
+        if (item.render) {
           column["render"] = (_cell: string, row: any) => (
             <Space
               onClick={() =>
@@ -144,7 +148,7 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
                 onSelectedAction(item.clickColumn.id, row, item)
               }
             >
-              {item.typeValue(row)}
+              {item.render(row)}
             </Space>
           );
         } else if (item.value?.split(".").length > 1) {
@@ -225,7 +229,7 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
     sortInfo,
     setSortInfo,
     handleSort,
-    addForm
+    addForm,
   };
 };
 
