@@ -125,8 +125,11 @@ const FormGroupSms = () => {
                 <Switch
                   checkedChildren="فعال"
                   unCheckedChildren="غیرفعال"
+                  value={formProps?.remove_duplicate}
                   defaultChecked
-                  disabled
+                  onChange={(e) =>
+                    setFormProps({ ...formProps, remove_duplicate: e })
+                  }
                 />
               </Space>
             </Flex>
