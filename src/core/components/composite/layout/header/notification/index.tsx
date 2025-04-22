@@ -52,7 +52,7 @@ export const Notification = () => {
             text="آماده برای خروچی گرفتن"
             date="09:00 - 10:00 ظهر"
           >
-            <Avatar.Group>
+            <Avatar.Group max={{ count: 3 }}>
               <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
               <a href="https://ant.design">
                 <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
