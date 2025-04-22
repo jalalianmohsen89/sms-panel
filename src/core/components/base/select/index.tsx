@@ -28,6 +28,7 @@ export type Props = Pick<
   | "maxTagCount"
   | "optionRender"
   | "size"
+  | "loading"
 > & {
   label?: string;
 };
