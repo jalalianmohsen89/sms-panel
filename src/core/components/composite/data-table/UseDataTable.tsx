@@ -280,11 +280,11 @@ const useDataTable = <T extends WithOptionalId>({
     if (skipUrlParams) return;
 
     const queryParams = new URLSearchParams(location.search);
-    const paramsFromUrl = Object.fromEntries(queryParams.entries()) as any;
+    const paramsFromUrl = Object.fromEntries(queryParams.entries());
 
     // Merge URL params with existing params, prioritizing URL
     setParams((prevParams) => {
-      const newParams = { ...prevParams };
+      const newParams = { ...prevParams } as any;
 
       if (withPagination) {
         newParams.page =
@@ -474,7 +474,7 @@ const useDataTable = <T extends WithOptionalId>({
           onChange: handleRowSelectionChange,
         },
       }),
-      ...(withPagination
+      ...((withPagination
         ? {
           pagination: {
             current: params.page,
@@ -483,7 +483,7 @@ const useDataTable = <T extends WithOptionalId>({
             showSizeChanger: true,
           },
         }
-        : { pagination: {} }),
+        : { pagination: false }) as any),
     }),
     [
       selection,

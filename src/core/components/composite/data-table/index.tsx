@@ -60,9 +60,9 @@ export const DataTable = <T extends object>({
     columns, // Use the memoized columns from the hook
     searchValue,
     setSearchValue,
-    otherProps, // Use the correctly destructured otherProps
     featuresMobileColumns,
     onChangeTable,
+    otherProps, // Use the correctly destructured otherProps
     tableProps, // Use the calculated tableProps for pagination and selection
   } = useDataTable<T>({
     // Pass the generic type T
@@ -115,7 +115,7 @@ export const DataTable = <T extends object>({
                 setSearchText={setSearchValue}
               />
             )}
-            <Table<T> // Ensure Table component receives the correct generic type
+            <Table
               rowKey={rowKey}
               dataSource={rows}
               columns={columns} // Use columns from the hook
