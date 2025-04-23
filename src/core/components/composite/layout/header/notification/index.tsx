@@ -5,40 +5,24 @@ import {
   Flex,
   Tooltip,
 } from "@/core/components/base";
-import {
-  NotificationIcon,
-  ToolsItemContainer,
-} from "@/core/components/composite/layout/header/styled";
+import { Notifications } from "@/core/icons";
 import { theme as themeContent } from "@/core/theme";
-import { css, css as cssStyle } from "@emotion/css";
 import { RiUser2Fill, RiUserAddFill } from "react-icons/ri";
 import ContentNotif from "./ContentNotif";
 import HeaderNotification from "./Header";
 import InfoNotif from "./InfoNotif";
+import { useStyles } from "./styled";
 
 export const Notification = () => {
   // -------------------- variables --------------------------
   const { token } = themeContent.useToken();
+  const { styles } = useStyles();
 
   const dropdownRennder = (
-    <Flex
-      vertical
-      className={css`
-        width: 400px;
-        border: 1px solid ${token.colorBorder};
-        border-radius: 8px;
-        background-color: ${token.colorBgLayout};
-      `}
-    >
-      <HeaderNotification token={token} title="اعلانات" />
+    <Flex vertical className={styles.dropdownRenderContainer}>
+      <HeaderNotification title="اعلانات" />
       <Flex vertical>
-        <Flex
-          vertical
-          className={css`
-            gap: 12px;
-            border-bottom: 1px solid ${token.colorBorder};
-          `}
-        >
+        <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
             token={token}
             avatar="مح"
@@ -47,11 +31,7 @@ export const Notification = () => {
             date="چند دقیقه پیش"
             position="مدیر پنل"
           />
-          <ContentNotif
-            token={token}
-            text="آماده برای خروچی گرفتن"
-            date="09:00 - 10:00 ظهر"
-          >
+          <ContentNotif text="آماده برای خروچی گرفتن" date="09:00 - 10:00 ظهر">
             <Avatar.Group max={{ count: 3 }}>
               <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
               <a href="https://ant.design">
@@ -69,26 +49,14 @@ export const Notification = () => {
               />
             </Avatar.Group>
           </ContentNotif>
-          <Flex
-            className={css`
-              margin: 0 1.5rem 1rem;
-              gap: 5px;
-              justify-content: flex-end;
-            `}
-          >
+          <Flex className={styles.sectionButtons}>
             <Button type="default">رد</Button>
             <Button type="default">تایید</Button>
           </Flex>
         </Flex>
       </Flex>
       <Flex vertical>
-        <Flex
-          vertical
-          className={css`
-            gap: 12px;
-            border-bottom: 1px solid ${token.colorBorder};
-          `}
-        >
+        <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
             token={token}
             avatar="مه"
@@ -101,13 +69,7 @@ export const Notification = () => {
       </Flex>
 
       <Flex vertical>
-        <Flex
-          vertical
-          className={css`
-            gap: 12px;
-            border-bottom: 1px solid ${token.colorBorder};
-          `}
-        >
+        <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
             token={token}
             avatar="رف"
@@ -116,13 +78,7 @@ export const Notification = () => {
             date="20 دقیقه پیش"
             position="کارشناس سوشال"
           />
-          <Flex
-            className={css`
-              margin: 0 1.5rem 1rem;
-              gap: 5px;
-              justify-content: flex-end;
-            `}
-          >
+          <Flex className={styles.sectionButtons}>
             <Button type="default">رد</Button>
             <Button type="default">تایید</Button>
           </Flex>
@@ -133,23 +89,16 @@ export const Notification = () => {
 
   // -------------------- render --------------------------
   return (
-    <ToolsItemContainer>
+    <Flex className={styles.dropdownContainer}>
       <Dropdown
         placement="bottom"
-        overlayClassName={cssStyle`
-            padding-top: 1rem;
-            padding-left: 1rem
-          `}
+        overlayClassName={styles.dropdownPadding}
         dropdownRender={() => dropdownRennder}
       >
-        <div
-          className={css`
-            display: flex;
-          `}
-        >
-          <NotificationIcon size={16} />
+        <div className={styles.flex}>
+          <Notifications className={styles.notificationIcon} size={16} />
         </div>
       </Dropdown>
-    </ToolsItemContainer>
+    </Flex>
   );
 };

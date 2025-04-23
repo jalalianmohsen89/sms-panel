@@ -1,11 +1,10 @@
 import { Dispatch, FC, memo, SetStateAction } from "react";
 import { css } from "@emotion/css";
-import { Flex, Grid } from "@/core/components/base";
-import { theme as themeContent } from "@/core/theme";
+import { Flex, Grid, Header as HeaderLayout } from "@/core/components/base";
 import SearchBar from "./SearchBar";
 import Tools from "@/core/components/composite/layout/header/Tools";
 import { MenuSharp } from "@/core/icons";
-import { MasterHeader } from "@/core/components/composite/layout/header/styled";
+import { useStyles } from "@/core/components/composite/layout/header/styled";
 import { usePattern } from "@/core/context/PatternContext.tsx";
 
 type Props = {
@@ -14,15 +13,15 @@ type Props = {
 };
 export const Header: FC<Props> = memo(({ isCollapsed, setCollapsed }) => {
   // ---------------------- variables ---------------------
-  const { token } = themeContent.useToken();
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
   const { currentPattern } = usePattern();
+  const { styles } = useStyles(currentPattern);
 
   // ---------------------- methods ---------------------
 
   return (
-    <MasterHeader token={token} pattern={currentPattern}>
+    <HeaderLayout className={styles.masterHeader}>
       <Flex
         className={css`
           width: 100%;
@@ -45,6 +44,6 @@ export const Header: FC<Props> = memo(({ isCollapsed, setCollapsed }) => {
         {screens.lg && <SearchBar />}
         <Tools />
       </Flex>
-    </MasterHeader>
+    </HeaderLayout>
   );
 });

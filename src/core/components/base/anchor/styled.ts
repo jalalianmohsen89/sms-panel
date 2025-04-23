@@ -1,8 +1,9 @@
-import styled from "@emotion/styled";
-import { Anchor } from "antd";
+import { createStyles } from "@/core/theme/styled";
 
-export const AnchorStyle = styled(Anchor)({
-  "& .ant-anchor-link-title": {
-    fontSize: "clamp(12px, 2vw, 14px)",
-  },
-});
+export const useStyles = createStyles(({ css }) => ({
+  anchorStyle: css`
+    & .ant-anchor-link-title {
+      font-size: clamp(12px, 2vw, 14px);
+    }
+  `,
+}));

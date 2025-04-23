@@ -1,24 +1,24 @@
-import {
-  MoonIcon,
-  SunnyIcon,
-  ToolsItemContainer,
-} from "@/core/components/composite/layout/header/styled";
+import { Flex } from "@/core/components/base";
+import { useStyles } from "@/core/components/composite/layout/header/styled";
+import { Moon, Sunny } from "@/core/icons";
 import useStore from "@/core/store";
-import { theme as themeContent } from "@/core/theme";
 const ThemeIcon = () => {
   // ---------------------- variables ---------------------
   const { theme, themeActions } = useStore();
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
 
   // ---------------------- tsx ---------------------
   return (
-    <ToolsItemContainer onClick={themeActions.toggleTheme}>
+    <Flex
+      className={styles.toolsItemContainer}
+      onClick={themeActions.toggleTheme}
+    >
       {theme === "dark" ? (
-        <SunnyIcon token={token} size="15" />
+        <Sunny className={styles.sunnyIcon} size="15" />
       ) : (
-        <MoonIcon token={token} size="15" />
+        <Moon className={styles.moonIcon} size="15" />
       )}
-    </ToolsItemContainer>
+    </Flex>
   );
 };
 

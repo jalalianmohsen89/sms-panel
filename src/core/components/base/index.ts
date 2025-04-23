@@ -33,7 +33,7 @@ export { Form, useForm } from "./form";
 export { Input, Password, OTP, Search } from "./input";
 export { TextArea } from "./text-area";
 
-export { Layout } from "./layout";
+export { Layout, Header, Content, Footer, Sider } from "./layout";
 
 export { Divider } from "./divider";
 

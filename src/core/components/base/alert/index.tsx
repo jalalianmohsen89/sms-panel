@@ -1,6 +1,6 @@
+import { Alert as AlertBase, AlertProps } from "antd";
 import { FC } from "react";
-import { AlertProps } from "antd";
-import { AlertStyle } from "./styled";
+import { useStyles } from "./styled";
 
 type Props = Pick<
   AlertProps,
@@ -20,4 +20,8 @@ type Props = Pick<
   | "onMouseLeave"
   | "onClick"
 >;
-export const Alert: FC<Props> = (props) => <AlertStyle {...props} />;
+export const Alert: FC<Props> = (props) => {
+  const { styles } = useStyles();
+
+  return <AlertBase className={styles.alertStyle} {...props} />;
+};

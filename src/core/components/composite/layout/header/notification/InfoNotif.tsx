@@ -1,7 +1,7 @@
-import { Flex, GlobalToken, Typography } from "@/core/components/base";
-import { FC } from "react";
-import { AvatarUser } from "../styled";
+import { Avatar, Flex, GlobalToken, Typography } from "@/core/components/base";
 import { css } from "@emotion/css";
+import { FC } from "react";
+import { useStyles } from "./styled";
 
 type Props = {
   token: GlobalToken;
@@ -18,65 +18,69 @@ const InfoNotif: FC<Props> = ({
   description,
   date,
   position,
-}) => (
-  <Flex
-    className={css`
-      padding: 12px 1rem;
-      align-items: center;
-      gap: 10px;
-    `}
-  >
-    <AvatarUser>{avatar}</AvatarUser>
-    <Flex vertical>
-      <Flex
-        className={css`
-          gap: 8px;
-        `}
-      >
-        <Typography>{fullName}</Typography>
-        <Typography
+}) => {
+  const { styles } = useStyles();
+
+  return (
+    <Flex
+      className={css`
+        padding: 12px 1rem;
+        align-items: center;
+        gap: 10px;
+      `}
+    >
+      <Avatar className={styles.avatarUser}>{avatar}</Avatar>
+      <Flex vertical>
+        <Flex
           className={css`
-            color: ${token.colorTextLabel};
-            font-size: 13px;
+            gap: 8px;
           `}
         >
-          {" "}
-          {description}
-        </Typography>
-      </Flex>
-      <Flex
-        className={css`
-          gap: 6px;
-          align-items: center;
-        `}
-      >
-        <Typography
+          <Typography>{fullName}</Typography>
+          <Typography
+            className={css`
+              color: ${token.colorTextLabel};
+              font-size: 13px;
+            `}
+          >
+            {" "}
+            {description}
+          </Typography>
+        </Flex>
+        <Flex
           className={css`
-            color: ${token.colorTextLabel};
-            font-size: 11px;
+            gap: 6px;
+            align-items: center;
           `}
         >
-          {date}
-        </Typography>
-        <span
-          className={css`
-            width: 5px;
-            height: 5px;
-            background-color: ${token.colorTextLabel};
-            border-radius: 50%;
-          `}
-        />
-        <Typography
-          className={css`
-            color: ${token.colorTextLabel};
-            font-size: 11px;
-          `}
-        >
-          {position}
-        </Typography>
+          <Typography
+            className={css`
+              color: ${token.colorTextLabel};
+              font-size: 11px;
+            `}
+          >
+            {date}
+          </Typography>
+          <span
+            className={css`
+              width: 5px;
+              height: 5px;
+              background-color: ${token.colorTextLabel};
+              border-radius: 50%;
+            `}
+          />
+          <Typography
+            className={css`
+              color: ${token.colorTextLabel};
+              font-size: 11px;
+            `}
+          >
+            {position}
+          </Typography>
+        </Flex>
       </Flex>
     </Flex>
-  </Flex>
-);
+  );
+};
 
 export default InfoNotif;
