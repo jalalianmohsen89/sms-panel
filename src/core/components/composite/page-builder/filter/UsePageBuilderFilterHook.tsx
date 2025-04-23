@@ -46,7 +46,7 @@ const usePageBuilderFilterHook = (props: Props) => {
     () =>
       props.list
         .sort((a: any, b: any) => a.sort - b.sort)
-        .map((item: IPageBuilderFilter, index: number) => {
+        .map((item: IPageBuilderFilter) => {
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           const { onChangeValue, dependenValue, ...itemProps } = item;
           // Renamed props to avoid conflict
@@ -59,7 +59,7 @@ const usePageBuilderFilterHook = (props: Props) => {
               lg={+sizes[2]}
               xl={+sizes[3] || +sizes[2]}
               xxl={+sizes[4] || +sizes[3] || +sizes[2]}
-              key={index}
+              key={item.field}
             >
               <FilterItem
                 {...itemProps} // Use renamed props
