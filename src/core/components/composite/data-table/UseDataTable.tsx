@@ -9,7 +9,7 @@ import apiService from "@/core/services";
 import { useStore } from "@/core/store";
 import { theme as themeContent } from "@/core/theme";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useDeferredValue, useTransition } from "react";
 import { useLocation } from "react-router-dom";
 import {
   MobileTablesCard,
@@ -45,6 +45,8 @@ const useDataTable = <T extends WithOptionalId>({
   const [selectedRow, setSelectedRow] = useState<any[]>([]);
   const [selectionKey, setSelectionKey] = useState<string[]>([]);
   const [searchValue, setSearchValue] = useState("");
+  const deferredSearchValue = useDeferredValue(searchValue);
+  const [isPendingTransition, startTransition] = useTransition();
   const { addRecordToDevList } = useStore();
 
   const [paginationData, setPaginationData] = useState<IPagination>({
@@ -168,7 +170,7 @@ const useDataTable = <T extends WithOptionalId>({
         <Col span={12}>
           <SearchbarTable
             isMobile
-            text={searchValue}
+            text={searchValue} // Keep original value for input display
             setSearchText={setSearchValue}
             // onPressEnter={() => console.log("press")}
           />
@@ -219,46 +221,48 @@ const useDataTable = <T extends WithOptionalId>({
   const { mutate: getData, isPending: loading } = useMutation({
     mutationFn: fetchData,
     onSuccess: ({ data }) => {
-      if (withPagination) {
-        setPaginationData({
-          page: +data.pagination.page,
-          current: +data.pagination.page,
-          pageSize: +data.pagination.limit,
-          total: data.pagination.total,
-        });
-        // setRows(
-        //   dataMap?.(data).filter(
-        //     (_item: any, index: number) =>
-        //       index >= paginationData.limit * (paginationData.page - 1) &&
-        //       index < paginationData.limit * paginationData.page
-        //   )
-        // );
-      }
-      if (showRowNumber) {
-        setRows(
-          dataMap?.(data).map((item: any, index: number) => {
-            item.index =
-              paginationData.pageSize * ((paginationData.current || 1) - 1) +
-              index +
-              1;
+      startTransition(() => {
+        if (withPagination) {
+          setPaginationData({
+            page: +data.pagination.page,
+            current: +data.pagination.page,
+            pageSize: +data.pagination.limit,
+            total: data.pagination.total,
+          });
+          // setRows(
+          //   dataMap?.(data).filter(
+          //     (_item: any, index: number) =>
+          //       index >= paginationData.limit * (paginationData.page - 1) &&
+          //       index < paginationData.limit * paginationData.page
+          //   )
+          // );
+        }
+        if (showRowNumber) {
+          setRows(
+            dataMap?.(data).map((item: any, index: number) => {
+              item.index =
+                paginationData.pageSize * ((paginationData.current || 1) - 1) +
+                index +
+                1;
 
-            return item;
-          }),
+              return item;
+            }),
+          );
+        } else {
+          setRows(dataMap?.(data));
+        }
+
+        onGetData?.(data);
+        addRecordToDevList(
+          {
+            name: "getData",
+            url: location.pathname,
+            params: "",
+            list: data,
+          },
+          location,
         );
-      } else {
-        setRows(dataMap?.(data));
-      }
-
-      onGetData?.(data);
-      addRecordToDevList(
-        {
-          name: "getData",
-          url: location.pathname,
-          params: "",
-          list: data,
-        },
-        location,
-      );
+      });
     },
   });
 
@@ -280,8 +284,14 @@ const useDataTable = <T extends WithOptionalId>({
         ...paramsObject,
       };
     }
+    // Update params based on deferred search value
+    const searchParam = deferredSearchValue
+      ? { search: deferredSearchValue }
+      : {};
+
     setParams({
       ...paramsObject,
+      ...searchParam,
     });
 
     return () => {
@@ -294,17 +304,23 @@ const useDataTable = <T extends WithOptionalId>({
   useEffect(() => {
     if (dataMap) {
       if (!requiredFilter) {
-        getData();
+        startTransition(() => {
+          getData();
+        });
       } else if (requiredFilter && Object.keys(params).length > 2) {
-        getData();
+        startTransition(() => {
+          getData();
+        });
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [params, requiredFilter]);
+  }, [params, requiredFilter, deferredSearchValue]); // Add deferredSearchValue dependency
 
   useEffect(() => {
     if (dataMap && refeatch) {
-      getData();
+      startTransition(() => {
+        getData();
+      });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [refeatch]);
@@ -338,9 +354,11 @@ const useDataTable = <T extends WithOptionalId>({
 
   useEffect(() => {
     if (dataSource)
-      setRows(
-        dataSource.map((row, index) => ({ ...row, key: row?.id || index })),
-      );
+      startTransition(() => {
+        setRows(
+          dataSource.map((row, index) => ({ ...row, key: row?.id || index })),
+        );
+      });
 
     return () => {
       setRows([]);
@@ -348,7 +366,7 @@ const useDataTable = <T extends WithOptionalId>({
   }, [dataSource]);
 
   return {
-    loading,
+    loading: loading || isPendingTransition, // Combine loading states
     isMobile,
     mobileColumns,
     rows,
