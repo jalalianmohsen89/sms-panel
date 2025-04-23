@@ -14,7 +14,7 @@ const RegisterUser: FC<Props> = memo(({ onSubmit, onCloseModal }) => {
   const { mutate: registerUserRequest } = useMutation({
     mutationFn: registerUser,
     onSuccess: ({ data }) => {
-      if (data.status === 200) {
+      if (data.statusCode === 200) {
         Toast.success("ثبت نام با موفقیت انجام شد");
         onCloseModal();
         onSubmit();
