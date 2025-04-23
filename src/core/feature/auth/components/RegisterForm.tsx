@@ -1,7 +1,8 @@
 import { Button, Flex, Form, Input, Password } from "@/core/components/base";
 import { css } from "@emotion/css";
+import { memo } from "react";
 
-const RegisterForm = () => (
+const RegisterForm = memo(() => (
   <>
     <Flex gap={10}>
       <Form.Item<{ name: string }>
@@ -127,6 +128,6 @@ const RegisterForm = () => (
       </Button>
     </Form.Item>
   </>
-);
+));
 
 export default RegisterForm;

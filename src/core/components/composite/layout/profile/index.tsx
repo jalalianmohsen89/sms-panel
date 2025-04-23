@@ -15,14 +15,14 @@ import {
 import useStore from "@/core/store";
 import { theme as themeContent } from "@/core/theme";
 import { css } from "@emotion/css";
-import { FC } from "react";
+import { FC, memo } from "react";
 import { CodeOutline, Settings } from "@/core/icons";
 
 type Props = {
   onSelectOption: (option: string) => void;
 };
 
-export const Profile: FC<Props> = ({ onSelectOption }) => {
+export const Profile: FC<Props> = memo(({ onSelectOption }) => {
   // ---------------------- variables ---------------------
   const { token } = themeContent.useToken();
   const { Text } = Typography;
@@ -143,4 +143,4 @@ export const Profile: FC<Props> = ({ onSelectOption }) => {
       </Dropdown>
     </Flex>
   );
-};
+});

@@ -1,7 +1,8 @@
 import { Button, Form, Input, Password } from "@/core/components/base";
 import { css } from "@emotion/css";
+import { memo } from "react";
 
-const LoginForm = () => (
+const LoginForm = memo(() => (
   <>
     <Form.Item<{ username: string }>
       label="نام کاربری"
@@ -43,6 +44,6 @@ const LoginForm = () => (
       </Button>
     </Form.Item>
   </>
-);
+));
 
 export default LoginForm;

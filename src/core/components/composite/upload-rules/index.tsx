@@ -15,13 +15,13 @@ import {
 import { Upload as UploadIcon } from "@/core/icons";
 import { theme as themeContent } from "@/core/theme";
 import { css } from "@emotion/css";
-import { FC, useState } from "react";
+import { FC, memo, useState } from "react";
 import Svg from "react-inlinesvg";
 
 type Props = {
   onChange: (file: any) => void;
 };
-export const UploadRules: FC<Props> = ({ onChange }) => {
+export const UploadRules: FC<Props> = memo(({ onChange }) => {
   const { token } = themeContent.useToken();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const propsImage: UploadProps = {
@@ -157,4 +157,4 @@ export const UploadRules: FC<Props> = ({ onChange }) => {
       </Flex>
     </Flex>
   );
-};
+});

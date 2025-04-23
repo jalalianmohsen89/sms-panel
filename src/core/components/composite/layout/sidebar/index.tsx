@@ -14,10 +14,10 @@ import { navigation } from "@/core/content";
 import { usePattern } from "@/core/context/PatternContext.tsx";
 import { theme as themeContent } from "@/core/theme";
 import { css } from "@emotion/css";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
-export const Sidebar = () => {
+export const Sidebar = memo(() => {
   // ---------------------- variables ---------------------
   const { token } = themeContent.useToken();
   const navigate = useNavigate();
@@ -117,4 +117,4 @@ export const Sidebar = () => {
       </SettingModal>
     </SiderBox>
   );
-};
+});

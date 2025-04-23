@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { Dispatch, FC, memo, SetStateAction } from "react";
 import { css } from "@emotion/css";
 import { Flex, Grid } from "@/core/components/base";
 import { theme as themeContent } from "@/core/theme";
@@ -12,7 +12,7 @@ type Props = {
   isCollapsed: boolean;
   setCollapsed: Dispatch<SetStateAction<boolean>>;
 };
-export const Header: FC<Props> = ({ isCollapsed, setCollapsed }) => {
+export const Header: FC<Props> = memo(({ isCollapsed, setCollapsed }) => {
   // ---------------------- variables ---------------------
   const { token } = themeContent.useToken();
   const { useBreakpoint } = Grid;
@@ -47,4 +47,4 @@ export const Header: FC<Props> = ({ isCollapsed, setCollapsed }) => {
       </Flex>
     </MasterHeader>
   );
-};
+});
