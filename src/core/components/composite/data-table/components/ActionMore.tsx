@@ -49,10 +49,10 @@ export const ActionMore: FC<Props> = ({
         <Tooltip
           title={() => (
             <Flex vertical>
-              {list.map((item, index) => (
+              {list.map((item) => (
                 <ActionContainer
                   token={token}
-                  key={index}
+                  key={item.title}
                   onClick={() => onAction(row, item)}
                 >
                   {item.icon}
@@ -79,7 +79,7 @@ export const ActionMore: FC<Props> = ({
             gap: 20px;
           `}
         >
-          {list.map((item, index) => (
+          {list.map((item) => (
             <div
               className={css`
                 display: flex;
@@ -87,7 +87,7 @@ export const ActionMore: FC<Props> = ({
                 cursor: pointer;
                 gap: 10px;
               `}
-              key={index}
+              key={item.title}
               onClick={() => onAction(row, item)}
             >
               <Tooltip title={item.title}>{item.icon}</Tooltip>

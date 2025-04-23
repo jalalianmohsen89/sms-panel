@@ -23,11 +23,11 @@ export const RenderSkeleton: FC<Props> = ({ columns }) => (
             width: 100%;
           `}
         >
-          {columns?.map((_row, index) => (
+          {columns?.map((row) => (
             <Skeleton.Input
               active
               size="large"
-              key={index}
+              key={row.key}
               className={css`
                 width: 100% !important;
               `}

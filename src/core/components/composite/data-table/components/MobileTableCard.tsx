@@ -69,10 +69,10 @@ export const MobileTablesCard = <T extends object>({
           gap: 10px 20px;
         `}
       >
-        {columns.map((col: any, key) => (
+        {columns.map((col: any) => (
           <Flex
             vertical
-            key={key}
+            key={col.key}
             className={
               col.key === "actions"
                 ? css`
