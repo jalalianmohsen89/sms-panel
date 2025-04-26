@@ -1,28 +1,23 @@
 import Excel from "@/core/assets/images/svg/excel.svg";
 import {
+  Button,
   Flex,
   Toast,
+  Typography,
   Upload,
-  UploadProps,
   UploadFile,
-  Button,
+  UploadProps,
 } from "@/core/components/base";
-import {
-  UploadAlertItem,
-  UploadAlertList,
-  UploadAlertText,
-} from "@/core/feature/sms/styled";
 import { Upload as UploadIcon } from "@/core/icons";
-import { theme as themeContent } from "@/core/theme";
 import { css } from "@emotion/css";
 import { FC, memo, useState } from "react";
 import Svg from "react-inlinesvg";
+import { useStyles } from "./styled";
 
 type Props = {
   onChange: (file: any) => void;
 };
 export const UploadRules: FC<Props> = memo(({ onChange }) => {
-  const { token } = themeContent.useToken();
   const [fileList, setFileList] = useState<UploadFile[]>([]);
   const propsImage: UploadProps = {
     fileList: fileList,
@@ -59,6 +54,7 @@ export const UploadRules: FC<Props> = memo(({ onChange }) => {
     showUploadList: true,
     accept: ".xls,.xlsx",
   };
+  const { styles } = useStyles();
 
   return (
     <Flex
@@ -66,77 +62,54 @@ export const UploadRules: FC<Props> = memo(({ onChange }) => {
       gap={20}
       align="center"
       justify="center"
-      className={css`
-        border: 1px dashed ${token.colorBorder};
-        border-radius: 6px;
-        padding: 2rem;
-        margin: 30px 0 20px 20px;
-      `}
+      className={styles.uploadRuleContainer}
     >
-      <Flex
-        align="center"
-        justify="center"
-        className={css`
-          width: 100px;
-          height: 100px;
-          background-color: ${token.colorPrimaryBg};
-          border-radius: 50%;
-        `}
-      >
-        <Flex
-          className={css`
-            width: 30px;
-          `}
-        >
-          <Svg
-            src={Excel}
-            className={css`
-              fill: #1cc086;
-            `}
-          />
+      <Flex align="center" justify="center" className={styles.excelContainer}>
+        <Flex className={styles.excelIconBox}>
+          <Svg src={Excel} className={styles.excelIcon} />
         </Flex>
       </Flex>
-      <UploadAlertList token={token}>
-        <UploadAlertItem>
-          <UploadAlertText token={token}>
+      <ul className={styles.uploadAlertList}>
+        <li className={styles.uploadAlertItem}>
+          <Typography className={styles.uploadAlertText}>
             در صورتی که بیش از 500,000 گیرنده در فایل شما وجود دارد یا حجم فایل
             بیش از حد مجاز است، لطفا از ابزار بالا استفاده کنید.
-          </UploadAlertText>
-        </UploadAlertItem>
-        <UploadAlertItem>
-          <UploadAlertText token={token}>
+          </Typography>
+        </li>
+        <li className={styles.uploadAlertItem}>
+          <Typography className={styles.uploadAlertText}>
             اولین ستون از فایل Excel شما حتما باید شماره گیرنده باشد.
-          </UploadAlertText>
-        </UploadAlertItem>
-        <UploadAlertItem>
-          <UploadAlertText token={token}>
+          </Typography>
+        </li>
+        <li className={styles.uploadAlertItem}>
+          <Typography className={styles.uploadAlertText}>
             شماره ستون های مشخص شده درون متن باید با شماره ستون های فایل Excel
             برابر باشد.
-          </UploadAlertText>
-        </UploadAlertItem>
-        <UploadAlertItem>
-          <UploadAlertText token={token}>
+          </Typography>
+        </li>
+        <li className={styles.uploadAlertItem}>
+          <Typography className={styles.uploadAlertText}>
             در صورتیکه شماره نامعتبری در گیرندگان باشد محاسبه نمی‌شود.
-          </UploadAlertText>
-        </UploadAlertItem>
-        <UploadAlertItem>
-          <UploadAlertText token={token}>
+          </Typography>
+        </li>
+        <li className={styles.uploadAlertItem}>
+          <Typography className={styles.uploadAlertText}>
             حداکثر تعداد گیرندگان 500,000 گیرنده می‌باشد.
-          </UploadAlertText>
-        </UploadAlertItem>
-        <UploadAlertItem>
-          <UploadAlertText token={token}>
+          </Typography>
+        </li>
+        <li className={styles.uploadAlertItem}>
+          <Typography className={styles.uploadAlertText}>
             تعداد ستون ها محدودیت ندارد.
-          </UploadAlertText>
-        </UploadAlertItem>
-      </UploadAlertList>
+          </Typography>
+        </li>
+      </ul>
       <Flex vertical align="center" gap={8}>
-        <UploadAlertText token={token}>
+        <Typography className={styles.uploadAlertText}>
           فرمت مجاز جهت آپلود فایل xls, xlsx می‌باشد.
-        </UploadAlertText>
-        <UploadAlertText token={token}>
+        </Typography>
+        <Typography className={styles.uploadAlertText}>
           حجم فایل بیشتر از 70 مگابایت نمیتواند باشد.
-        </UploadAlertText>
+        </Typography>
         <Flex
           align="center"
           className={css`

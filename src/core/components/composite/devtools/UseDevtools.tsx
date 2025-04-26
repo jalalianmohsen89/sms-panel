@@ -1,14 +1,14 @@
 import { Flex, Space, Table, Typography } from "@/core/components/base";
 import useStore from "@/core/store";
-import { theme as themeContent } from "@/core/theme";
 import { css } from "@emotion/css";
 import { useState } from "react";
 import JsonView from "react18-json-view";
+import { useStyles } from "./styled";
 
 const useDevtools = () => {
   // ---------------------- hooks ---------------------
-  const { token } = themeContent.useToken();
   const { data } = useStore();
+  const { styles } = useStyles();
 
   // ---------------------- variables ---------------------
   const [selectedRow, setSelectedRow] = useState<any[]>([]);
@@ -74,39 +74,17 @@ const useDevtools = () => {
           <Typography>{data.pageUrl}</Typography>
         </Flex>
       </Flex>
-      <Flex
-        vertical
-        className={css`
-          align-items: flex-start;
-          justify-content: flex-end;
-          gap: 50px;
-        `}
-      >
-        <Flex
-          className={css`
-            width: 100%;
-          `}
-        >
+      <Flex vertical className={styles.devToolsContainer}>
+        <Flex className={styles.width}>
           <Table
             columns={columns}
             dataSource={data.apis}
-            className={css`
-              width: 100%;
-            `}
+            className={styles.width}
             pagination={false}
           />
         </Flex>
         {selectedRow.length > 0 && (
-          <Space
-            className={css`
-              background-color: ${token.colorFillSecondary};
-              max-height: 300px;
-              width: 100%;
-              align-items: flex-start;
-              justify-content: flex-end;
-              overflow: auto;
-            `}
-          >
+          <Space className={styles.jsonContainer}>
             <JsonView src={selectedRow} collapsed style={{ width: "100%" }} />
           </Space>
         )}

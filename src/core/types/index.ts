@@ -15,6 +15,10 @@ export type TokenType = {
   token: GlobalToken;
 };
 
+export type PatternType = {
+  pattern: IPattern;
+};
+
 export type ThemeType = "light" | "dark";
 
 export type ModeType = "add" | "edit";

@@ -82,6 +82,23 @@ export const useStyles = createStyles(({ token }) => ({
   datePaddingNotification: {
     padding: "3px",
   },
+  infoContainer: {
+    padding: "12px 1rem",
+    alignItems: "center",
+    gap: "10px",
+  },
+  infoDetail: {
+    color: token.colorTextLabel,
+    fontSize: "13px",
+  },
+  infoPositionTtile: {
+    color: token.colorTextLabel,
+    fontSize: "11px",
+  },
+  circle: {
+    fontSize: "30px",
+    marginBottom: "10px",
+  },
   titleSize: {
     fontSize: "1rem",
   },

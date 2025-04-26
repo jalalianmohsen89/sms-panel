@@ -6,7 +6,6 @@ import {
   Tooltip,
 } from "@/core/components/base";
 import { Notifications } from "@/core/icons";
-import { theme as themeContent } from "@/core/theme";
 import { RiUser2Fill, RiUserAddFill } from "react-icons/ri";
 import ContentNotif from "./ContentNotif";
 import HeaderNotification from "./Header";
@@ -15,7 +14,6 @@ import { useStyles } from "./styled";
 
 export const Notification = () => {
   // -------------------- variables --------------------------
-  const { token } = themeContent.useToken();
   const { styles } = useStyles();
 
   const dropdownRennder = (
@@ -24,7 +22,6 @@ export const Notification = () => {
       <Flex vertical>
         <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
-            token={token}
             avatar="مح"
             fullName="محسن جلالیان مقدم"
             description="پیامی برای شما ارسال کرد"
@@ -58,7 +55,6 @@ export const Notification = () => {
       <Flex vertical>
         <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
-            token={token}
             avatar="مه"
             fullName="محمد هنرور"
             description="مقاله جدیدی را برای شما ارسال کرد"
@@ -71,7 +67,6 @@ export const Notification = () => {
       <Flex vertical>
         <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
-            token={token}
             avatar="رف"
             fullName="رامین فیروز"
             description="تسک جدیدی را برای شما ایجاد کرد"
