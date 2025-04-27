@@ -7,15 +7,15 @@ import {
 } from "@/core/components/base";
 import apiService from "@/core/services";
 import { useStore } from "@/core/store";
-import { theme as themeContent } from "@/core/theme";
+import { css } from "@emotion/css";
 import { useMutation } from "@tanstack/react-query";
 import {
-  useEffect,
-  useState,
-  useDeferredValue,
-  useTransition,
   useCallback,
+  useDeferredValue,
+  useEffect,
   useMemo,
+  useState,
+  useTransition,
 } from "react";
 import { useLocation } from "react-router-dom";
 import {
@@ -26,7 +26,6 @@ import {
 } from "./components";
 import { Props } from "./index";
 import { IPagination, IParams } from "./types";
-import { css } from "@emotion/css";
 
 interface WithOptionalId {
   id?: string | number;
@@ -82,7 +81,6 @@ const useDataTable = <T extends WithOptionalId>({
   // -------------------- Hooks --------------------------
   const breakpoints = useBreakpoint();
   const isMobile = !breakpoints.md;
-  const { token } = themeContent.useToken();
   const location = useLocation();
 
   // Destructure other props safely
@@ -368,7 +366,6 @@ const useDataTable = <T extends WithOptionalId>({
         <>
           {rows.map((row: any, index) => (
             <MobileTablesCard
-              token={token}
               columns={columns} // Use memoized columns
               row={row}
               selection={selection || false}
@@ -394,7 +391,6 @@ const useDataTable = <T extends WithOptionalId>({
       ),
     [
       rows,
-      token,
       columns,
       selection,
       selectionKey,
@@ -431,7 +427,6 @@ const useDataTable = <T extends WithOptionalId>({
               columns={columns} // Use memoized columns
               params={params}
               setParams={setParams} // Allow direct setting for sort if needed
-              token={token}
               onChangeSortMobile={onChangeSortMobile}
               refreshData={getData}
             />
@@ -456,7 +451,6 @@ const useDataTable = <T extends WithOptionalId>({
       sortInfo,
       columns,
       params,
-      token,
       onChangeSortMobile,
       getData,
       selection,

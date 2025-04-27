@@ -1,40 +1,34 @@
-import { FC } from "react";
 import { ColumnType, Flex, Skeleton } from "@/core/components/base";
-import { css } from "@emotion/css";
+import { FC } from "react";
+import { useStyles } from "../styled";
 
 type Props = {
   columns: ColumnType[];
 };
-export const RenderSkeleton: FC<Props> = ({ columns }) => (
-  <>
-    {[1, 2, 3, 4, 5].map((item) => (
-      <Flex
-        vertical
-        gap={"20px"}
-        className={css`
-          margin: 2rem 0;
-        `}
-        key={item}
-      >
+export const RenderSkeleton: FC<Props> = ({ columns }) => {
+  const { styles } = useStyles();
+
+  return (
+    <>
+      {[1, 2, 3, 4, 5].map((item) => (
         <Flex
-          gap="20px"
-          className={css`
-            flex: 1;
-            width: 100%;
-          `}
+          vertical
+          gap={"20px"}
+          className={styles.skeletonContainer}
+          key={item}
         >
-          {columns?.map((row) => (
-            <Skeleton.Input
-              active
-              size="large"
-              key={row.key}
-              className={css`
-                width: 100% !important;
-              `}
-            />
-          ))}
+          <Flex gap="20px" className={styles.skeletonList}>
+            {columns?.map((row) => (
+              <Skeleton.Input
+                active
+                size="large"
+                key={row.key}
+                className={styles.skeletonItem}
+              />
+            ))}
+          </Flex>
         </Flex>
-      </Flex>
-    ))}
-  </>
-);
+      ))}
+    </>
+  );
+};

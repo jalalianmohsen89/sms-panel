@@ -5,10 +5,8 @@ import {
   useBreakpoint,
 } from "@/core/components/base";
 import { EllipsisVertical } from "@/core/icons";
-import { theme as themeContent } from "@/core/theme";
-import { css } from "@emotion/css";
 import { FC, ReactNode } from "react";
-import { ActionContainer } from "../styled";
+import { useStyles } from "../styled";
 
 // ---------------------- types ---------------------
 type Props = {
@@ -30,9 +28,9 @@ export const ActionMore: FC<Props> = ({
   onSelectAction,
 }) => {
   // -------------------- variables --------------------------
-  const { token } = themeContent.useToken();
   const breakpoints = useBreakpoint();
   const isMobile = !breakpoints.md;
+  const { styles } = useStyles();
 
   // ---------------------- methods ---------------------
   const onAction = (row: any, item: any) => {
@@ -50,43 +48,29 @@ export const ActionMore: FC<Props> = ({
           title={() => (
             <Flex vertical>
               {list.map((item) => (
-                <ActionContainer
-                  token={token}
+                <Flex
+                  className={styles.actionContainer}
                   key={item.title}
                   onClick={() => onAction(row, item)}
                 >
                   {item.icon}
                   <Typography>{item.title}</Typography>
-                </ActionContainer>
+                </Flex>
               ))}
             </Flex>
           )}
           placement={isMobile ? "right" : "left"}
           arrow
         >
-          <div
-            className={css`
-              cursor: pointer;
-            `}
-          >
+          <div className={styles.cursor}>
             <EllipsisVertical />
           </div>
         </Tooltip>
       ) : (
-        <Flex
-          className={css`
-            align-items: center;
-            gap: 20px;
-          `}
-        >
+        <Flex className={styles.actionListContainer}>
           {list.map((item) => (
             <div
-              className={css`
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-                gap: 10px;
-              `}
+              className={styles.actionList}
               key={item.title}
               onClick={() => onAction(row, item)}
             >

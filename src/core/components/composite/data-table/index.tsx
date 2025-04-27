@@ -1,12 +1,11 @@
-import { Flex, Table } from "@/core/components/base";
 import type { TableProps } from "@/core/components/base";
+import { Flex, Table } from "@/core/components/base";
+import { useStyles as useStylesBase } from "@/core/styled";
 import { Key } from "react";
-import useDataTable from "./UseDataTable";
-import { theme as themeContent } from "@/core/theme";
-import { Section } from "@/core/styled";
-import { css } from "@emotion/css";
-import { ISortInfo } from "./types";
 import { RenderSkeleton, SearchbarTable } from "./components";
+import { useStyles } from "./styled";
+import { ISortInfo } from "./types";
+import useDataTable from "./UseDataTable";
 
 // Keep the original Props type definition
 export type Props<T extends object> = TableProps<T> & {
@@ -49,7 +48,8 @@ export const DataTable = <T extends object>({
   ...props // Spread the rest of the original TableProps
 }: Props<T>) => {
   // -------------------- variables --------------------------
-  const { token } = themeContent.useToken();
+  const { styles: stylesBase } = useStylesBase();
+  const { styles } = useStyles();
 
   // -------------------- hook --------------------------
   const {
@@ -88,26 +88,14 @@ export const DataTable = <T extends object>({
   ) : (
     <>
       {isMobile ? (
-        <Section token={token}>
-          <Flex
-            className={css`
-              width: 100%;
-              margin-bottom: 10px;
-            `}
-          >
+        <section className={stylesBase.section}>
+          <Flex className={styles.featuresMobileColumnsContainer}>
             {featuresMobileColumns}
           </Flex>
-          <Flex
-            className={css`
-              width: 100%;
-              flex-direction: column;
-            `}
-          >
-            {mobileColumns}
-          </Flex>
-        </Section>
+          <Flex className={styles.mobileColumnsContainer}>{mobileColumns}</Flex>
+        </section>
       ) : (
-        <Section token={token}>
+        <section className={stylesBase.section}>
           <Flex vertical style={{ gap: 20 }}>
             {searchbar && (
               <SearchbarTable
@@ -126,7 +114,7 @@ export const DataTable = <T extends object>({
               {...otherProps} // Spread the rest of the AntD table props
             />
           </Flex>
-        </Section>
+        </section>
       )}
     </>
   );

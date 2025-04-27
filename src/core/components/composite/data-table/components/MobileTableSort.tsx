@@ -1,14 +1,8 @@
-import {
-  ColumnType,
-  Dropdown,
-  Flex,
-  Typography,
-  GlobalToken,
-} from "@/core/components/base";
-import { IParams, ISortInfo, SortOrder } from "../types";
+import { ColumnType, Dropdown, Flex, Typography } from "@/core/components/base";
 import { ArrowDown, ArrowUp } from "@/core/icons";
 import { FC } from "react";
-import { css } from "@emotion/css";
+import { useStyles } from "../styled";
+import { IParams, ISortInfo, SortOrder } from "../types";
 
 const SortIcon = ({ sortDirection }: { sortDirection: SortOrder }) => {
   if (sortDirection === "ascend") return <ArrowUp />;
@@ -32,7 +26,6 @@ type Props = {
   columns: ColumnType[];
   params: IParams;
   setParams: React.Dispatch<React.SetStateAction<IParams>>;
-  token: GlobalToken;
   onChangeSortMobile?: (order: SortOrder, columnKey: string) => void;
   refreshData?: () => void;
 };
@@ -40,37 +33,11 @@ export const MobileTableSort: FC<Props> = ({
   columns,
   params,
   setParams,
-  token,
   onChangeSortMobile,
   refreshData,
 }) => {
   // ---------------------- variables ---------------------
-  const styles = {
-    dropdownContainer: css`
-      width: 100%;
-      z-index: 10;
-      margin: 0 auto;
-    `,
-    menuItem: css`
-      width: 100%;
-      padding: 0.2rem 0.6rem;
-      border-radius: 8px;
-      cursor: pointer;
-      background-color: ${token.colorBgLayout};
-      align-items: center;
-      justify-content: space-around;
-    `,
-    sortButton: css`
-      display: flex;
-      justify-content: center;
-      flex-wrap: nowrap;
-      background-color: ${token.colorPrimary};
-      color: ${token.colorBgBase};
-      padding: 0.2rem 0.6rem;
-      border-radius: 8px;
-      cursor: pointer;
-    `,
-  };
+  const { styles } = useStyles();
   const sortableColumns: string[] = columns
     .filter((column: ColumnType) => column.sorter)
     .map((column: ColumnType) => column.title as string);

@@ -1,6 +1,5 @@
 import { Flex, Input } from "@/core/components/base";
 import { SearchOutline } from "@/core/icons";
-import { css } from "@emotion/css";
 import { FC } from "react";
 
 type Props = {
@@ -16,14 +15,10 @@ export const SearchbarTable: FC<Props> = ({
   onPressEnter,
 }) => (
   <Flex
-    className={
-      !isMobile
-        ? css`
-            width: 100%;
-            max-width: 200px;
-          `
-        : ""
-    }
+    style={{
+      width: !isMobile ? "100%" : "",
+      maxWidth: !isMobile ? "200px" : "",
+    }}
   >
     <Input
       placeholder="جستجو کنید..."
@@ -33,14 +28,10 @@ export const SearchbarTable: FC<Props> = ({
         setSearchText((event.target as HTMLInputElement).value)
       }
       onPressEnter={onPressEnter}
-      className={
-        isMobile
-          ? css`
-              height: 28px !important;
-              width: 100%;
-            `
-          : ""
-      }
+      style={{
+        height: isMobile ? "28px !important" : "",
+        width: isMobile ? "100%" : "",
+      }}
     />
   </Flex>
 );

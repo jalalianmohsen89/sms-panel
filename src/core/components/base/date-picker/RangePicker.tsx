@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { Flex, Typography } from "@/core/components/base";
+import dayjs from "@/core/functions/dayjs";
+import { useStyles } from "@/core/styled";
 import { DatePickerProps } from "antd";
 import { DatePicker } from "antd-jalali";
-import dayjs from "@/core/functions/dayjs";
-import { theme as themeContent } from "@/core/theme";
-import { FormContainer, FormTitle } from "@/core/styled";
+import { FC } from "react";
 import { icons, locale } from "./content";
 
 type Props = DatePickerProps & {
@@ -31,7 +31,7 @@ export const RangePickerJalali: FC<Props> = ({
   showTime,
   ...rest
 }) => {
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
 
   const handleChange = (
     dates: [dayjs.Dayjs, dayjs.Dayjs] | null,
@@ -58,8 +58,8 @@ export const RangePickerJalali: FC<Props> = ({
   };
 
   return (
-    <FormContainer>
-      <FormTitle token={token}>{label}</FormTitle>
+    <Flex className={styles.formContainer}>
+      <Typography className={styles.formTitle}>{label}</Typography>
       <DatePicker.RangePicker
         {...rest}
         {...icons}
@@ -72,6 +72,6 @@ export const RangePickerJalali: FC<Props> = ({
         locale={locale}
         showTime={showTime}
       />
-    </FormContainer>
+    </Flex>
   );
 };
