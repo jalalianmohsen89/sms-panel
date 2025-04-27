@@ -16,10 +16,10 @@ import {
 import { css } from "@emotion/css";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { CheckboxGroupProps } from "antd/es/checkbox";
-import { useState } from "react";
+import { memo, useState } from "react";
 import { sendPersonalSms, userNumberList } from "../../service";
 
-const FormPersonalSms = () => {
+const FormPersonalSms = memo(() => {
   // --------------------- variables ---------------------------
   const [formProps, setFormProps] = useState<any>({});
   const options: CheckboxGroupProps<string>["options"] = [
@@ -166,6 +166,6 @@ const FormPersonalSms = () => {
       </Flex>
     </Form>
   );
-};
+});
 
 export default FormPersonalSms;

@@ -11,7 +11,7 @@ import {
 import { numbersList } from "@/core/feature/sms/service";
 import { css } from "@emotion/css";
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { FC, useState } from "react";
+import { FC, memo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { assingUser } from "../../service";
 
@@ -19,7 +19,7 @@ type Props = {
   onCloseModal: () => void;
   onSubmit: () => void;
 };
-const AssignNumberToUser: FC<Props> = ({ onCloseModal, onSubmit }) => {
+const AssignNumberToUser: FC<Props> = memo(({ onCloseModal, onSubmit }) => {
   const [searchParams] = useSearchParams();
   const [formProps, setFormProps] = useState<any>({
     user: searchParams.get("user"),
@@ -111,6 +111,6 @@ const AssignNumberToUser: FC<Props> = ({ onCloseModal, onSubmit }) => {
       </Flex>
     </Form>
   );
-};
+});
 
 export default AssignNumberToUser;

@@ -1,12 +1,13 @@
-import { Flex, Table } from "@/core/components/base";
 import type { TableProps } from "@/core/components/base";
+import { Flex, Table } from "@/core/components/base";
+import { useStyles as useStylesBase } from "@/core/styled";
 import { Key } from "react";
-import useDataTable from "./UseDataTable";
-import { theme as themeContent } from "@/core/theme";
-import { Section } from "@/core/styled";
-import { css } from "@emotion/css";
-import { ISortInfo } from "./types";
 import { RenderSkeleton, SearchbarTable } from "./components";
+import { useStyles } from "./styled";
+import { ISortInfo } from "./types";
+import useDataTable from "./UseDataTable";
+
+// Keep the original Props type definition
 export type Props<T extends object> = TableProps<T> & {
   apiPath: string;
   selection?: boolean;
@@ -28,6 +29,7 @@ export type Props<T extends object> = TableProps<T> & {
 };
 
 export const DataTable = <T extends object>({
+  // Use the original Props type
   apiPath,
   selection,
   sortInfo,
@@ -42,25 +44,28 @@ export const DataTable = <T extends object>({
   onSelected,
   onGetData,
   onChangeSortMobile,
-  ...props
+  columns: initialColumns, // Receive initialColumns
+  ...props // Spread the rest of the original TableProps
 }: Props<T>) => {
   // -------------------- variables --------------------------
-  const { token } = themeContent.useToken();
+  const { styles: stylesBase } = useStylesBase();
+  const { styles } = useStyles();
 
   // -------------------- hook --------------------------
   const {
     loading,
     isMobile,
-    mobileColumns,
+    mobileColumns, // Use the renamed mobileTableContent from the hook
     rows,
-    rowSelectionRow,
-    paginationData,
+    columns, // Use the memoized columns from the hook
     searchValue,
     setSearchValue,
-    otherProps,
     featuresMobileColumns,
     onChangeTable,
-  } = useDataTable({
+    otherProps, // Use the correctly destructured otherProps
+    tableProps, // Use the calculated tableProps for pagination and selection
+  } = useDataTable<T>({
+    // Pass the generic type T
     apiPath,
     selection,
     sortInfo,
@@ -74,61 +79,42 @@ export const DataTable = <T extends object>({
     onSelected,
     onGetData,
     onChangeSortMobile,
-    ...props,
+    columns: initialColumns, // Pass initialColumns to the hook
+    ...props, // Pass the rest of the original TableProps to the hook
   });
 
   return loading ? (
-    <RenderSkeleton columns={props.columns} />
+    <RenderSkeleton columns={columns} /> // Use columns from the hook
   ) : (
     <>
       {isMobile ? (
-        <Section token={token}>
-          <Flex
-            className={css`
-              width: 100%;
-              margin-bottom: 10px;
-            `}
-          >
-            {featuresMobileColumns()}
+        <section className={stylesBase.section}>
+          <Flex className={styles.featuresMobileColumnsContainer}>
+            {featuresMobileColumns}
           </Flex>
-          <Flex
-            className={css`
-              width: 100%;
-              flex-direction: column;
-            `}
-          >
-            {mobileColumns}
-          </Flex>
-        </Section>
+          <Flex className={styles.mobileColumnsContainer}>{mobileColumns}</Flex>
+        </section>
       ) : (
-        <Section token={token}>
+        <section className={stylesBase.section}>
           <Flex vertical style={{ gap: 20 }}>
             {searchbar && (
               <SearchbarTable
                 text={searchValue}
                 setSearchText={setSearchValue}
-                // onPressEnter={() => console.log("press")}
               />
             )}
             <Table
               rowKey={rowKey}
               dataSource={rows}
-              scroll={{ x: "max-content" }}
-              {...(withPagination
-                ? {
-                  pagination: paginationData,
-                }
-                : {
-                  pagination: false,
-                })}
-              {...(selection && {
-                rowSelection: rowSelectionRow,
-              })}
-              onChange={onChangeTable}
-              {...otherProps}
+              columns={columns} // Use columns from the hook
+              scroll={{ x: "100%", ...props.scroll }} // Merge scroll props if needed
+              loading={loading} // Pass loading state
+              onChange={onChangeTable} // Pass onChange handler
+              {...tableProps} // Spread pagination and rowSelection from tableProps
+              {...otherProps} // Spread the rest of the AntD table props
             />
           </Flex>
-        </Section>
+        </section>
       )}
     </>
   );

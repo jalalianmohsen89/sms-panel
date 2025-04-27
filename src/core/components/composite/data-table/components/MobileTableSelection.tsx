@@ -1,11 +1,11 @@
 import {
   Checkbox,
+  CheckboxChangeEvent,
   Flex,
   Typography,
-  CheckboxChangeEvent,
 } from "@/core/components/base";
-import { css } from "@emotion/css";
 import { FC } from "react";
+import { useStyles } from "../styled";
 
 type Props = {
   selectionKey: string[];
@@ -20,6 +20,7 @@ export const MobileTableSelection: FC<Props> = ({
   setSelectedRow,
   rows,
 }) => {
+  const { styles } = useStyles();
   // ---------------------- methods ---------------------
   const onChangeSelection = (event: CheckboxChangeEvent) => {
     if (event.target.checked) {
@@ -33,12 +34,7 @@ export const MobileTableSelection: FC<Props> = ({
 
   // ---------------------- render ---------------------
   return (
-    <Flex
-      className={css`
-        gap: 10px;
-        text-wrap: nowrap;
-      `}
-    >
+    <Flex className={styles.selectionContainer}>
       <Checkbox
         checked={selectionKey.length === rows.length}
         onChange={(event) => onChangeSelection(event)}

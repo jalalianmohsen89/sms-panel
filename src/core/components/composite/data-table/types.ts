@@ -15,6 +15,7 @@ export interface IParams {
   sort_field?: string;
   page?: number;
   limit?: number;
+  search?: string;
 }
 
 export type SortOrder = "ascend" | "descend" | null;

@@ -1,10 +1,10 @@
-import { FC } from "react";
+import { Flex, Typography } from "@/core/components/base";
+import { useStyles } from "@/core/styled";
 import { Input as InputBase, InputProps } from "antd";
 import OTP from "antd/es/input/OTP";
-import Search from "antd/es/input/Search";
 import Password from "antd/es/input/Password";
-import { theme as themeContent } from "@/core/theme";
-import { FormContainer, FormTitle } from "@/core/styled";
+import Search from "antd/es/input/Search";
+import { FC } from "react";
 
 type Props = Pick<
   InputProps,
@@ -22,6 +22,7 @@ type Props = Pick<
   | "value"
   | "className"
   | "maxLength"
+  | "style"
 > & {
   label?: string;
 };
@@ -31,14 +32,14 @@ export const Input: FC<Props> & {
   Password: typeof Password;
   OTP: typeof OTP;
 } = (props) => {
-  const { token } = themeContent.useToken();
   const { label, ...otherProps } = props;
+  const { styles } = useStyles();
 
   return (
-    <FormContainer>
-      {label && <FormTitle token={token}>{label}</FormTitle>}
+    <Flex className={styles.formContainer}>
+      {label && <Typography className={styles.formTitle}>{label}</Typography>}
       <InputBase {...otherProps} />
-    </FormContainer>
+    </Flex>
   );
 };
 
@@ -46,4 +47,4 @@ Input.Search = Search;
 Input.Password = Password;
 Input.OTP = OTP;
 
-export { Search, Password, OTP };
+export { OTP, Password, Search };

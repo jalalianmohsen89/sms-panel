@@ -4,7 +4,7 @@ import { BasicProps, Content, Footer, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 
 type Props = BasicProps;
-export const Layout: FC<Props> & {
+const Layout: FC<Props> & {
   Header: typeof Header;
   Footer: typeof Footer;
   Content: typeof Content;
@@ -15,3 +15,5 @@ Layout.Header = Header;
 Layout.Footer = Footer;
 Layout.Content = Content;
 Layout.Sider = Sider;
+
+export { Layout, Header, Footer, Content, Sider };

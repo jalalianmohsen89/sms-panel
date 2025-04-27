@@ -1,10 +1,10 @@
 import { Anchor, Flex, Grid, Typography } from "@/core/components/base";
-import { css } from "@emotion/css";
-import { theme as themeContent } from "@/core/theme";
-import { Search } from "@/core/icons";
 import { Notification } from "@/core/components/composite";
-import { ToolsContainer } from "@/core/components/composite/layout/header/styled";
+import { useStyles } from "@/core/components/composite/layout/header/styled";
 import ThemeIcon from "@/core/components/composite/layout/header/ThemeIcon.tsx";
+import { Search } from "@/core/icons";
+import { theme as themeContent } from "@/core/theme";
+import { css } from "@emotion/css";
 
 const Tools = () => {
   // ---------------------- variables ---------------------
@@ -12,10 +12,11 @@ const Tools = () => {
   const { Text } = Typography;
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
+  const { styles } = useStyles();
 
   // ---------------------- render ---------------------
   return (
-    <ToolsContainer>
+    <Flex className={styles.toolsContainer}>
       <Typography>
         <Text
           className={css`
@@ -40,7 +41,7 @@ const Tools = () => {
       )}
       <ThemeIcon />
       <Notification />
-    </ToolsContainer>
+    </Flex>
   );
 };
 

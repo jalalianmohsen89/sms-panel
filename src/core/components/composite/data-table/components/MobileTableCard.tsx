@@ -2,20 +2,17 @@ import {
   Checkbox,
   ColumnType,
   Divider,
+  ExpandableConfig,
   Flex,
   Space,
   Typography,
-  ExpandableConfig,
-  GlobalToken,
 } from "@/core/components/base";
-import { MobileColumns } from "../styled";
-import { css } from "@emotion/css";
 import { ChevronDown, ChevronUp } from "@/core/icons";
 import { useState } from "react";
+import { useStyles } from "../styled";
 
 // ---------------------- types ---------------------
 type Props<T extends object> = {
-  token: GlobalToken;
   columns: ColumnType[];
   row: any;
   selection: boolean;
@@ -27,7 +24,6 @@ type Props<T extends object> = {
 };
 
 export const MobileTablesCard = <T extends object>({
-  token,
   selection,
   selectionKey,
   expandable,
@@ -38,6 +34,7 @@ export const MobileTablesCard = <T extends object>({
 }: Props<T>) => {
   // ---------------------- variables ---------------------
   const [isExpandedRow, setIsExpandedRow] = useState(false);
+  const { styles } = useStyles();
   const checkExpandedRow = () => {
     if (isExpandedRow) {
       return <ChevronDown />;
@@ -47,7 +44,7 @@ export const MobileTablesCard = <T extends object>({
   };
 
   return (
-    <MobileColumns token={token}>
+    <Flex className={styles.mobileColumns}>
       {selection && (
         <Space>
           <Checkbox
@@ -62,43 +59,26 @@ export const MobileTablesCard = <T extends object>({
           />
         </Space>
       )}
-      <Flex
-        className={css`
-          width: 100%;
-          flex-wrap: wrap;
-          gap: 10px 20px;
-        `}
-      >
-        {columns.map((col: any, key) => (
+      <Flex className={styles.columnsContainer}>
+        {columns.map((col: any) => (
           <Flex
             vertical
-            key={key}
-            className={
-              col.key === "actions"
-                ? css`
-                    width: 100%;
-                  `
-                : ""
-            }
+            key={col.key}
+            style={{
+              width: col.key === "actions" ? "100%" : "",
+            }}
           >
             {col.key === "actions" ? (
-              <Flex
-                vertical
-                className={css`
-                  width: 100%;
-                  align-items: flex-end;
-                  gap: 10px;
-                `}
-              >
+              <Flex vertical className={styles.columnActions}>
                 <Divider />
                 {col.render?.(row)}
               </Flex>
             ) : (
               <Flex
-                className={css`
-                  width: ${col.width};
-                  min-width: ${col.minWidth};
-                `}
+                style={{
+                  width: col.width,
+                  minWidth: col.minWidth,
+                }}
               >
                 <Typography>
                   <strong>{col.title} : </strong>
@@ -109,27 +89,19 @@ export const MobileTablesCard = <T extends object>({
           </Flex>
         ))}
         {isExpandedRow && expandable?.expandedRowRender && (
-          <Flex
-            className={css`
-              width: 100%;
-              background-color: ${token.colorBgContainer};
-            `}
-          >
+          <Flex className={styles.expandedRenderContainer}>
             {expandable.expandedRowRender(row, index, 0, isExpandedRow)}
           </Flex>
         )}
       </Flex>
       {expandable && (
         <Flex
-          className={css`
-            width: 20px;
-            cursor: pointer;
-          `}
+          className={styles.expandedIcons}
           onClick={() => setIsExpandedRow(!isExpandedRow)}
         >
           {checkExpandedRow()}
         </Flex>
       )}
-    </MobileColumns>
+    </Flex>
   );
 };

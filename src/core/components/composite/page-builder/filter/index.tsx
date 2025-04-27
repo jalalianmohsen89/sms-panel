@@ -19,7 +19,7 @@ export const PageBuilderFilter: FC<Props> = ({ list }) => {
   return (
     <Section token={token}>
       <Row gutter={[15, 15]} align="middle">
-        {checkFilters()}
+        {checkFilters}
       </Row>
       <Row justify={"end"}>
         <Col>

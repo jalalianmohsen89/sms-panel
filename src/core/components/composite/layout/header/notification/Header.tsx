@@ -1,26 +1,18 @@
-import { GlobalToken, Space, Typography } from "@/core/components/base";
-import { css } from "@emotion/css";
+import { Space, Typography } from "@/core/components/base";
 import { FC } from "react";
+import { useStyles } from "./styled";
 
 type Props = {
-  token: GlobalToken;
   title: string;
 };
-const HeaderNotification: FC<Props> = ({ token, title }) => (
-  <Space
-    className={css`
-      padding: 12px 1rem;
-      border-bottom: 1px solid ${token.colorBorder};
-    `}
-  >
-    <Typography
-      className={css`
-        font-size: 1rem;
-      `}
-    >
-      {title}
-    </Typography>
-  </Space>
-);
+const HeaderNotification: FC<Props> = ({ title }) => {
+  const { styles } = useStyles();
+
+  return (
+    <Space className={styles.headerNotificationContainer}>
+      <Typography className={styles.titleSize}>{title}</Typography>
+    </Space>
+  );
+};
 
 export default HeaderNotification;

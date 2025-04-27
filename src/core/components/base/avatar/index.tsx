@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Avatar as BaseAvatar, AvatarProps } from "antd";
-import Group from "antd/es/avatar/group";
+import AvatarGroup from "antd/es/avatar/AvatarGroup";
 
 type Props = Pick<
   AvatarProps,
@@ -20,7 +20,7 @@ type Props = Pick<
   | "onError"
 >;
 export const Avatar: FC<Props> & {
-  Group: typeof Group;
+  Group: typeof AvatarGroup;
 } = (props) => <BaseAvatar {...props} />;
 
-Avatar.Group = Group;
+Avatar.Group = AvatarGroup;

@@ -5,53 +5,31 @@ import {
   Flex,
   Tooltip,
 } from "@/core/components/base";
-import { css, css as cssStyle } from "@emotion/css";
-import {
-  NotificationIcon,
-  ToolsItemContainer,
-} from "@/core/components/composite/layout/header/styled.ts";
-import { theme as themeContent } from "@/core/theme";
+import { Notifications } from "@/core/icons";
 import { RiUser2Fill, RiUserAddFill } from "react-icons/ri";
+import ContentNotif from "./ContentNotif";
 import HeaderNotification from "./Header";
 import InfoNotif from "./InfoNotif";
-import ContentNotif from "./ContentNotif";
+import { useStyles } from "./styled";
 
 export const Notification = () => {
   // -------------------- variables --------------------------
-  const { token } = themeContent.useToken();
-  const dropdownRennder = () => (
-    <Flex
-      vertical
-      className={css`
-        width: 400px;
-        border: 1px solid ${token.colorBorder};
-        border-radius: 8px;
-        background-color: ${token.colorBgLayout};
-      `}
-    >
-      <HeaderNotification token={token} title="اعلانات" />
+  const { styles } = useStyles();
+
+  const dropdownRennder = (
+    <Flex vertical className={styles.dropdownRenderContainer}>
+      <HeaderNotification title="اعلانات" />
       <Flex vertical>
-        <Flex
-          vertical
-          className={css`
-            gap: 12px;
-            border-bottom: 1px solid ${token.colorBorder};
-          `}
-        >
+        <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
-            token={token}
             avatar="مح"
             fullName="محسن جلالیان مقدم"
             description="پیامی برای شما ارسال کرد"
             date="چند دقیقه پیش"
             position="مدیر پنل"
           />
-          <ContentNotif
-            token={token}
-            text="آماده برای خروچی گرفتن"
-            date="09:00 - 10:00 ظهر"
-          >
-            <Avatar.Group>
+          <ContentNotif text="آماده برای خروچی گرفتن" date="09:00 - 10:00 ظهر">
+            <Avatar.Group max={{ count: 3 }}>
               <Avatar src="https://api.dicebear.com/7.x/miniavs/svg?seed=1" />
               <a href="https://ant.design">
                 <Avatar style={{ backgroundColor: "#f56a00" }}>K</Avatar>
@@ -68,28 +46,15 @@ export const Notification = () => {
               />
             </Avatar.Group>
           </ContentNotif>
-          <Flex
-            className={css`
-              margin: 0 1.5rem 1rem;
-              gap: 5px;
-              justify-content: flex-end;
-            `}
-          >
+          <Flex className={styles.sectionButtons}>
             <Button type="default">رد</Button>
             <Button type="default">تایید</Button>
           </Flex>
         </Flex>
       </Flex>
       <Flex vertical>
-        <Flex
-          vertical
-          className={css`
-            gap: 12px;
-            border-bottom: 1px solid ${token.colorBorder};
-          `}
-        >
+        <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
-            token={token}
             avatar="مه"
             fullName="محمد هنرور"
             description="مقاله جدیدی را برای شما ارسال کرد"
@@ -100,28 +65,15 @@ export const Notification = () => {
       </Flex>
 
       <Flex vertical>
-        <Flex
-          vertical
-          className={css`
-            gap: 12px;
-            border-bottom: 1px solid ${token.colorBorder};
-          `}
-        >
+        <Flex vertical className={styles.sectionContainer}>
           <InfoNotif
-            token={token}
             avatar="رف"
             fullName="رامین فیروز"
             description="تسک جدیدی را برای شما ایجاد کرد"
             date="20 دقیقه پیش"
             position="کارشناس سوشال"
           />
-          <Flex
-            className={css`
-              margin: 0 1.5rem 1rem;
-              gap: 5px;
-              justify-content: flex-end;
-            `}
-          >
+          <Flex className={styles.sectionButtons}>
             <Button type="default">رد</Button>
             <Button type="default">تایید</Button>
           </Flex>
@@ -132,17 +84,16 @@ export const Notification = () => {
 
   // -------------------- render --------------------------
   return (
-    <ToolsItemContainer>
+    <Flex className={styles.dropdownContainer}>
       <Dropdown
         placement="bottom"
-        overlayClassName={cssStyle`
-            padding-top: 1rem;
-            padding-left: 1rem
-          `}
-        dropdownRender={dropdownRennder}
+        overlayClassName={styles.dropdownPadding}
+        dropdownRender={() => dropdownRennder}
       >
-        <NotificationIcon />
+        <div className={styles.flex}>
+          <Notifications className={styles.notificationIcon} size={16} />
+        </div>
       </Dropdown>
-    </ToolsItemContainer>
+    </Flex>
   );
 };

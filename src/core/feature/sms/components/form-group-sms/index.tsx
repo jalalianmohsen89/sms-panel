@@ -1,3 +1,4 @@
+import { memo } from "react";
 import {
   Col,
   DatePickerJalali,
@@ -28,7 +29,7 @@ import { css } from "@emotion/css";
 import { Button } from "antd";
 import useFormGroup from "./hook";
 
-const FormGroupSms = () => {
+const FormGroupSms = memo(() => {
   const {
     columns,
     preview,
@@ -125,8 +126,11 @@ const FormGroupSms = () => {
                 <Switch
                   checkedChildren="فعال"
                   unCheckedChildren="غیرفعال"
+                  value={formProps?.remove_duplicate}
                   defaultChecked
-                  disabled
+                  onChange={(e) =>
+                    setFormProps({ ...formProps, remove_duplicate: e })
+                  }
                 />
               </Space>
             </Flex>
@@ -238,6 +242,6 @@ const FormGroupSms = () => {
       </Modal>
     </>
   );
-};
+});
 
 export default FormGroupSms;

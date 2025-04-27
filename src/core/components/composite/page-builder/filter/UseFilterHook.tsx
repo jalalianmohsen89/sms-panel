@@ -1,6 +1,6 @@
 import apiService from "@/core/services";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback, useMemo } from "react";
 import {
   DatePickerJalali,
   RangePickerJalali,
@@ -9,110 +9,185 @@ import {
   Switch,
 } from "@/core/components/base";
 import { css } from "@emotion/css";
-import { IPageBuilderFilter, TYPES } from "../types";
+import { IPageBuilderFilter, TYPES, ISelect } from "../types";
 import { useSearchParams } from "react-router-dom";
 
 type Props = IPageBuilderFilter;
 const useFilterHook = (props: Props) => {
   // -------------------- variables ----------------------
-  const [apiUrl, setApiUrl] = useState(props.apiUrl);
-  const [value, setValue] = useState<any>(props.defaultValue);
-  const [multipleValue, setMultipleValue] = useState<any[]>([]);
-  const [options, setOptions] = useState<any[]>([]);
+  const {
+    onChangeValue,
+    field,
+    title,
+    defaultValue,
+    showTime,
+    mapper,
+    data,
+    dependenOn,
+    dependenValue,
+    apiUrl: propApiUrl,
+    type,
+  } = props;
+
+  const [apiUrl, setApiUrl] = useState(propApiUrl);
+  const [value, setValue] = useState<any>(defaultValue);
+  const [multipleValue, setMultipleValue] = useState<any[]>(defaultValue || []);
+  const [options, setOptions] = useState<ISelect[]>([]);
   const [searchParams] = useSearchParams();
 
+  const fetchData = useCallback(() => apiService.get(apiUrl ?? ""), [apiUrl]);
+
+  // -------------------- mutations ------------------------
+  const { mutate: gateData, isPending } = useMutation({
+    mutationFn: fetchData,
+    onSuccess: ({ data }) => {
+      setOptions(mapper?.(data) ?? data);
+    },
+  });
+
   // -------------------- methods --------------------------
-  const fetchData = () => apiService.get(apiUrl ?? "");
+  const handleInputChange = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const newValue = event.target.value;
 
-  const inputType = () => (
-    <Input
-      label={props.title}
-      value={value}
-      onInput={(event) => {
-        setValue((event.target as HTMLInputElement).value);
-        props.onChangeValue?.(
-          (event.target as HTMLInputElement).value,
-          props.field,
-        );
-      }}
-    />
-  );
-  const selectType = () => (
-    <Select
-      label={props.title}
-      optionFilterProp="label"
-      showSearch
-      allowClear
-      options={options}
-      value={value}
-      onChange={(value, dataList) => {
-        setValue(value);
-        props.onChangeValue?.(dataList, props.field);
-      }}
-    />
+      setValue(newValue);
+      onChangeValue?.(newValue, field);
+    },
+    [onChangeValue, field],
   );
 
-  const multiSelectType = () => (
-    <Select
-      label={props.title}
-      mode="multiple"
-      optionFilterProp="label"
-      showSearch
-      allowClear
-      placeholder={props.title}
-      options={options}
-      value={multipleValue}
-      maxTagCount="responsive"
-      onChange={(value, dataList) => {
-        setMultipleValue([...value]);
-        props.onChangeValue?.(dataList, props.field);
-      }}
-    />
+  const handleSelectChange = useCallback(
+    (newValue: any, dataList: any) => {
+      setValue(newValue);
+      onChangeValue?.(dataList, field);
+    },
+    [onChangeValue, field],
   );
 
-  const switchType = () => (
-    <Switch
-      label={props.title}
-      checkedChildren={props.title}
-      checked={value}
-      value={value}
-      onChange={(value) => {
-        setValue(value);
-        props.onChangeValue?.(value, props.field);
-      }}
-    />
+  const handleMultiSelectChange = useCallback(
+    (newValue: any[], dataList: any) => {
+      setMultipleValue(newValue);
+      onChangeValue?.(dataList, field);
+    },
+    [onChangeValue, field],
   );
 
-  const datePickerType = () => (
-    <DatePickerJalali
-      className={css`
-        width: 100%;
-      `}
-      showTime={props.showTime}
-      label={props.title}
-      placeholder={props.title}
-      defaultValue={props.defaultValue}
-      onChange={(date) => props.onChangeValue?.(date, props.field)}
-    />
+  const handleSwitchChange = useCallback(
+    (newValue: boolean) => {
+      setValue(newValue);
+      onChangeValue?.(newValue, field);
+    },
+    [onChangeValue, field],
   );
 
-  const dateRangeType = () => (
-    <RangePickerJalali
-      className={css`
-        width: 100%;
-      `}
-      label={props.title}
-      showTime={props.showTime}
-      placeholder={props.title}
-      defaultValue={props.defaultValue}
-      onChange={(_event, date) =>
-        props.onChangeValue?.([date[0], date[1]], props.field)
-      }
-    />
+  const handleDatePickerChange = useCallback(
+    (date: any) => {
+      // Assuming date is the value needed
+      setValue(date); // Update local state if needed
+      onChangeValue?.(date, field);
+    },
+    [onChangeValue, field],
   );
 
-  const checkFilter = () => {
-    switch (props.type) {
+  const handleDateRangeChange = useCallback(
+    (_event: any, date: [string, string]) => {
+      // Assuming date array is the value needed
+      setValue(date); // Update local state if needed
+      onChangeValue?.(date, field);
+    },
+    [onChangeValue, field],
+  );
+
+  // -------------------- components -----------------------
+  const inputType = useCallback(
+    () => <Input label={title} value={value} onInput={handleInputChange} />,
+    [title, value, handleInputChange],
+  );
+
+  const selectType = useCallback(
+    () => (
+      <Select
+        label={title}
+        optionFilterProp="label"
+        showSearch
+        allowClear
+        loading={isPending}
+        options={options}
+        value={value}
+        onChange={handleSelectChange}
+      />
+    ),
+    [title, options, value, handleSelectChange, isPending],
+  );
+
+  const multiSelectType = useCallback(
+    () => (
+      <Select
+        label={title}
+        mode="multiple"
+        optionFilterProp="label"
+        showSearch
+        allowClear
+        loading={isPending}
+        placeholder={title}
+        options={options}
+        value={multipleValue}
+        maxTagCount="responsive"
+        onChange={handleMultiSelectChange}
+      />
+    ),
+    [title, options, multipleValue, handleMultiSelectChange, isPending],
+  );
+
+  const switchType = useCallback(
+    () => (
+      <Switch
+        label={title}
+        checkedChildren={title}
+        checked={value}
+        value={value}
+        onChange={handleSwitchChange}
+      />
+    ),
+    [title, value, handleSwitchChange],
+  );
+
+  const datePickerType = useCallback(
+    () => (
+      <DatePickerJalali
+        className={css`
+          width: 100%;
+        `}
+        showTime={showTime}
+        label={title}
+        placeholder={title}
+        value={value} // Use controlled value
+        onChange={handleDatePickerChange}
+      />
+    ),
+    [showTime, title, value, handleDatePickerChange],
+  );
+
+  const dateRangeType = useCallback(
+    () => (
+      <RangePickerJalali
+        className={css`
+          width: 100%;
+        `}
+        label={title}
+        showTime={showTime}
+        placeholder={title}
+        value={value} // Use controlled value
+        onChange={(date, dateString) =>
+          handleDateRangeChange(date, dateString as [string, string])
+        }
+      />
+    ),
+    [title, showTime, value, handleDateRangeChange],
+  );
+
+  const checkFilter = useMemo(() => {
+    switch (type) {
     case TYPES.INPUT:
       return inputType();
     case TYPES.SELECT:
@@ -128,53 +203,62 @@ const useFilterHook = (props: Props) => {
     default:
       return inputType();
     }
-  };
+  }, [
+    type,
+    inputType,
+    selectType,
+    multiSelectType,
+    switchType,
+    datePickerType,
+    dateRangeType,
+  ]);
 
-  // ---------------------- hooks ---------------------
-  const { mutate: getData } = useMutation({
-    mutationFn: fetchData,
-    onSuccess: ({ data }) => {
-      setOptions(props.mapper?.(data) ?? data);
-    },
-  });
-
-  // ---------------------- useEffects ---------------------
+  // -------------------- useEffects -----------------------
   useEffect(() => {
-    if (apiUrl) {
-      getData();
+    if (data) {
+      setOptions(data);
     }
-  }, [getData, apiUrl]);
+  }, [data]);
 
   useEffect(() => {
-    if (props.data) {
-      setOptions(props.data);
-    }
-  }, [props.data]);
-
-  useEffect(() => {
-    if (props.dependenValue && props.dependenOn) {
-      setApiUrl(props.apiUrl + `?${props.dependenOn}=${props.dependenValue}`);
+    if (apiUrl && !data) {
+      gateData();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.dependenValue, props.dependenOn]);
+  }, [apiUrl, data]); // Removed mutate from dependency array
 
   useEffect(() => {
-    if (props.defaultValue) {
-      props.onChangeValue?.(props.defaultValue, props.field);
+    if (dependenValue && dependenOn) {
+      setApiUrl(apiUrl + `?${dependenOn}=${dependenValue}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.defaultValue]);
+  }, [dependenValue, dependenOn]);
+
+  // Reset value when options change and current value is no longer valid
+  useEffect(() => {
+    if (defaultValue) {
+      onChangeValue?.(defaultValue, field);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [defaultValue]);
 
   useEffect(() => {
     const param = Object.fromEntries(searchParams);
 
-    if (param && param[props.field]) {
-      setValue(param[props.field]);
-      props.onChangeValue?.(param[props.field], props.field);
+    if (param && param[field]) {
+      setValue(param[field]);
+      onChangeValue?.(param[field], field);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
 
-  return { checkFilter };
+  return {
+    checkFilter,
+    isPending,
+    options,
+    value,
+    multipleValue,
+  };
 };
 
 export default useFilterHook;

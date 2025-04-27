@@ -1,5 +1,5 @@
-import { FormContainer, FormTitle } from "@/core/styled";
-import { theme as themeContent } from "@/core/theme";
+import { Flex, Typography } from "@/core/components/base";
+import { useStyles } from "@/core/styled";
 import { default as TextAreaBase } from "antd/es/input/TextArea";
 import { TextAreaProps } from "antd/lib/input";
 import { FC } from "react";
@@ -24,13 +24,13 @@ type Props = Pick<
 };
 
 export const TextArea: FC<Props> = (props) => {
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
   const { label, ...otherProps } = props;
 
   return (
-    <FormContainer>
-      {label && <FormTitle token={token}>{label}</FormTitle>}
+    <Flex className={styles.formContainer}>
+      {label && <Typography className={styles.formTitle}>{label}</Typography>}
       <TextAreaBase {...otherProps} />
-    </FormContainer>
+    </Flex>
   );
 };
