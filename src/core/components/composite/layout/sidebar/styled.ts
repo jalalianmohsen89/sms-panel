@@ -1,28 +1,14 @@
-import styled from "@emotion/styled";
-import {
-  Flex,
-  Layout,
-  Menu,
-  Modal,
-  Segmented,
-  Typography,
-} from "@/core/components/base";
-import { PatternType, TokenType } from "@/core/types";
 import { hexToRgba } from "@/core/functions";
+import { IPattern } from "@/core/types";
+import { createStyles } from "antd-style";
 
-const { Text } = Typography;
-const { Sider } = Layout;
-
-export const SiderBox = styled(Sider)<TokenType & PatternType>(
-  ({ token, pattern }) => ({
+export const useStyles = createStyles(({ token }, pattern: IPattern) => ({
+  siderbox: {
     minHeight: "100vh",
     overflow: "hidden",
     background: hexToRgba(token.colorBgContainer, +pattern?.layoutOpacity),
-  }),
-);
-
-export const SidebarContainer = styled("div")<TokenType & PatternType>(
-  ({ token, pattern }) => ({
+  },
+  sidebarContainer: {
     position: "fixed" as any,
     border: `1px solid ${token.colorBorder}`,
     background: token.colorBgContainer,
@@ -40,11 +26,30 @@ export const SidebarContainer = styled("div")<TokenType & PatternType>(
       backdropFilter: `blur(${pattern?.blur}px)`,
       background: hexToRgba(token.colorBgContainer, +pattern?.containerOpacity),
     },
-  }),
-);
-
-export const Navigation = styled(Menu)<TokenType & PatternType>(
-  ({ token, pattern }) => ({
+  },
+  sidebarLink: {
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+    width: "100%",
+  },
+  sidebarImage: {
+    width: "18%",
+    margin: "0 5px",
+  },
+  height100: {
+    height: "100%",
+  },
+  sidebarLogoTitle: {
+    fontSize: "16px",
+    fontWeight: 600,
+    color: token.colorInfoTextActive,
+  },
+  settingContainer: {
+    height: "500px",
+    alignItems: "flex-start",
+  },
+  navigation: {
     height: "calc(100% - 150px)",
     overflow: "auto",
     marginTop: "2rem",
@@ -100,74 +105,55 @@ export const Navigation = styled(Menu)<TokenType & PatternType>(
         borderBottom: `1px solid ${token.colorBorder}`,
       },
     },
-  }),
-);
-
-export const ImageContainer = styled(Flex)<TokenType>(({ token }) => ({
-  borderBottom: `1px solid ${token.colorBorder}`,
-  padding: "4px",
-}));
-
-export const FloatBox = styled(Flex)({
-  flexDirection: "column",
-  gap: 10,
-});
-
-export const Quote = styled(Flex)<TokenType>(({ token }) => ({
-  padding: "0 1.2rem",
-  backgroundColor: token.colorFillSecondary,
-  userSelect: "none",
-}));
-
-export const QuoteContainer = styled(Typography)({
-  position: "relative",
-  padding: "1rem",
-  borderRadius: 12,
-  "&::before": {
-    color: "#9d68aa",
-    content: "open-quote",
-    fontSize: "2em",
-    lineHeight: ".1em",
-    marginLeft: ".15em",
-    verticalAlign: "-.4em",
   },
-});
-
-export const QuoteText = styled(Text)<TokenType>(({ token }) => ({
-  color: token.colorTextSecondary,
-  fontSize: "1rem",
-}));
-
-export const LastUpdate = styled(Text)<TokenType>(({ token }) => ({
-  color: token.colorText,
-  fontSize: "11px",
-  marginLeft: "8px",
-}));
-
-export const FloatPanel = styled(Typography)({
-  display: "flex",
-  gap: "10px",
-  paddingRight: "1rem",
-});
-
-export const SettingModal = styled(Modal)<TokenType>(({ token }) => ({
-  "& .ant-modal-content": {
-    backgroundColor: token.colorBgLayout,
-    padding: "0",
+  ImageContainer: {
+    borderBottom: `1px solid ${token.colorBorder}`,
+    padding: "4px",
   },
-}));
-
-export const Segments = styled(Segmented)<TokenType>(({ token }) => ({
-  width: "100%",
-  padding: "5px",
-  margin: "5px",
-  backgroundColor: token.colorBgContainerDisabled,
-  boxShadow: `0 0 3px ${token.colorBgContainer}`,
-
-  "& .ant-segmented-item": {
-    width: "100px",
-    padding: "5px 10px",
-    marginBottom: "5px",
-    backgroundColor: token.colorBgSolid,
+  floatBox: {
+    flexDirection: "column",
+    gap: 10,
+  },
+  Quote: {
+    padding: "0 1.2rem",
+    backgroundColor: token.colorFillSecondary,
+    userSelect: "none",
+  },
+  quoteContainer: {
+    position: "relative",
+    padding: "1rem",
+    borderRadius: 12,
+    "&::before": {
+      color: "#9d68aa",
+      content: "open-quote",
+      fontSize: "2em",
+      lineHeight: ".1em",
+      marginLeft: ".15em",
+      verticalAlign: "-.4em",
+    },
+  },
+  quoteText: {
+    color: token.colorTextSecondary,
+    fontSize: "1rem",
+  },
+  lastUpdate: {
+    color: token.colorText,
+    fontSize: "11px",
+    marginLeft: "8px",
+  },
+  floatPanel: {
+    display: "flex",
+    gap: "10px",
+    paddingRight: "1rem",
+  },
+  settingModal: {
+    "& .ant-modal-content": {
+      backgroundColor: token.colorBgLayout,
+      padding: "0",
+    },
+  },
+  patternContainer: {
+    padding: "1rem",
+    flexWrap: "wrap",
   },
 }));

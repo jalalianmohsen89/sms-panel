@@ -1,8 +1,9 @@
 import { css } from "@emotion/css";
 import { Flex, Input } from "@/core/components/base";
 import { SearchOutline } from "@/core/icons";
+import { memo } from "react";
 
-const SearchBar = () => (
+const SearchBar = memo(() => (
   // ---------------------- methods ---------------------
   // const onSubmit = (event: any) => {
   //   // console.log(event, "value");
@@ -20,6 +21,6 @@ const SearchBar = () => (
       // onPressEnter={onSubmit}
     />
   </Flex>
-);
+));
 
 export default SearchBar;

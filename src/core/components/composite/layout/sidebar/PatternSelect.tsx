@@ -1,26 +1,20 @@
 // import { theme as themeContent } from "antd";
 import { Flex, Image } from "@/core/components/base";
 import { patterns } from "@/core/content";
-import { css } from "@emotion/css";
-import useStore from "@/core/store";
 import { usePattern } from "@/core/context/PatternContext.tsx";
+import useStore from "@/core/store";
+import { useStyles } from "./styled";
 
 const PatternSelect = () => {
   // ---------------------- variables ---------------------
   const { theme } = useStore();
   const { currentPattern, changePattern } = usePattern();
+  const { styles } = useStyles();
 
   // ---------------------- render ---------------------
 
   return (
-    <Flex
-      align={"center"}
-      gap={20}
-      className={css`
-        padding: 1rem;
-        flex-wrap: wrap;
-      `}
-    >
+    <Flex align={"center"} gap={20} className={styles.patternContainer}>
       <div
         className={`shellTheme__item shellTheme__default
          ${patterns.default.id === currentPattern.id && "active"}`}

@@ -1,7 +1,7 @@
-import { FC } from "react";
-import { AnchorProps } from "antd";
+import { Anchor as AnchorBase, AnchorProps } from "antd";
 import AnchorLink from "antd/es/anchor/AnchorLink";
-import { AnchorStyle } from "./styled";
+import { FC } from "react";
+import { useStyles } from "./styled";
 
 type Props = Pick<
   AnchorProps,
@@ -19,6 +19,10 @@ type Props = Pick<
 >;
 export const Anchor: FC<Props> & {
   Link: typeof AnchorLink;
-} = (props) => <AnchorStyle {...props} />;
+} = (props) => {
+  const { styles } = useStyles();
+
+  return <AnchorBase className={styles.anchorStyle} {...props} />;
+};
 
 Anchor.Link = AnchorLink;

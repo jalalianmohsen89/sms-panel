@@ -1,5 +1,5 @@
 import { theme as themeContent } from "@/core/theme";
-import { useState, useEffect, ReactNode } from "react";
+import { useState, useEffect, ReactNode, useCallback, useMemo } from "react";
 import { ColumnType, Space } from "@/core/components/base";
 import { pageBuilders } from "@/core/components/composite/page-builder/content";
 import {
@@ -43,93 +43,98 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
   });
 
   // ---------------------- methods ---------------------
-  const onSelectedAction = (
-    event: string,
-    row: any,
-    item?: IPageBuilderColumns,
-  ) => {
-    const action = pageData?.actions?.find((item) => item.id === event);
+  const onCloseDrawer = useCallback(() => {
+    setDrawerProps((prev) => ({ ...prev, isOpen: false }));
+  }, []);
 
-    switch (event) {
-    case "click":
-      checkAction(item!.clickColumn!, row);
-      break;
-    case "view":
-      return navigate(action?.value(row) as string);
-    case "edit":
-      checkAction(action!, row);
-      break;
-    case "create":
-      checkAction(action!, row);
-      break;
-    case "delete":
-      checkAction(action!, row);
-      break;
-    }
-  };
+  const onCloseModal = useCallback(() => {
+    setModalProps((prev) => ({ ...prev, isOpen: false }));
+  }, []);
 
-  const checkAction = (action: IPageBuilderActions, row: any) => {
-    if (action?.showType === "drawer") {
-      setDrawerProps({
-        isOpen: true,
-        content: action?.value({
-          selectedRow: row,
-          onCloseDrawer,
-          onSubmit,
-        }) as ReactNode,
-      });
-    } else {
-      setModalProps({
-        isOpen: true,
-        content: action?.value({
-          selectedRow: row,
-          onCloseModal,
-          onSubmit,
-        }) as ReactNode,
-      });
-    }
-  };
-
-  const addForm = () => {
-    checkAction(pageData?.page?.createForm as IPageBuilderActions, {});
-  };
-
-  const handleSort = (columnKey: string) => {
-    let newOrder: SortOrder;
-
-    switch (sortInfo.sort_direction) {
-    case "ascend":
-      newOrder = "descend";
-      break;
-    case "descend":
-      newOrder = null;
-      break;
-    case null:
-      newOrder = "ascend";
-      break;
-    default:
-      newOrder = "ascend";
-    }
-
-    setSortInfo({ sort_field: columnKey, sort_direction: newOrder });
-  };
-
-  const onCloseDrawer = () => {
-    setDrawerProps({ ...drawerProps, isOpen: false });
-  };
-
-  const onCloseModal = () => {
-    setModalProps({ ...modalProps, isOpen: false });
-  };
-
-  const onSubmit = () => {
+  const onSubmit = useCallback(() => {
     setRefeatchData(true);
     setTimeout(() => {
       setRefeatchData(false);
     }, 1000);
-  };
+  }, []);
 
-  const createColumns = () => {
+  const checkAction = useCallback(
+    (action: IPageBuilderActions, row: any) => {
+      if (action?.showType === "drawer") {
+        setDrawerProps({
+          isOpen: true,
+          content: action?.value({
+            selectedRow: row,
+            onCloseDrawer,
+            onSubmit,
+          }) as ReactNode,
+        });
+      } else {
+        setModalProps({
+          isOpen: true,
+          content: action?.value({
+            selectedRow: row,
+            onCloseModal,
+            onSubmit,
+          }) as ReactNode,
+        });
+      }
+    },
+    [onCloseDrawer, onCloseModal, onSubmit],
+  );
+
+  const onSelectedAction = useCallback(
+    (event: string, row: any, item?: IPageBuilderColumns) => {
+      const action = pageData?.actions?.find((item) => item.id === event);
+
+      switch (event) {
+      case "click":
+        checkAction(item!.clickColumn!, row);
+        break;
+      case "view":
+        return navigate(action?.value(row) as string);
+      case "edit":
+        checkAction(action!, row);
+        break;
+      case "create":
+        checkAction(action!, row);
+        break;
+      case "delete":
+        checkAction(action!, row);
+        break;
+      }
+    },
+    [pageData?.actions, checkAction, navigate],
+  );
+
+  const addForm = useCallback(() => {
+    checkAction(pageData?.page?.createForm as IPageBuilderActions, {});
+  }, [checkAction, pageData?.page?.createForm]);
+
+  const handleSort = useCallback(
+    (columnKey: string) => {
+      let newOrder: SortOrder;
+
+      switch (sortInfo.sort_direction) {
+      case "ascend":
+        newOrder = "descend";
+        break;
+      case "descend":
+        newOrder = null;
+        break;
+      case null:
+        newOrder = "ascend";
+        break;
+      default:
+        newOrder = "ascend";
+      }
+
+      setSortInfo({ sort_field: columnKey, sort_direction: newOrder });
+    },
+    [sortInfo.sort_direction],
+  );
+
+  const generatedColumns = useMemo(() => {
     let columnsMaped: any = [];
 
     if (pageData?.columns) {
@@ -191,8 +196,9 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
         return column;
       });
     }
-    setColumns(columnsMaped);
-  };
+
+    return columnsMaped;
+  }, [pageData?.columns, onSelectedAction]);
 
   // ---------------------- useEffects ---------------------
   useEffect(() => {
@@ -203,10 +209,9 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
 
   useEffect(() => {
     if (!pageColumns) {
-      createColumns();
+      setColumns(generatedColumns);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageData]);
+  }, [pageColumns, generatedColumns]);
 
   useEffect(() => {
     if (refresh) {
@@ -215,7 +220,7 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
     if (refeatchData) {
       onSubmit();
     }
-  }, [refresh, refeatchData]);
+  }, [refresh, refeatchData, onSubmit]);
 
   return {
     token,

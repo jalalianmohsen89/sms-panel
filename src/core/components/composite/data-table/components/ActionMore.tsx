@@ -1,15 +1,12 @@
 import {
   Flex,
-  Space,
   Tooltip,
   Typography,
   useBreakpoint,
 } from "@/core/components/base";
-import { css } from "@emotion/css";
-import { FC, ReactNode } from "react";
 import { EllipsisVertical } from "@/core/icons";
-import { ActionContainer } from "../styled";
-import { theme as themeContent } from "@/core/theme";
+import { FC, ReactNode } from "react";
+import { useStyles } from "../styled";
 
 // ---------------------- types ---------------------
 type Props = {
@@ -31,9 +28,9 @@ export const ActionMore: FC<Props> = ({
   onSelectAction,
 }) => {
   // -------------------- variables --------------------------
-  const { token } = themeContent.useToken();
   const breakpoints = useBreakpoint();
   const isMobile = !breakpoints.md;
+  const { styles } = useStyles();
 
   // ---------------------- methods ---------------------
   const onAction = (row: any, item: any) => {
@@ -50,48 +47,35 @@ export const ActionMore: FC<Props> = ({
         <Tooltip
           title={() => (
             <Flex vertical>
-              {list.map((item, index) => (
-                <ActionContainer
-                  token={token}
-                  key={index}
+              {list.map((item) => (
+                <Flex
+                  className={styles.actionContainer}
+                  key={item.title}
                   onClick={() => onAction(row, item)}
                 >
                   {item.icon}
                   <Typography>{item.title}</Typography>
-                </ActionContainer>
+                </Flex>
               ))}
             </Flex>
           )}
           placement={isMobile ? "right" : "left"}
           arrow
         >
-          <Space
-            className={css`
-              cursor: pointer;
-            `}
-          >
+          <div className={styles.cursor}>
             <EllipsisVertical />
-          </Space>
+          </div>
         </Tooltip>
       ) : (
-        <Flex
-          className={css`
-            align-items: center;
-            gap: 20px;
-          `}
-        >
-          {list.map((item, index) => (
-            <Flex
-              className={css`
-                align-items: center;
-                cursor: pointer;
-                gap: 10px;
-              `}
-              key={index}
+        <Flex className={styles.actionListContainer}>
+          {list.map((item) => (
+            <div
+              className={styles.actionList}
+              key={item.title}
               onClick={() => onAction(row, item)}
             >
               <Tooltip title={item.title}>{item.icon}</Tooltip>
-            </Flex>
+            </div>
           ))}
         </Flex>
       )}

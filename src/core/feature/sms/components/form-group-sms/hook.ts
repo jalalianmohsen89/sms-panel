@@ -11,7 +11,9 @@ import { useState } from "react";
 
 const useFormGroup = () => {
   // --------------------- variables ---------------------------
-  const [formProps, setFormProps] = useState<any>({});
+  const [formProps, setFormProps] = useState<any>({
+    remove_duplicate: true,
+  });
   const [preview, setPreview] = useState<any>([]);
   const [isOpenModal, setOpenModal] = useState(false);
   const options: CheckboxGroupProps<string>["options"] = [
@@ -81,6 +83,7 @@ const useFormGroup = () => {
     formData.append("title", formProps.title);
     formData.append("number", formProps.number);
     formData.append("body", formProps.body);
+    formData.append("remove_duplicate", formProps.remove_duplicate);
     formData.append("file", formProps.file);
     if (isSend === true) {
       uploadFileSmsRequest(formData);

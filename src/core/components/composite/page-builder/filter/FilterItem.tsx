@@ -8,7 +8,7 @@ const FilterItem: FC<Props> = (props) => {
   const { checkFilter } = useFilterHook(props);
 
   // ----------------- methods -------------------
-  return checkFilter();
+  return checkFilter;
 };
 
 export default FilterItem;

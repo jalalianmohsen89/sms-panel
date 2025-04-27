@@ -1,12 +1,13 @@
-import { FC } from "react";
+import { Flex, Typography } from "@/core/components/base";
+import { useStyles } from "@/core/styled";
+import { theme as themeContent } from "@/core/theme";
+import { generate, green, presetPalettes, red } from "@ant-design/colors";
 import {
   ColorPicker as BaseColorPicker,
   ColorPickerProps,
   GetProp,
 } from "antd";
-import { generate, green, presetPalettes, red } from "@ant-design/colors";
-import { theme as themeContent } from "@/core/theme";
-import { FormContainer, FormTitle } from "@/core/styled";
+import { FC } from "react";
 
 type Presets = Required<ColorPickerProps>["presets"][number];
 type Color = Extract<
@@ -43,8 +44,8 @@ export type Props = Pick<
   onChangeColor?: (color: string) => void;
 };
 export const ColorPicker: FC<Props> = (props) => {
+  const { styles } = useStyles();
   const { token } = themeContent.useToken();
-
   const {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     presets,
@@ -79,8 +80,8 @@ export const ColorPicker: FC<Props> = (props) => {
   }
 
   return (
-    <FormContainer>
-      <FormTitle token={token}>{label}</FormTitle>
+    <Flex className={styles.formContainer}>
+      <Typography className={styles.formTitle}>{label}</Typography>
       <BaseColorPicker
         value={value}
         {...(withPresets && {
@@ -89,6 +90,6 @@ export const ColorPicker: FC<Props> = (props) => {
         {...otherProps}
         onChange={changeColor}
       />
-    </FormContainer>
+    </Flex>
   );
 };

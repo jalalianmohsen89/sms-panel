@@ -17,6 +17,7 @@ export const permissionList = [
   "UI::Users::List",
   "UI::Users::Lines",
   "UI::Lines::List",
+  "UI::Notification::Transition",
 ];
 
 export const navigation = [

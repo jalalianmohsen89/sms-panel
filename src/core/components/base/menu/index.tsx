@@ -21,6 +21,7 @@ export type Props = Pick<
   | "onClick"
   | "onOpenChange"
   | "style"
+  | "className"
 >;
 export const Menu: FC<Props> & {
   Item: typeof Item;

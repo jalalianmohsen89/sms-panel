@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { Flex, Typography } from "@/core/components/base";
+import { useStyles } from "@/core/styled";
+import { css } from "@emotion/css";
 import { Select as BaseSelect, SelectProps } from "antd";
 import { OptGroup, Option } from "rc-select";
-import { css } from "@emotion/css";
-import { theme as themeContent } from "@/core/theme";
-import { FormContainer, FormTitle } from "@/core/styled";
+import { FC } from "react";
 
 export type Props = Pick<
   SelectProps,
@@ -28,6 +28,7 @@ export type Props = Pick<
   | "maxTagCount"
   | "optionRender"
   | "size"
+  | "loading"
 > & {
   label?: string;
 };
@@ -35,20 +36,20 @@ export const Select: FC<Props> & {
   Option: typeof Option;
   OptGroup: typeof OptGroup;
 } = (props) => {
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { label, className, ...otherProps } = props;
 
   return (
-    <FormContainer>
-      {label && <FormTitle token={token}>{label}</FormTitle>}
+    <Flex className={styles.formContainer}>
+      {label && <Typography className={styles.formTitle}>{label}</Typography>}
       <BaseSelect
         className={css`
           width: 100%;
         `}
         {...otherProps}
       />
-    </FormContainer>
+    </Flex>
   );
 };
 

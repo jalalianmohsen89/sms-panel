@@ -3,18 +3,18 @@ import RegisterForm from "@/core/feature/auth/components/RegisterForm";
 import { registerUser } from "@/core/feature/users/service";
 import { css } from "@emotion/css";
 import { useMutation } from "@tanstack/react-query";
-import { FC } from "react";
+import { FC, memo } from "react";
 
 type Props = {
   onCloseModal: () => void;
   onSubmit: () => void;
 };
-const RegisterUser: FC<Props> = ({ onSubmit, onCloseModal }) => {
+const RegisterUser: FC<Props> = memo(({ onSubmit, onCloseModal }) => {
   // -------------------- mutation --------------------------
   const { mutate: registerUserRequest } = useMutation({
     mutationFn: registerUser,
     onSuccess: ({ data }) => {
-      if (data.status === 200) {
+      if (data.statusCode === 200) {
         Toast.success("ثبت نام با موفقیت انجام شد");
         onCloseModal();
         onSubmit();
@@ -59,6 +59,6 @@ const RegisterUser: FC<Props> = ({ onSubmit, onCloseModal }) => {
       <RegisterForm />
     </Form>
   );
-};
+});
 
 export default RegisterUser;

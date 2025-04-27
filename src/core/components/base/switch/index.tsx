@@ -1,7 +1,7 @@
-import { FC } from "react";
+import { Flex, Typography } from "@/core/components/base";
+import { useStyles } from "@/core/styled";
 import { Switch as BaseSwitch, SwitchProps } from "antd";
-import { theme as themeContent } from "@/core/theme";
-import { FormContainer, FormTitle } from "@/core/styled";
+import { FC } from "react";
 
 type Props = Pick<
   SwitchProps,
@@ -23,13 +23,13 @@ type Props = Pick<
   label?: string;
 };
 export const Switch: FC<Props> = (props) => {
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
   const { label, ...otherProps } = props;
 
   return (
-    <FormContainer>
-      {label && <FormTitle token={token}>{label}</FormTitle>}
+    <Flex className={styles.formContainer}>
+      {label && <Typography className={styles.formTitle}>{label}</Typography>}
       <BaseSwitch {...otherProps} />
-    </FormContainer>
+    </Flex>
   );
 };

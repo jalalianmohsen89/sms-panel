@@ -14,6 +14,7 @@ export interface IModuleRoutes {
 export type TokenType = {
   token: GlobalToken;
 };
+
 export type PatternType = {
   pattern: IPattern;
 };

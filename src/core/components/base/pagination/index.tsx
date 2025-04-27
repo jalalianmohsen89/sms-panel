@@ -17,5 +17,6 @@ export type Props = Pick<
   | "prevIcon"
   | "nextIcon"
   | "onChange"
+  | "showSizeChanger"
 >;
 export const Pagination: FC<Props> = (props) => <BasePagination {...props} />;

@@ -52,7 +52,9 @@ export const columnsUsersList: IPageBuilderColumns[] = [
   {
     id: "status",
     title: "وضعیت",
-    value: "status",
+    render: (row: any) => (
+      <Typography>{row.status == "active" ? "فعال" : "غیر فعال"}</Typography>
+    ),
   },
   {
     id: "createdAt",
