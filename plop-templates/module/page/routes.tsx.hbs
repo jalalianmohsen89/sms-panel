@@ -19,8 +19,9 @@ const {{pascalCase name}}Routes = () => {
         }
     ),
     { path: "*", element: <Navigate to="/error/404" /> }
+  ],
     // eslint-disable-next-line react-hooks/exhaustive-deps 
-  ], [permissionList]);
+   [permissionList]);
 
   return (
     <MasterLayout>
