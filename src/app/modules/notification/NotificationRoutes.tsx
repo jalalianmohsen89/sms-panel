@@ -1,13 +1,13 @@
 import { useMemo } from "react";
 import { Navigate, useRoutes } from "react-router-dom";
-import { usersRoutes } from "@/core/feature/users/content";
+import { notificationRoutes } from "@/core/feature/notification/content";
 import { permissionList } from "@/core/content";
 import { MasterLayout } from "@/app/layouts/MasterLayout.tsx";
 
-const UsersRoutes = () => {
+const NotificationRoutes = () => {
   const routes = useMemo(
     () => [
-      ...usersRoutes.map((item) =>
+      ...notificationRoutes.map((item) =>
         permissionList.includes(item.permission)
           ? {
             path: item.path,
@@ -19,12 +19,12 @@ const UsersRoutes = () => {
           },
       ),
       { path: "*", element: <Navigate to="/error/404" /> },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [permissionList],
   );
 
   return <MasterLayout>{useRoutes(routes)}</MasterLayout>;
 };
 
-export default UsersRoutes;
+export default NotificationRoutes;

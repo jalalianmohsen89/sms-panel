@@ -1,48 +1,33 @@
-import { Button, Flex, Typography, Image } from "@/core/components/base";
-import { css } from "@emotion/css";
+import { Button } from "@/core/components/base/button";
+import { Flex } from "@/core/components/base/flex";
+import { Image } from "@/core/components/base/image";
+import { Typography } from "@/core/components/base/typography";
 import { Link } from "react-router-dom";
+import { useStyles } from "./styled";
 
-const Error403 = () => (
-  <Flex
-    vertical
-    justify="center"
-    align="center"
-    className={css`
-      width: 100%;
-      height: 80vh;
-    `}
-  >
-    {/* begin::Illustration */}
-    <Flex
-      className={css`
-        margin-bottom: 3rem;
-      `}
-    >
-      <Image src="/media/403.svg" preview={false} />
+const Error403 = () => {
+  const { styles } = useStyles();
+
+  return (
+    <Flex vertical justify="center" align="center" className={styles.container}>
+      {/* begin::Illustration */}
+      <Flex className={styles.imageContainer}>
+        <Image src="/media/403.svg" preview={false} alt="403" loading="lazy" />
+      </Flex>
+      {/* end::Illustration */}
+      {/* begin::Text */}
+      <Typography className={styles.titleContainer}>
+        شما به این صفحه دسترسی ندارید
+      </Typography>
+      {/* end::Text */}
+
+      {/* begin::Link */}
+      <Button className={styles.button}>
+        <Link to="/">بازگشت به صفحه اصلی</Link>
+      </Button>
+      {/* end::Link */}
     </Flex>
-    {/* end::Illustration */}
-    {/* begin::Text */}
-    <Typography
-      className={css`
-        font-size: 1.5rem;
-        font-weight: 500;
-        color: #333;
-      `}
-    >
-      شما به این صفحه دسترسی ندارید
-    </Typography>
-    {/* end::Text */}
-
-    {/* begin::Link */}
-    <Button
-      className={css`
-        margin-top: 2rem;
-      `}
-    >
-      <Link to="/">بازگشت به صفحه اصلی</Link>
-    </Button>
-    {/* end::Link */}
-  </Flex>
-);
+  );
+};
 
 export { Error403 };

@@ -1,4 +1,4 @@
-import { Typography } from "@/core/components/base";
+import { Typography } from "@/core/components/base/typography";
 import dayjs from "@/core/functions/dayjs";
 
 const ConvertDate = (props: any) => {

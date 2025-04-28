@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Timeline } from "./index";
+import { Timeline } from "@/core/components/base/timeline";
 
 // Mock antd Timeline component
 vi.mock("antd", () => {

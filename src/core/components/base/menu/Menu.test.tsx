@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
 
-import { Menu } from "./index";
+import { Menu } from "@/core/components/base/menu";
 
 describe("Menu Component", () => {
   it("renders menu with items", () => {

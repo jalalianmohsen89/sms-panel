@@ -33,7 +33,6 @@ export type Props<T extends object> = Pick<
 > & {
   columns: (ColumnGroupType<T> | ColumnType<T>)[];
 };
-
 export const Table = <T extends object>(props: Props<T>) => (
   <BaseTable {...props} />
 );

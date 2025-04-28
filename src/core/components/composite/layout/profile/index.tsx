@@ -1,12 +1,10 @@
-import {
-  Avatar,
-  Button,
-  Divider,
-  Dropdown,
-  Flex,
-  Space,
-  Typography,
-} from "@/core/components/base";
+import { Avatar } from "@/core/components/base/avatar";
+import { Button } from "@/core/components/base/button";
+import { Divider } from "@/core/components/base/divider";
+import { Dropdown } from "@/core/components/base/dropdown";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
+import { Space } from "@/core/components/base/space";
 import { CodeOutline, Settings } from "@/core/icons";
 import useStore from "@/core/store";
 import { FC, memo } from "react";

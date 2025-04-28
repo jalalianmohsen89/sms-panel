@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeAll } from "vitest";
 import { renderHook } from "@testing-library/react";
-import { Grid } from "./index";
+import { Grid } from "@/core/components/base/grid";
 
 // Mock matchMedia
 beforeAll(() => {

@@ -1,6 +1,5 @@
 import { Grid, Toast, useForm } from "@/core/components/base";
 import { previewFile, uploadFileSms } from "@/core/feature/sms/service";
-import { theme as themeContent } from "@/core/theme";
 import { useMutation } from "@tanstack/react-query";
 import { CheckboxGroupProps } from "antd/es/checkbox";
 import { useState } from "react";
@@ -9,7 +8,7 @@ const useFormGroupNotification = () => {
   // --------------------- variables ---------------------------
   const [formProps, setFormProps] = useState<any>({});
   const [preview, setPreview] = useState<any>([]);
-  const [isOpenModal, setOpenModal] = useState(false);
+  const [isOpenModal, setOpenModal] = useState(true);
   const options: CheckboxGroupProps<string>["options"] = [
     { label: "هم اکنون", value: "1" },
     { label: "در تاریخ مشخص", value: "2" },
@@ -34,7 +33,6 @@ const useFormGroupNotification = () => {
 
   // --------------------- hooks ---------------------------
   const [form] = useForm();
-  const { token } = themeContent.useToken();
   const { useBreakpoint } = Grid;
   // --------------------- mutations ---------------------------
   const { mutate: previewFileRequest } = useMutation({
@@ -82,7 +80,6 @@ const useFormGroupNotification = () => {
     options,
     columns,
     form,
-    token,
     useBreakpoint,
     onFinish,
   };

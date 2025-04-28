@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, fireEvent, act } from "@testing-library/react";
-import { Dropdown } from "./index";
+import { Dropdown } from "@/core/components/base/dropdown";
 
 // Mock matchMedia for antd
 beforeAll(() => {

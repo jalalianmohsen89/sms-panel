@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import { Col } from "./index";
+import { Col } from "@/core/components/base/col";
 
 describe("Col Component", () => {
   it("renders with basic span", () => {

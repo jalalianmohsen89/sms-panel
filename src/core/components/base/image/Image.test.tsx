@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeAll } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
-import { Image } from "./index";
+import { Image } from "@/core/components/base/image";
 
 beforeAll(() => {
   Object.defineProperty(window, "matchMedia", {
@@ -21,7 +21,7 @@ beforeAll(() => {
 describe("Image Component", () => {
   it("renders basic image", () => {
     const { container } = render(
-      <Image src="test-image.jpg" alt="test image" />,
+      <Image src="test-image.jpg" alt="test image" loading="lazy" />,
     );
     const img = container.querySelector(".ant-image-img");
 
@@ -31,7 +31,7 @@ describe("Image Component", () => {
 
   it("handles custom dimensions", () => {
     const { container } = render(
-      <Image src="test-image.jpg" width={200} height={100} />,
+      <Image src="test-image.jpg" width={200} height={100} loading="lazy" />,
     );
     const img = container.querySelector(".ant-image-img");
 
@@ -42,7 +42,7 @@ describe("Image Component", () => {
   it("handles click events", () => {
     const handleClick = vi.fn();
     const { container } = render(
-      <Image src="test-image.jpg" onClick={handleClick} />,
+      <Image src="test-image.jpg" onClick={handleClick} loading="lazy" />,
     );
     const img = container.querySelector(".ant-image-img");
 
@@ -52,7 +52,11 @@ describe("Image Component", () => {
 
   it("shows fallback on error", () => {
     const { container } = render(
-      <Image src="invalid-image.jpg" fallback="fallback-image.jpg" />,
+      <Image
+        src="invalid-image.jpg"
+        fallback="fallback-image.jpg"
+        loading="lazy"
+      />,
     );
     const img = container.querySelector(".ant-image-img");
 
@@ -66,7 +70,7 @@ describe("Image Component", () => {
 
   it("renders with preview disabled", () => {
     const { container } = render(
-      <Image src="test-image.jpg" preview={false} />,
+      <Image src="test-image.jpg" preview={false} loading="lazy" />,
     );
 
     expect(container.querySelector(".ant-image-mask")).not.toBeInTheDocument();
@@ -76,6 +80,7 @@ describe("Image Component", () => {
     const { container } = render(
       <Image
         src="test-image.jpg"
+        loading="lazy"
         placeholder={<div className="custom-placeholder">Loading...</div>}
       />,
     );

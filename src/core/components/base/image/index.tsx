@@ -15,5 +15,6 @@ type Props = Pick<
   | "onClick"
   | "onError"
   | "alt"
+  | "loading"
 >;
 export const Image: FC<Props> = (props) => <BaseImage {...props} />;

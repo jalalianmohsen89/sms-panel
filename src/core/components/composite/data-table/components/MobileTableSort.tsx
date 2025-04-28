@@ -1,4 +1,7 @@
-import { ColumnType, Dropdown, Flex, Typography } from "@/core/components/base";
+import { ColumnType } from "@/core/components/base/table";
+import { Dropdown } from "@/core/components/base/dropdown";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
 import { ArrowDown, ArrowUp } from "@/core/icons";
 import { FC } from "react";
 import { useStyles } from "../styled";

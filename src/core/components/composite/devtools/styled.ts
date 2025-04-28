@@ -29,4 +29,7 @@ export const useStyles = createStyles(({ token }) => ({
   direction: {
     direction: "ltr",
   },
+  pointer: {
+    cursor: "pointer",
+  },
 }));

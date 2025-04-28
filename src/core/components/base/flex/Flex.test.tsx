@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
-import { Flex } from "./index";
+import { Flex } from "@/core/components/base/flex";
 
 describe("Flex Component", () => {
   it("renders basic flex container", () => {

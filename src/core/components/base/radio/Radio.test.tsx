@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Radio } from "./index";
+import { Radio } from "@/core/components/base/radio";
 
 // Mock antd radio components
 vi.mock("antd", () => {

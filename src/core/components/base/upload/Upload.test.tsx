@@ -1,6 +1,6 @@
 import { render, fireEvent } from "@testing-library/react";
 import { describe, it, expect, vi } from "vitest";
-import { Upload } from "./index";
+import { Upload } from "@/core/components/base/upload";
 
 describe("Upload Component", () => {
   it("renders without crashing", () => {

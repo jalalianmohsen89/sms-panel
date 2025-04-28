@@ -8,12 +8,12 @@ import {
 import { useSearchParams } from "react-router-dom";
 import { IPageBuilderFilter } from "../types";
 import FilterItem from "./FilterItem";
-import { Col } from "@/core/components/base";
+import { Col } from "@/core/components/base/col";
 
 type Props = {
   list: IPageBuilderFilter[];
 };
-const usePageBuilderFilterHook = (props: Props) => {
+export const usePageBuilderFilterHook = (props: Props) => {
   // -------------------- variables ----------------------
   const [params, setParams] = useState<any>({});
   const [searchParams, setSearchParams] = useSearchParams();

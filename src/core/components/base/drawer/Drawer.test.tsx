@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeAll } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
-import { Drawer } from "./index";
+import { Drawer } from "@/core/components/base/drawer";
 
 // Mock matchMedia
 beforeAll(() => {

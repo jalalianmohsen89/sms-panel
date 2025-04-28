@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import { Card } from "./index";
+import { Card } from "@/core/components/base/card";
 import { EditOutlined, EllipsisOutlined } from "@ant-design/icons";
 
 describe("Card Component", () => {
@@ -23,7 +23,9 @@ describe("Card Component", () => {
 
   it("renders card with cover", () => {
     const { container } = render(
-      <Card cover={<img alt="example" src="test.png" />}>Content</Card>,
+      <Card cover={<img alt="example" src="test.png" loading="lazy" />}>
+        Content
+      </Card>,
     );
 
     expect(container.querySelector(".ant-card-cover")).toBeInTheDocument();

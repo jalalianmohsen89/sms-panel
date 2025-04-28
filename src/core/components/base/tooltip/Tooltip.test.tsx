@@ -1,7 +1,7 @@
 // Tooltip.test.tsx
 import { render, screen, fireEvent } from "@testing-library/react";
 import { describe, it, expect } from "vitest";
-import { Tooltip } from "./index";
+import { Tooltip } from "@/core/components/base/tooltip";
 // Mock matchMedia
 Object.defineProperty(window, "matchMedia", {
   writable: true,

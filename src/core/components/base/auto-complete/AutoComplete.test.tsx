@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render, screen } from "@testing-library/react";
-import { AutoComplete } from "@/core/components/base";
+import { AutoComplete } from "@/core/components/base/auto-complete";
 
 describe("AutoComplete Component", () => {
   it("renders with options", async() => {

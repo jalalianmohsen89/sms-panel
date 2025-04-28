@@ -1,5 +1,5 @@
 import { render } from "@testing-library/react";
-import { Typography } from "./index";
+import { Typography } from "@/core/components/base/typography";
 
 describe("Typography Component", () => {
   describe("Text", () => {

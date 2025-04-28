@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Space } from "./index";
+import { Space } from "@/core/components/base/space";
 
 // Mock antd space component
 vi.mock("antd", () => ({

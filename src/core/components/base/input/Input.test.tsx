@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Input } from "./index";
+import { Input } from "@/core/components/base/input";
 
 describe("Input Component", () => {
   it("renders default input", () => {

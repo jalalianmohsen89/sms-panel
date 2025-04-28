@@ -19,8 +19,8 @@ const LinesRoutes = () => {
           },
       ),
       { path: "*", element: <Navigate to="/error/404" /> },
-      // eslint-disable-next-line react-hooks/exhaustive-deps
     ],
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [permissionList],
   );
 

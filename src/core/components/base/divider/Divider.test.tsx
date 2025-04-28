@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import { Divider } from "./index";
+import { Divider } from "@/core/components/base/divider";
 
 describe("Divider Component", () => {
   it("renders basic divider", () => {

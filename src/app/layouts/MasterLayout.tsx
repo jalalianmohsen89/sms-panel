@@ -1,29 +1,25 @@
-import { FC, useState } from "react";
-import { Drawer, Grid, Layout } from "@/core/components/base";
-import { css } from "@emotion/css";
+import { Drawer } from "@/core/components/base/drawer";
+import { Grid } from "@/core/components/base/grid";
+import { Layout } from "@/core/components/base/layout";
 import { Header, Sidebar } from "@/core/components/composite";
-import { theme as themeContent } from "@/core/theme";
 import { usePattern } from "@/core/context/PatternContext.tsx";
 import { WithChildren } from "@/core/types";
+import { FC, useState } from "react";
+import { useStyles } from "./styled";
 
 export const MasterLayout: FC<WithChildren> = ({ children }) => {
   // ---------------------- variables ---------------------
-  const { token } = themeContent.useToken();
   const { Content } = Layout;
   const { useBreakpoint } = Grid;
   const screens = useBreakpoint();
   const [isCollapseSidebar, setCollapseSidebar] = useState(false);
   const { currentPattern } = usePattern();
+  const { styles } = useStyles();
 
   // ---------------------- tsx ---------------------
   return (
     <>
-      <Content
-        className={css`
-          min-height: 100vh;
-          position: relative;
-        `}
-      >
+      <Content className={styles.masterlayoutContainer}>
         <div
           className="backgroundPattern"
           style={{
@@ -31,12 +27,7 @@ export const MasterLayout: FC<WithChildren> = ({ children }) => {
             opacity: currentPattern?.patternOpacity,
           }}
         />
-        <Layout
-          className={css`
-            height: 100%;
-            min-height: 100vh;
-          `}
-        >
+        <Layout className={styles.sidebarlayoutContainer}>
           {screens.lg ? (
             <Sidebar />
           ) : (
@@ -47,32 +38,17 @@ export const MasterLayout: FC<WithChildren> = ({ children }) => {
               placement="right"
               open={isCollapseSidebar}
               onClose={() => setCollapseSidebar(false)}
-              className={css`
-                overflow: hidden;
-              `}
+              className={styles.sidebarlayoutContainer}
             >
               <Sidebar />
             </Drawer>
           )}
-          <div
-            className={css`
-              width: 100%;
-              position: relative;
-            `}
-          >
+          <div className={styles.headerContainer}>
             <Header
               isCollapsed={isCollapseSidebar}
               setCollapsed={setCollapseSidebar}
             />
-            <div
-              className={css`
-                width: 100%;
-                padding: 2rem;
-                //background-color: ${token.colorBgLayout};
-              `}
-            >
-              {children}
-            </div>
+            <div className={styles.headerContainerInner}>{children}</div>
           </div>
         </Layout>
       </Content>

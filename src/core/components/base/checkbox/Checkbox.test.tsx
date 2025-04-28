@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
-import { Checkbox } from "./index";
+import { Checkbox } from "@/core/components/base/checkbox";
 
 describe("Checkbox Component", () => {
   it("renders basic checkbox", () => {

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeAll } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
-import { Form } from "./index";
+import { Form } from "@/core/components/base/form";
 
 beforeAll(() => {
   Object.defineProperty(window, "matchMedia", {

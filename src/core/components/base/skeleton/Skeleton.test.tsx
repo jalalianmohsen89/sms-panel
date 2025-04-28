@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Skeleton } from "./index";
+import { Skeleton } from "@/core/components/base/skeleton";
 
 // Mock antd skeleton component
 vi.mock("antd", () => {

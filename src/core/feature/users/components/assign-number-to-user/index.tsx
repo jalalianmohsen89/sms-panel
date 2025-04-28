@@ -1,19 +1,17 @@
-import {
-  Button,
-  Col,
-  Flex,
-  Form,
-  Row,
-  Select,
-  Toast,
-  Typography,
-} from "@/core/components/base";
+import { Button } from "@/core/components/base/button";
+import { Col } from "@/core/components/base/col";
+import { Flex } from "@/core/components/base/flex";
+import { Form } from "@/core/components/base/form";
+import { Row } from "@/core/components/base/row";
+import { Select } from "@/core/components/base/select";
+import { Toast } from "@/core/components/base/toast";
+import { Typography } from "@/core/components/base/typography";
 import { numbersList } from "@/core/feature/sms/service";
-import { css } from "@emotion/css";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { FC, memo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { assingUser } from "../../service";
+import { useStyles } from "./styled";
 
 type Props = {
   onCloseModal: () => void;
@@ -24,6 +22,8 @@ const AssignNumberToUser: FC<Props> = memo(({ onCloseModal, onSubmit }) => {
   const [formProps, setFormProps] = useState<any>({
     user: searchParams.get("user"),
   });
+
+  const { styles } = useStyles();
   // -------------------- mutation --------------------------
   const { mutate: assingUserRequest } = useMutation({
     mutationFn: assingUser,
@@ -60,25 +60,10 @@ const AssignNumberToUser: FC<Props> = memo(({ onCloseModal, onSubmit }) => {
       onFinish={onFinish}
       autoComplete="off"
       layout="vertical"
-      className={css`
-        width: 100%;
-      `}
+      className={styles.formWidth}
     >
-      <Flex
-        vertical
-        gap={20}
-        className={css`
-          margin-bottom: 1.5rem;
-        `}
-      >
-        <Typography
-          className={css`
-            font-size: 1.2rem;
-            font-weight: 500;
-          `}
-        >
-          الصاق شماره جدید
-        </Typography>
+      <Flex vertical gap={20} className={styles.formContainer}>
+        <Typography className={styles.formTitle}>الصاق شماره جدید</Typography>
         <Flex vertical gap={30}>
           <Row>
             <Col span={24}>
@@ -95,13 +80,7 @@ const AssignNumberToUser: FC<Props> = memo(({ onCloseModal, onSubmit }) => {
             </Col>
           </Row>
           <Row>
-            <Col
-              span={24}
-              className={css`
-                display: flex;
-                flex-direction: row-reverse;
-              `}
-            >
+            <Col span={24} className={styles.formButtonContainer}>
               <Button type="primary" size="large" htmlType="submit">
                 تایید
               </Button>

@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Row } from "./index";
+import { Row } from "@/core/components/base/row";
 
 // Mock antd row component
 vi.mock("antd", () => ({

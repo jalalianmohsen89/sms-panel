@@ -1,22 +1,16 @@
+import { Flex } from "@/core/components/base/flex";
 import { FC } from "react";
-import { css } from "@emotion/css";
-import { Flex } from "@/core/components/base";
-import { theme as themeContent } from "@/core/theme";
+import { useStyles } from "./styled";
 
 type Props = {
   children: React.ReactNode;
 };
 const AuthLayout: FC<Props> = ({ children }) => {
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
 
   return (
     <Flex
-      className={css`
-        height: 100%;
-        min-height: 100vh;
-        width: 100%;
-        background-color: ${token.colorBgLayout};
-      `}
+      className={styles.authlayoutContainer}
       align="center"
       justify="center"
     >

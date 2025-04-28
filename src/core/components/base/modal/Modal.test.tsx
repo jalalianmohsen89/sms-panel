@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Modal } from "./index";
+import { Modal } from "@/core/components/base/modal";
 
 describe("Modal Component", () => {
   it("renders modal when open is true", () => {

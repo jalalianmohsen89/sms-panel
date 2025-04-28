@@ -1,4 +1,4 @@
-import { Spin } from "@/core/components/base";
+import { Spin } from "@/core/components/base/spin";
 import { useStyles } from "./styled";
 
 export const Loading = () => {

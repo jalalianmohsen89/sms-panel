@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Spin } from "./index";
+import { Spin } from "@/core/components/base/spin";
 
 // Mock antd spin component
 vi.mock("antd", () => ({

@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import { Anchor } from "@/core/components/base";
+import { Anchor } from "@/core/components/base/anchor";
 
 describe("Anchor Component", () => {
   it("renders with items", () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent } from "@testing-library/react";
-import { Switch } from "./index";
+import { Switch } from "@/core/components/base/switch";
 
 // Mock antd switch component
 vi.mock("antd", () => ({

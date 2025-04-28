@@ -4,9 +4,9 @@ import { ErrorsPage } from "@/app/modules/errors/ErrorsPage.tsx";
 import App from "../App.tsx";
 import { PrivateRoutes } from "@/app/routing/PrivateRoutes.tsx";
 import Dashboard from "../Dashboard.tsx";
-import Login from "../modules/auth/Login.tsx";
+import Login from "../modules/auth/login";
 import useStore from "@/core/store";
-import Register from "../modules/auth/Register.tsx";
+import Register from "../modules/auth/register";
 
 const routesUser = createBrowserRouter([
   {

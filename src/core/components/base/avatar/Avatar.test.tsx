@@ -1,5 +1,5 @@
 import { render, fireEvent } from "@testing-library/react";
-import { Avatar } from "@/core/components/base";
+import { Avatar } from "@/core/components/base/avatar";
 
 beforeAll(() => {
   // Mocking window.matchMedia

@@ -1,4 +1,5 @@
-import { Flex, Typography } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
 import dayjs from "@/core/functions/dayjs";
 import { useStyles } from "@/core/styled";
 import { DatePickerProps } from "antd";

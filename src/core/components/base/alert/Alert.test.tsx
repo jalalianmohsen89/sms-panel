@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { fireEvent, render, screen } from "@testing-library/react";
-import { Alert } from "@/core/components/base";
+import { Alert } from "@/core/components/base/alert";
 
 describe("Alert Component", () => {
   it("renders with message", () => {

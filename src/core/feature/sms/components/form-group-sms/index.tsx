@@ -1,40 +1,31 @@
-import { memo } from "react";
-import {
-  Col,
-  DatePickerJalali,
-  Divider,
-  Editor,
-  Flex,
-  Form,
-  Input,
-  Modal,
-  Radio,
-  Row,
-  Select,
-  Space,
-  Switch,
-  Table,
-  Typography,
-} from "@/core/components/base";
+import { Col } from "@/core/components/base/col";
+import { Select } from "@/core/components/base/select";
+import { DatePickerJalali } from "@/core/components/base/date-picker";
+import { Divider } from "@/core/components/base/divider";
+import { Editor } from "@/core/components/base/editor";
+import { Flex } from "@/core/components/base/flex";
+import { Form } from "@/core/components/base/form";
+import { Input } from "@/core/components/base/input";
+import { Modal } from "@/core/components/base/modal";
+import { Radio } from "@/core/components/base/radio";
+import { Row } from "@/core/components/base/row";
+import { Space } from "@/core/components/base/space";
+import { Switch } from "@/core/components/base/switch";
+import { Table } from "@/core/components/base/table";
+import { Typography } from "@/core/components/base/typography";
 import { UploadRules } from "@/core/components/composite";
-import { UploadAlertText } from "@/core/feature/sms/styled";
 import { EnvelopeArrowUp, Megaphone, Message, Send } from "@/core/icons";
-import {
-  ModalGuide,
-  ModalRowKey,
-  ModalRowvalue,
-  ModalTitle,
-} from "@/core/styled";
-import { css } from "@emotion/css";
+import { useStyles as useStylesBase } from "@/core/styled";
 import { Button } from "antd";
+import { memo } from "react";
 import useFormGroup from "./hook";
+import { useStyles } from "./styled";
 
 const FormGroupSms = memo(() => {
   const {
     columns,
     preview,
     form,
-    token,
     isOpenModal,
     setOpenModal,
     formProps,
@@ -44,24 +35,15 @@ const FormGroupSms = memo(() => {
     useBreakpoint,
     onFinish,
   } = useFormGroup();
+  const { styles } = useStyles();
+  const { styles: stylesBase } = useStylesBase();
   // --------------------- render ---------------------------
 
   return (
     <>
       <Form form={form} onFinish={() => onFinish(false)}>
-        <Flex
-          vertical
-          gap={20}
-          className={css`
-            margin: 1rem;
-          `}
-        >
-          <Row
-            gutter={[20, 20]}
-            className={css`
-              margin-bottom: 20px;
-            `}
-          >
+        <Flex vertical gap={20} className={styles.formContainer}>
+          <Row gutter={[20, 20]} className={styles.rowMargin}>
             <Col span={24} md={12}>
               <Input
                 label="عنوان ارسال"
@@ -119,9 +101,9 @@ const FormGroupSms = memo(() => {
           />
           <Flex vertical gap={20}>
             <Flex align="center" gap={10}>
-              <UploadAlertText token={token}>
+              <Typography className={styles.uploadAlertText}>
                 حذف شماره های تکراری
-              </UploadAlertText>
+              </Typography>
               <Space>
                 <Switch
                   checkedChildren="فعال"
@@ -161,22 +143,22 @@ const FormGroupSms = memo(() => {
       >
         <Flex vertical gap={20}>
           <Flex>
-            <ModalTitle>پیش نمایش و ارسال پیام با اکسل</ModalTitle>
+            <Typography className={stylesBase.modalTitle}>
+              پیش نمایش و ارسال پیام با اکسل
+            </Typography>
           </Flex>
-          <Flex
-            vertical
-            gap={20}
-            className={css`
-              padding: 0.5rem 1rem;
-            `}
-          >
+          <Flex vertical gap={20} className={styles.contentContainer}>
             <Flex align="center" justify="space-between">
               <Flex align="center" gap={10}>
                 <EnvelopeArrowUp size={18} />
-                <ModalRowKey>خط ارسال کننده </ModalRowKey>
+                <Typography className={stylesBase.modalRowKey}>
+                  خط ارسال کننده
+                </Typography>
               </Flex>
               <Flex align="center" gap={10}>
-                <ModalRowvalue token={token}>{formProps.number}</ModalRowvalue>
+                <Typography className={stylesBase.modalRowvalue}>
+                  {formProps.number}
+                </Typography>
                 <Megaphone size={18} />
               </Flex>
             </Flex>
@@ -188,25 +170,24 @@ const FormGroupSms = memo(() => {
             <Flex vertical gap={20}>
               <Flex align="center" gap={10}>
                 <Message size={18} />
-                <ModalRowKey>متن پیام</ModalRowKey>
+                <Typography className={stylesBase.modalRowKey}>
+                  متن پیام
+                </Typography>
               </Flex>
-              <ModalRowvalue
-                token={token}
-                className={css`
-                  margin-right: 1rem;
-                `}
-              >
-                <pre>{formProps.body}</pre>
-              </ModalRowvalue>
+              <Flex className={styles.textDescriptionContainer}>
+                <Typography className={stylesBase.modalRowvalue}>
+                  {formProps.body}
+                </Typography>
+              </Flex>
             </Flex>
             {preview?.length > 0 && (
               <Flex vertical gap={20}>
                 <Divider />
-                <ModalGuide>
+                <Typography className={stylesBase.modalGuide}>
                   اگر فایل شما دارای بیش از 100 سطر باشد، تنها 100 سطر اول از آن
                   بررسی و در اینجا نمایش داده خواهند شد و اگر کمتر از 100 سطر
                   باشد، تمام سطرهای آن بررسی و نمایش داده خواهند شد
-                </ModalGuide>
+                </Typography>
                 <Table
                   columns={columns}
                   dataSource={preview}
@@ -218,13 +199,7 @@ const FormGroupSms = memo(() => {
               <Button
                 type="primary"
                 size="large"
-                icon={
-                  <Send
-                    className={css`
-                      transform: rotate(180deg);
-                    `}
-                  />
-                }
+                icon={<Send className={styles.iconRotate} />}
                 onClick={() => onFinish(true)}
               >
                 تایید و ارسال پیامک

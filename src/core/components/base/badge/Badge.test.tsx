@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import { Badge } from "./index";
+import { Badge } from "@/core/components/base/badge";
 
 describe("Badge Component", () => {
   it("renders with count", () => {

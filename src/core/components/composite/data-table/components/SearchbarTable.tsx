@@ -1,4 +1,5 @@
-import { Flex, Input } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Input } from "@/core/components/base/input";
 import { SearchOutline } from "@/core/icons";
 import { FC } from "react";
 

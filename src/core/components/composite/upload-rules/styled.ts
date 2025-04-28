@@ -32,4 +32,7 @@ export const useStyles = createStyles(({ token }) => ({
     fontWeight: 500,
     color: token.colorTextSecondary,
   },
+  marginTop: {
+    marginTop: "1rem",
+  },
 }));

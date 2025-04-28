@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import { Layout } from "./index";
+import { Layout } from "@/core/components/base/layout";
 
 describe("Layout Component", () => {
   it("renders the layout with header, footer, content, and sider", () => {

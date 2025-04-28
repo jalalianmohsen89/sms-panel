@@ -1,4 +1,5 @@
-import { Flex, Typography } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
 import { useStyles } from "@/core/styled";
 import { Input as InputBase, InputProps } from "antd";
 import OTP from "antd/es/input/OTP";

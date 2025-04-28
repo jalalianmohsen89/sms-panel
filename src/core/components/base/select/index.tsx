@@ -1,9 +1,10 @@
-import { Flex, Typography } from "@/core/components/base";
-import { useStyles } from "@/core/styled";
-import { css } from "@emotion/css";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
+import { useStyles as useStylesBase } from "@/core/styled";
 import { Select as BaseSelect, SelectProps } from "antd";
 import { OptGroup, Option } from "rc-select";
 import { FC } from "react";
+import { useStyles } from "./styled";
 
 export type Props = Pick<
   SelectProps,
@@ -36,19 +37,17 @@ export const Select: FC<Props> & {
   Option: typeof Option;
   OptGroup: typeof OptGroup;
 } = (props) => {
+  const { styles: stylesBase } = useStylesBase();
   const { styles } = useStyles();
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { label, className, ...otherProps } = props;
 
   return (
-    <Flex className={styles.formContainer}>
-      {label && <Typography className={styles.formTitle}>{label}</Typography>}
-      <BaseSelect
-        className={css`
-          width: 100%;
-        `}
-        {...otherProps}
-      />
+    <Flex className={stylesBase.formContainer}>
+      {label && (
+        <Typography className={stylesBase.formTitle}>{label}</Typography>
+      )}
+      <BaseSelect className={styles.width} {...otherProps} />
     </Flex>
   );
 };

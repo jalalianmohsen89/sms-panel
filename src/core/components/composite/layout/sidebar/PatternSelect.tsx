@@ -1,5 +1,6 @@
 // import { theme as themeContent } from "antd";
-import { Flex, Image } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Image } from "@/core/components/base/image";
 import { patterns } from "@/core/content";
 import { usePattern } from "@/core/context/PatternContext.tsx";
 import useStore from "@/core/store";
@@ -49,6 +50,8 @@ const PatternSelect = () => {
               width={"100%"}
               height={"100%"}
               preview={false}
+              alt="pattern"
+              loading="lazy"
             />
           </Flex>
         ))}

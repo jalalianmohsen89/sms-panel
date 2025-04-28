@@ -4,7 +4,6 @@ import {
   uploadFileSms,
   userNumberList,
 } from "@/core/feature/sms/service";
-import { theme as themeContent } from "@/core/theme";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { CheckboxGroupProps } from "antd/es/checkbox";
 import { useState } from "react";
@@ -40,7 +39,6 @@ const useFormGroup = () => {
 
   // --------------------- hooks ---------------------------
   const [form] = useForm();
-  const { token } = themeContent.useToken();
   const { useBreakpoint } = Grid;
   // --------------------- mutations ---------------------------
   const { mutate: previewFileRequest } = useMutation({
@@ -94,7 +92,6 @@ const useFormGroup = () => {
     columns,
     preview,
     form,
-    token,
     isOpenModal,
     setOpenModal,
     formProps,

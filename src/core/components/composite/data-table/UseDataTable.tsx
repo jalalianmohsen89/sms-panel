@@ -1,13 +1,10 @@
-import {
-  Col,
-  Empty,
-  Pagination,
-  Row,
-  useBreakpoint,
-} from "@/core/components/base";
+import { Col } from "@/core/components/base/col";
+import { Empty } from "@/core/components/base";
+import { Pagination } from "@/core/components/base/pagination";
+import { Row } from "@/core/components/base/row";
+import { useBreakpoint } from "@/core/components/base/grid";
 import apiService from "@/core/services";
 import { useStore } from "@/core/store";
-import { css } from "@emotion/css";
 import { useMutation } from "@tanstack/react-query";
 import {
   useCallback,
@@ -26,6 +23,7 @@ import {
 } from "./components";
 import { Props } from "./index";
 import { IPagination, IParams } from "./types";
+import { useStyles } from "./styled";
 
 interface WithOptionalId {
   id?: string | number;
@@ -59,6 +57,7 @@ const useDataTable = <T extends WithOptionalId>({
   const deferredSearchValue = useDeferredValue(searchValue);
   const [isPendingTransition, startTransition] = useTransition();
   const { addRecordToDevList } = useStore();
+  const { styles } = useStyles();
 
   const [pagination, setPagination] = useState<IPagination>({
     page: 1,
@@ -172,7 +171,7 @@ const useDataTable = <T extends WithOptionalId>({
 
   // Callback for Ant Design Table's onChange event
   const onChangeTable = useCallback(
-    (tablePagination: any, filters: any, sorter: any) => {
+    (tablePagination: any, _filters: any, sorter: any) => {
       // Handle pagination
       if (
         withPagination &&
@@ -406,12 +405,7 @@ const useDataTable = <T extends WithOptionalId>({
 
   const featuresMobileColumns = useMemo(
     () => (
-      <Row
-        gutter={[10, 10]}
-        className={css`
-          width: 100%;
-        `}
-      >
+      <Row gutter={[10, 10]} className={styles.mobileFeatureContainer}>
         {searchbar && (
           <Col span={isMobile ? 24 : 12} lg={8}>
             <SearchbarTable
@@ -444,6 +438,7 @@ const useDataTable = <T extends WithOptionalId>({
         )}
       </Row>
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [
       searchbar,
       isMobile,

@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
-import { Cascader } from "./index";
+import { Cascader } from "@/core/components/base/cascader";
 
 describe("Cascader Component", () => {
   const mockOptions = [

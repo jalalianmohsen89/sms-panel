@@ -7,7 +7,6 @@ import {
 } from "@/core/components/composite/page-builder/types";
 // import { actionIconList } from "@/core/content";
 import { ShowFormType } from "@/core/types";
-import { css } from "@emotion/css";
 
 export const filtersSms: IPageBuilderFilter[] = [
   {
@@ -49,24 +48,14 @@ export const columnsSms: IPageBuilderColumns[] = [
     id: "body",
     title: "متن پیام",
     render: (row: any) => (
-      <Typography
-        className={css`
-          text-wrap: wrap;
-        `}
-      >
-        {row.body}
-      </Typography>
+      <Typography style={{ textWrap: "wrap" }}>{row.body}</Typography>
     ),
   },
   {
     id: "type",
     title: "نوع",
     render: (row: any) => (
-      <Typography
-        className={css`
-          text-wrap: nowrap;
-        `}
-      >
+      <Typography style={{ textWrap: "nowrap" }}>
         {row.type === "bulk" ? "گروهی" : "فردی"}
       </Typography>
     ),

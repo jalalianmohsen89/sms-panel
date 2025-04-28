@@ -1,6 +1,6 @@
 import React from "react";
 import { render, fireEvent, screen } from "@testing-library/react";
-import { Pagination } from "./index";
+import { Pagination } from "@/core/components/base/pagination";
 
 // Mock antd pagination component
 vi.mock("antd", () => ({

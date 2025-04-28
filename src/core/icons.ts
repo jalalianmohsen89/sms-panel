@@ -38,6 +38,8 @@ export { BsShieldLockFill as ShiedLockFill } from "react-icons/bs";
 export {
   RiFilterFill as FilterFill,
   RiFilterOffFill as FilterOffFill,
+  RiUser2Fill as User2Fill,
+  RiUserAddFill as UserAddFill,
 } from "react-icons/ri";
 
 export { MdSms as SMS } from "react-icons/md";

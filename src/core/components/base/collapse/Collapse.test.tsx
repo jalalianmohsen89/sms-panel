@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from "vitest";
 import { render, fireEvent } from "@testing-library/react";
-import { Collapse } from "./index";
+import { Collapse } from "@/core/components/base/collapse";
 
 describe("Collapse Component", () => {
   const mockItems = [
