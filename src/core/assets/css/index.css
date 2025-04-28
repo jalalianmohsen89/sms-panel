@@ -1,6 +1,7 @@
 @import "fonts.css";
 
 body {
+  font-display: swap;
   font-family: Vazir !important;
   margin: 0;
   border-width: 0;
