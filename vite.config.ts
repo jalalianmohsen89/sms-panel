@@ -1,7 +1,7 @@
 /// <reference types="vitest" />
 
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import viteCompression from "vite-plugin-compression";
 import { VitePWA } from "vite-plugin-pwa";
@@ -13,6 +13,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig({
   plugins: [
     react(),
+
     // !isProduction &&
     visualizer({
       open: true,
@@ -80,18 +81,38 @@ export default defineConfig({
       },
     }),
   ].filter(Boolean),
-  // ... existing code ...
+
   build: {
     target: "es2015",
     minify: "esbuild",
     cssCodeSplit: true,
-    sourcemap: false,
+    sourcemap: true,
     chunkSizeWarningLimit: 1500,
     rollupOptions: {
       output: {
         manualChunks: {
-          react: ["react", "react-dom"],
-          antd: ["antd"],
+          react: ["react", "react-dom"], // React جدا
+          antd: ["antd"], // Antd جدا
+          zustand: ["zustand"], // مدیریت State جدا
+          axios: ["axios"], // کتابخانه Axios جدا
+          "react-router-dom": ["react-router-dom"], // Routing جدا
+          "react-icons": ["react-icons"], // آیکون‌ها جدا
+          "react-inlinesvg": ["react-inlinesvg"], // SVG Loader جدا
+          "antd-jalali": ["antd-jalali"], // تقویم جلالی جدا
+          "@tanstack/react-query": ["@tanstack/react-query"], // React Query جدا
+          "@ant-design/colors": ["@ant-design/colors"], // Ant Design Colors جدا
+          "react18-json-view": ["react18-json-view"], // JSON Viewer جدا
+          "jalali-plugin-dayjs": ["jalali-plugin-dayjs"], // Day.js Plugin for Jalali Calendar
+          "@/core/components/base": ["@/core/components/base"], // Base Components
+          "@/core/components/composite/layout": [
+            "@/core/components/composite/layout",
+          ],
+          "@/core/components/composite/data-table": [
+            "@/core/components/composite/data-table",
+          ], // composite Components
+          "@/core/components/composite/page-builder": [
+            "@/core/components/composite/page-builder",
+          ], // Page Builder Components
         },
       },
     },
