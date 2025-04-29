@@ -1,4 +1,3 @@
-// import { theme as themeContent } from "antd";
 import { Flex } from "@/core/components/base/flex";
 import { Image } from "@/core/components/base/image";
 import { patterns } from "@/core/content";

@@ -12,10 +12,10 @@ import { Space } from "@/core/components/base/space";
 import { Switch } from "@/core/components/base/switch";
 import { Table } from "@/core/components/base/table";
 import { Typography } from "@/core/components/base/typography";
+import { Button } from "@/core/components/base/button";
 import { UploadRules } from "@/core/components/composite";
 import { EnvelopeArrowUp, Megaphone, Message, Send } from "@/core/icons";
 import { useStyles as useStylesBase } from "@/core/styled";
-import { Button } from "antd";
 import useFormGroupNotification from "./hook";
 import { useStyles } from "./styled";
 

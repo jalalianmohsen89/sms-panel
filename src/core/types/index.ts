@@ -1,5 +1,4 @@
 import { ReactElement, ReactNode } from "react";
-import type { GlobalToken } from "@/core/theme";
 
 export type WithChildren = {
   children?: ReactNode;
@@ -10,10 +9,6 @@ export interface IModuleRoutes {
   component: ReactElement;
   permission: string;
 }
-
-export type TokenType = {
-  token: GlobalToken;
-};
 
 export type PatternType = {
   pattern: IPattern;
