@@ -1,11 +1,12 @@
-import { Dispatch, FC, memo, SetStateAction } from "react";
-import { css } from "@emotion/css";
-import { Flex, Grid, Header as HeaderLayout } from "@/core/components/base";
-import SearchBar from "./SearchBar";
-import Tools from "@/core/components/composite/layout/header/Tools";
-import { MenuSharp } from "@/core/icons";
+import { Flex } from "@/core/components/base/flex";
+import { Grid } from "@/core/components/base/grid";
+import { Header as HeaderLayout } from "@/core/components/base/layout";
 import { useStyles } from "@/core/components/composite/layout/header/styled";
+import Tools from "@/core/components/composite/layout/header/Tools";
 import { usePattern } from "@/core/context/PatternContext.tsx";
+import { MenuSharp } from "@/core/icons";
+import { Dispatch, FC, memo, SetStateAction } from "react";
+import SearchBar from "./SearchBar";
 
 type Props = {
   isCollapsed: boolean;
@@ -23,19 +24,13 @@ export const Header: FC<Props> = memo(({ isCollapsed, setCollapsed }) => {
   return (
     <HeaderLayout className={styles.masterHeader}>
       <Flex
-        className={css`
-          width: 100%;
-        `}
+        className={styles.headerWidth}
         align="center"
         justify="space-between"
       >
         {!screens.lg && (
           <Flex
-            className={css`
-              cursor: pointer;
-              height: 25px;
-              overflow: hidden;
-            `}
+            className={styles.headerContainer}
             onClick={() => setCollapsed(!isCollapsed)}
           >
             <MenuSharp size={20} />

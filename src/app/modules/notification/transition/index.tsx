@@ -1,4 +1,4 @@
-import React, { useState, useTransition, ChangeEvent } from "react";
+import { ChangeEvent, useState, useTransition } from "react";
 
 // ایجاد یک لیست بزرگ برای شبیه‌سازی عملیات سنگین
 const bigList = Array.from(

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { FC, ReactNode } from "react";
-import { Typography as BaseTypography } from "antd";
+import { default as BaseTypography } from "antd/es/typography";
 import type { DirectionType } from "antd/es/config-provider";
 import Text from "antd/es/typography/Text";
 import Link from "antd/es/typography/Link";

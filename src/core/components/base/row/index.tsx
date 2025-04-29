@@ -1,6 +1,7 @@
+import { default as BaseRow } from "antd/es/row";
+import type { RowProps } from "antd/es/row";
 import { FC } from "react";
-import { Row as BaseRow, RowProps } from "antd";
-import { css } from "@emotion/css";
+import { useStyles } from "./styled";
 
 type Props = Pick<
   RowProps,
@@ -9,13 +10,7 @@ type Props = Pick<
 export const Row: FC<Props> = (props) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { className, ...otherProps } = props;
+  const { styles } = useStyles();
 
-  return (
-    <BaseRow
-      {...otherProps}
-      className={css`
-        width: 100%;
-      `}
-    />
-  );
+  return <BaseRow {...otherProps} className={styles.width} />;
 };

@@ -1,9 +1,6 @@
-import {
-  Checkbox,
-  CheckboxChangeEvent,
-  Flex,
-  Typography,
-} from "@/core/components/base";
+import { Checkbox, CheckboxChangeEvent } from "@/core/components/base/checkbox";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
 import { FC } from "react";
 import { useStyles } from "../styled";
 

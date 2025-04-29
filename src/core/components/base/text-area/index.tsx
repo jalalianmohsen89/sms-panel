@@ -1,4 +1,5 @@
-import { Flex, Typography } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
 import { useStyles } from "@/core/styled";
 import { default as TextAreaBase } from "antd/es/input/TextArea";
 import { TextAreaProps } from "antd/lib/input";

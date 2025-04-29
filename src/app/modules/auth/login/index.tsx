@@ -1,16 +1,19 @@
 import AuthLayout from "@/app/layouts/AuthLayout";
-import { Flex, Form, Link, Toast, Typography } from "@/core/components/base";
+import { Toast } from "@/core/components/base/toast";
+import { Link } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Form } from "@/core/components/base/form";
+import { Typography } from "@/core/components/base/typography";
 import LoginForm from "@/core/feature/auth/components/LoginForm";
 import { loginMobile } from "@/core/feature/auth/server";
+import { useStyles } from "@/core/feature/auth/styled";
 import useStore from "@/core/store";
-import { css } from "@emotion/css";
 import { useMutation } from "@tanstack/react-query";
-import { theme as themeContent } from "@/core/theme";
 
 const Login = () => {
   // -------------------- hooks --------------------------
-  const { token } = themeContent.useToken();
   const { login } = useStore();
+  const { styles } = useStyles();
   // -------------------- mutation --------------------------
   const { mutate: sendMobileRequest } = useMutation({
     mutationFn: loginMobile,
@@ -35,16 +38,7 @@ const Login = () => {
   // -------------------- render --------------------------
   return (
     <AuthLayout>
-      <Flex
-        className={css`
-          width: 80%;
-          max-width: 350px;
-          background-color: ${token.colorBgContainer};
-          border-radius: 10px;
-          padding: 1.5rem;
-          margin: 1rem 0 15%;
-        `}
-      >
+      <Flex className={styles.container}>
         <Form
           name="basic"
           wrapperCol={{ span: 24 }}
@@ -53,23 +47,10 @@ const Login = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
           layout="vertical"
-          className={css`
-            width: 100%;
-          `}
+          className={styles.width}
         >
-          <Flex
-            className={css`
-              margin-bottom: 1.5rem;
-            `}
-          >
-            <Typography
-              className={css`
-                font-size: 1.2rem;
-                font-weight: 500;
-              `}
-            >
-              ورود به سامانه
-            </Typography>
+          <Flex className={styles.titleContainer}>
+            <Typography className={styles.title}>ورود به سامانه</Typography>
           </Flex>
           <LoginForm />
           <Link href="/auth/register">ثبت نام کنید...</Link>

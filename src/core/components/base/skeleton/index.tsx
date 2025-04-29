@@ -1,6 +1,6 @@
 import { FC } from "react";
-import type { SkeletonProps } from "antd";
-import { Skeleton as BaseSkeleton } from "antd";
+import type { SkeletonProps } from "antd/es/skeleton";
+import { default as BaseSkeleton } from "antd/es/skeleton";
 import SkeletonButton from "antd/es/skeleton/Button";
 import SkeletonAvatar from "antd/es/skeleton/Avatar";
 import SkeletonInput from "antd/es/skeleton/Input";

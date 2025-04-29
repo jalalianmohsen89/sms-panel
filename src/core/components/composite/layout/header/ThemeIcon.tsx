@@ -1,4 +1,4 @@
-import { Flex } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
 import { useStyles } from "@/core/components/composite/layout/header/styled";
 import { Moon, Sunny } from "@/core/icons";
 import useStore from "@/core/store";

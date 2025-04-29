@@ -1,15 +1,14 @@
 import Excel from "@/core/assets/images/svg/excel.svg";
-import {
-  Button,
-  Flex,
-  Toast,
-  Typography,
-  Upload,
+import { Button } from "@/core/components/base/button";
+import { Flex } from "@/core/components/base/flex";
+import { Toast } from "@/core/components/base/toast";
+import { Typography } from "@/core/components/base/typography";
+import { Upload } from "@/core/components/base/upload";
+import type {
+  Props as UploadProps,
   UploadFile,
-  UploadProps,
-} from "@/core/components/base";
+} from "@/core/components/base/upload";
 import { Upload as UploadIcon } from "@/core/icons";
-import { css } from "@emotion/css";
 import { FC, memo, useState } from "react";
 import Svg from "react-inlinesvg";
 import { useStyles } from "./styled";
@@ -110,12 +109,7 @@ export const UploadRules: FC<Props> = memo(({ onChange }) => {
         <Typography className={styles.uploadAlertText}>
           حجم فایل بیشتر از 70 مگابایت نمیتواند باشد.
         </Typography>
-        <Flex
-          align="center"
-          className={css`
-            margin-top: 1rem;
-          `}
-        >
+        <Flex align="center" className={styles.marginTop}>
           <Upload {...propsImage}>
             <Button
               variant="dashed"

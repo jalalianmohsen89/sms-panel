@@ -5,6 +5,9 @@ export const useStyles = createStyles(({ token, css }) => ({
     width: "100%",
     flexDirection: "column",
   },
+  mobileFeatureContainer: {
+    width: "100%",
+  },
   mobileColumns: {
     width: "100%",
     border: `1px solid ${token.colorBorder}`,
@@ -93,13 +96,13 @@ export const useStyles = createStyles(({ token, css }) => ({
     margin: "2rem 0",
   },
   skeletonList: {
-    width: "100%",
-    flex: 1,
-  },
-  skeletonItem: {
-    width: "100%!important",
+    flexWrap: "wrap",
   },
   cursor: {
     cursor: "pointer",
+  },
+  skeletonStyle: {
+    width: "100%",
+    maxWidth: 120,
   },
 }));

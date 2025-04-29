@@ -1,23 +1,20 @@
-import {
-  Button,
-  Col,
-  DatePickerJalali,
-  Editor,
-  Flex,
-  Form,
-  Input,
-  Radio,
-  Row,
-  Select,
-  Toast,
-  Typography,
-  useForm,
-} from "@/core/components/base";
-import { css } from "@emotion/css";
+import { Button } from "@/core/components/base/button";
+import { Col } from "@/core/components/base/col";
+import { DatePickerJalali } from "@/core/components/base/date-picker";
+import { Editor } from "@/core/components/base/editor";
+import { Flex } from "@/core/components/base/flex";
+import { Form, useForm } from "@/core/components/base/form";
+import { Input } from "@/core/components/base/input";
+import { Radio } from "@/core/components/base/radio";
+import { Row } from "@/core/components/base/row";
+import { Select } from "@/core/components/base/select";
+import { Toast } from "@/core/components/base/toast";
+import { Typography } from "@/core/components/base/typography";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { CheckboxGroupProps } from "antd/es/checkbox";
 import { memo, useState } from "react";
 import { sendPersonalSms, userNumberList } from "../../service";
+import { useStyles } from "./styled";
 
 const FormPersonalSms = memo(() => {
   // --------------------- variables ---------------------------
@@ -28,6 +25,7 @@ const FormPersonalSms = memo(() => {
   ];
   // --------------------- hooks ---------------------------
   const [form] = useForm();
+  const { styles } = useStyles();
 
   // --------------------- mutations ---------------------------
   const { mutate: sendPersonalSmsRequest } = useMutation({
@@ -55,32 +53,14 @@ const FormPersonalSms = memo(() => {
 
   return (
     <Form form={form} layout="vertical" onFinish={onFinish}>
-      <Typography
-        className={css`
-          font-size: 20px;
-          font-weight: 700;
-          margin-bottom: 2rem;
-        `}
-      >
-        ارسال پیامک
-      </Typography>
+      <Typography className={styles.title}>ارسال پیامک</Typography>
       <Flex
         vertical
         gap={40}
         justify="space-between"
-        className={css`
-          height: 100%;
-          flex-wrap: wrap;
-          align-content: space-between;
-        `}
+        className={styles.formContainer}
       >
-        <Flex
-          vertical
-          gap={20}
-          className={css`
-            width: 100%;
-          `}
-        >
+        <Flex vertical gap={20} className={styles.width}>
           <Row gutter={[20, 20]} align="bottom">
             <Col span={12}>
               <Input
@@ -147,12 +127,7 @@ const FormPersonalSms = memo(() => {
               />
             </Col>
           </Row>
-          <Flex
-            justify="flex-end"
-            className={css`
-              margin-left: 1rem;
-            `}
-          >
+          <Flex justify="flex-end" className={styles.buttonContainer}>
             <Button
               variant="filled"
               color="primary"

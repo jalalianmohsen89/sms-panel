@@ -54,19 +54,13 @@ module.exports = function (plop) {
       },
       {
         type: "add",
-        path: "src/core/feature/{{kebabCase name}}/{{pascalCase name}}Routes.tsx",
-        templateFile: "plop-templates/module/feature/routes.tsx.hbs"
+        path: "src/app/modules/{{kebabCase name}}/{{pascalCase name}}Routes.tsx",
+        templateFile: "plop-templates/module/page/routes.tsx.hbs"
       },
       {
         type: "add",
         path: "src/core/feature/{{kebabCase name}}/content/index.tsx",
         templateFile: "plop-templates/module/feature/content/index.tsx.hbs"
-      },
-      {
-        type: "modify",
-        path: "src/app/routing/PrivateRoutes.tsx",
-        pattern: /(export\s+function\s+PrivateRoutes\s*\(\s*\)\s*{)/g,
-        template: `$1\n const {{pascalCase name}}Routes = lazy(() => import("@/core/feature/{{kebabCase name}}/{{pascalCase name}}Routes.tsx"));`
       },
       {
         type: "modify",

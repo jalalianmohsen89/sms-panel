@@ -1,7 +1,8 @@
-import { Flex, Typography } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
 import dayjs from "@/core/functions/dayjs";
 import { useStyles } from "@/core/styled";
-import { DatePickerProps } from "antd";
+import type { DatePickerProps } from "antd/es/date-picker";
 import { DatePicker } from "antd-jalali";
 import { FC } from "react";
 import { icons, locale } from "./content";

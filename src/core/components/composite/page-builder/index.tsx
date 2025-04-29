@@ -1,11 +1,14 @@
-import { Button, Drawer, Flex, Modal } from "@/core/components/base";
+import { Button } from "@/core/components/base/button";
+import { Drawer } from "@/core/components/base/drawer";
+import { Flex } from "@/core/components/base/flex";
+import { Modal } from "@/core/components/base/modal";
+import { Typography } from "@/core/components/base/typography";
 import { DataTable, PageBuilderFilter } from "@/core/components/composite";
-import { Section, TitlePage } from "@/core/styled";
-import { css } from "@emotion/css";
-import { FC, ReactNode } from "react";
-import { SortOrder } from "../data-table/types";
+import { FC, ReactNode } from "react"; // Import useMemo
 
-import { HiPlus } from "react-icons/hi";
+import { Plus } from "@/core/icons";
+import { useStyles as useStylesBase } from "@/core/styled";
+import { useStyles } from "./styled";
 import usePageBuilder from "./UsePageBuilder";
 
 type Props = {
@@ -25,7 +28,7 @@ type Props = {
   };
   onSelectedRow?: (rows: any[]) => void;
 };
-export const PageBuilder: FC<Props> = ({
+const PageBuilder: FC<Props> = ({
   pageId,
   rowKey,
   pageColumns,
@@ -42,93 +45,61 @@ export const PageBuilder: FC<Props> = ({
 }) => {
   // ---------------------- hooks ---------------------
   const {
-    token,
     columns,
     pageData,
-    refeatchData,
     modalProps,
     setModalProps,
     drawerProps,
     setDrawerProps,
-    sortInfo,
-    setSortInfo,
-    handleSort,
     addForm,
+    dataTableProps,
   } = usePageBuilder({
     pageId,
     pageColumns,
     refresh,
+    sortable,
+    searchable,
+    selectable,
+    skipUrlParams,
+    showRowNumber,
+    expandable,
+    onSelectedRow,
   });
   const isRequredFilter = pageData?.filters?.some((filter) => filter.required);
+  const { styles } = useStyles();
+  const { styles: stylesBase } = useStylesBase(false);
+
+  // Create dataTableProps using useMemo
 
   // ---------------------- render ---------------------
   return (
     <Flex vertical>
       {pageData && (
         <>
-          <Flex
-            className={css`
-              margin-bottom: 20px;
-            `}
-          >
-            <TitlePage>{pageData.page.title}</TitlePage>
+          <Flex className={styles.titlePageContainer}>
+            <Typography className={stylesBase.titlePage}>
+              {pageData.page.title}
+            </Typography>
           </Flex>
           {pageData.filters && <PageBuilderFilter list={pageData.filters} />}
           {pageData.page.createForm && (
-            <Flex
-              className={css`
-                margin-bottom: 1rem;
-              `}
-            >
-              <Button type="primary" icon={<HiPlus />} onClick={addForm}>
+            <Flex className={styles.createButtonForm}>
+              <Button type="primary" icon={<Plus />} onClick={addForm}>
                 افزودن
               </Button>
             </Flex>
           )}
-          <Section token={token} isBorder={false}>
-            <DataTable<any>
+          <section className={stylesBase.section}>
+            <DataTable
               rowKey={rowKey}
               columns={columns}
               apiPath={pageData.page.apiUrl}
               requiredFilter={isRequredFilter}
               withPagination={withPagination}
-              {...(pageData.page.dataMap && {
-                dataMap: pageData.page.dataMap.method,
-              })}
-              {...(selectable && {
-                selection: true,
-                onSelected: (rows) => onSelectedRow?.(rows),
-              })}
-              {...(searchable && {
-                searchbar: true,
-              })}
-              {...(sortable && {
-                sortInfo,
-                onChangeSortMobile: (
-                  // eslint-disable-next-line @typescript-eslint/naming-convention
-                  sort_direction: SortOrder,
-                  // eslint-disable-next-line @typescript-eslint/naming-convention
-                  sort_field: string,
-                ) => {
-                  setSortInfo({ sort_field, sort_direction });
-                  handleSort(sort_field);
-                },
-              })}
-              {...(expandable && {
-                expandable,
-              })}
-              {...(refeatchData && {
-                refeatch: refeatchData,
-              })}
-              {...(skipUrlParams && {
-                skipUrlParams: true,
-              })}
-              {...(showRowNumber && {
-                showRowNumber: true,
-              })}
               onGetData={(data) => onGetData?.(data)}
+              {...dataTableProps} // Spread the memoized props
             />
-          </Section>
+          </section>
           {modalProps.isOpen && (
             <Modal
               open={modalProps.isOpen}
@@ -155,3 +126,5 @@ export const PageBuilder: FC<Props> = ({
     </Flex>
   );
 };
+
+export default PageBuilder;

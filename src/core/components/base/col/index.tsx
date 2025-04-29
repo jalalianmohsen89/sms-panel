@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Col as BaseCol, ColProps } from "antd";
+import { default as BaseCol } from "antd/es/col";
+import type { ColProps } from "antd/es/col";
 
 type Props = Pick<
   ColProps,

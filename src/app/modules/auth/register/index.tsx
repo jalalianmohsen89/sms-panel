@@ -1,16 +1,19 @@
 import AuthLayout from "@/app/layouts/AuthLayout";
-import { Flex, Form, Link, Toast, Typography } from "@/core/components/base";
+import { Toast } from "@/core/components/base/toast";
+import { Link } from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Form } from "@/core/components/base/form";
+import { Typography } from "@/core/components/base/typography";
 import RegisterForm from "@/core/feature/auth/components/RegisterForm";
 import { registerMobile } from "@/core/feature/auth/server";
-import { css } from "@emotion/css";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
-import { theme as themeContent } from "@/core/theme";
+import { useStyles } from "@/core/feature/auth/styled";
 
 const Register = () => {
   // -------------------- state --------------------------
   const navigate = useNavigate();
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
   // -------------------- mutation --------------------------
   const { mutate: registerMobileRequest } = useMutation({
     mutationFn: registerMobile,
@@ -29,16 +32,7 @@ const Register = () => {
   // -------------------- render --------------------------
   return (
     <AuthLayout>
-      <Flex
-        className={css`
-          width: 80%;
-          max-width: 350px;
-          background-color: ${token.colorBgContainer};
-          border-radius: 10px;
-          padding: 1.5rem;
-          margin: 1rem 0;
-        `}
-      >
+      <Flex className={styles.container}>
         <Form
           name="basic"
           wrapperCol={{ span: 24 }}
@@ -47,23 +41,10 @@ const Register = () => {
           onFinishFailed={onFinishFailed}
           autoComplete="off"
           layout="vertical"
-          className={css`
-            width: 100%;
-          `}
+          className={styles.width}
         >
-          <Flex
-            className={css`
-              margin-bottom: 1.5rem;
-            `}
-          >
-            <Typography
-              className={css`
-                font-size: 1.2rem;
-                font-weight: 500;
-              `}
-            >
-              ثبت نام در سامانه
-            </Typography>
+          <Flex className={styles.titleContainer}>
+            <Typography className={styles.title}>ثبت نام در سامانه</Typography>
           </Flex>
           <RegisterForm />
           <Link href="/auth/login">وارد شوید...</Link>

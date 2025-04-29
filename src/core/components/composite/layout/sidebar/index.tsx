@@ -1,11 +1,9 @@
-import {
-  Flex,
-  Image,
-  Layout,
-  Menu,
-  Modal,
-  Typography,
-} from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Typography } from "@/core/components/base/typography";
+import { Image } from "@/core/components/base/image";
+import { Layout } from "@/core/components/base/layout";
+import { Menu } from "@/core/components/base/menu";
+import { Modal } from "@/core/components/base/modal";
 import { Profile } from "@/core/components/composite";
 import PatternSelect from "@/core/components/composite/layout/sidebar/PatternSelect.tsx";
 import { useStyles } from "@/core/components/composite/layout/sidebar/styled";
@@ -50,7 +48,11 @@ export const Sidebar = memo(() => {
             <Image
               src="/media/brand-logo.png"
               preview={false}
+              width={52}
+              height={52}
               wrapperClassName={styles.sidebarImage}
+              alt="logo"
+              loading="lazy"
             />
             <Typography className={styles.sidebarLogoTitle}>
               پنل مدیریت پیامک

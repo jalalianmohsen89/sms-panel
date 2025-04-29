@@ -1,9 +1,7 @@
-import {
-  Flex,
-  Tooltip,
-  Typography,
-  useBreakpoint,
-} from "@/core/components/base";
+import { Flex } from "@/core/components/base/flex";
+import { Tooltip } from "@/core/components/base/tooltip";
+import { Typography } from "@/core/components/base/typography";
+import { useBreakpoint } from "@/core/components/base/grid";
 import { EllipsisVertical } from "@/core/icons";
 import { FC, ReactNode } from "react";
 import { useStyles } from "../styled";

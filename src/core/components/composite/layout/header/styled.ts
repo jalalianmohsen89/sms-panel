@@ -73,4 +73,24 @@ export const useStyles = createStyles(({ token }, pattern: IPattern) => ({
       },
     },
   },
+  searchBarContainer: {
+    width: "100%",
+    maxWidth: "200px",
+  },
+  searchIcon: {
+    display: "flex",
+    alignItems: "center",
+  },
+  headerWidth: {
+    width: "100%",
+  },
+  headerContainer: {
+    cursor: "pointer",
+    height: "25px",
+    overflow: "hidden",
+  },
+  toolsDateTitle: {
+    fontSize: "12px",
+    color: token.colorTextSecondary,
+  },
 }));

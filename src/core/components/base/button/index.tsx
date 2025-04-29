@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Button as BaseButton, ButtonProps } from "antd";
+import { default as BaseButton } from "antd/es/button";
+import type { ButtonProps } from "antd/es/button";
 
 type Props = Pick<
   ButtonProps,

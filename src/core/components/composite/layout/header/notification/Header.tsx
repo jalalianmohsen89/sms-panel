@@ -1,4 +1,5 @@
-import { Space, Typography } from "@/core/components/base";
+import { Space } from "@/core/components/base/space";
+import { Typography } from "@/core/components/base/typography";
 import { FC } from "react";
 import { useStyles } from "./styled";
 

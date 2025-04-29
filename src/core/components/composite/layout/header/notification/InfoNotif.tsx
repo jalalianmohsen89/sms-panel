@@ -1,4 +1,6 @@
-import { Avatar, Flex, Typography } from "@/core/components/base";
+import { Typography } from "@/core/components/base/typography";
+import { Flex } from "@/core/components/base/flex";
+import { Avatar } from "@/core/components/base/avatar";
 import { FC } from "react";
 import { useStyles } from "./styled";
 

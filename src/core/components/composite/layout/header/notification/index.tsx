@@ -1,12 +1,10 @@
-import {
-  Avatar,
-  Button,
-  Dropdown,
-  Flex,
-  Tooltip,
-} from "@/core/components/base";
+import { Avatar } from "@/core/components/base/avatar";
+import { Button } from "@/core/components/base/button";
+import { Dropdown } from "@/core/components/base/dropdown";
+import { Flex } from "@/core/components/base/flex";
+import { Tooltip } from "@/core/components/base/tooltip";
 import { Notifications } from "@/core/icons";
-import { RiUser2Fill, RiUserAddFill } from "react-icons/ri";
+import { User2Fill, UserAddFill } from "@/core/icons";
 import ContentNotif from "./ContentNotif";
 import HeaderNotification from "./Header";
 import InfoNotif from "./InfoNotif";
@@ -37,12 +35,12 @@ export const Notification = () => {
               <Tooltip title="Ant User" placement="top">
                 <Avatar
                   style={{ backgroundColor: "#87d068" }}
-                  icon={<RiUser2Fill />}
+                  icon={<User2Fill />}
                 />
               </Tooltip>
               <Avatar
                 style={{ backgroundColor: "#1677ff" }}
-                icon={<RiUserAddFill />}
+                icon={<UserAddFill />}
               />
             </Avatar.Group>
           </ContentNotif>

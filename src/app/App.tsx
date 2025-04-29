@@ -1,15 +1,12 @@
-import { Flex } from "@/core/components/base";
-import { css } from "@emotion/css";
+import { Flex } from "@/core/components/base/flex";
+import { useStyles } from "@/core/styled";
 import { Outlet } from "react-router-dom";
 
 function App() {
+  const { styles } = useStyles();
+
   return (
-    <Flex
-      className={css`
-        width: 100%;
-        height: 100%;
-      `}
-    >
+    <Flex className={styles.appContainer}>
       <Outlet />
     </Flex>
   );

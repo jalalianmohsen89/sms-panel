@@ -2,10 +2,8 @@ export { lightTheme } from "./light";
 
 export { darkTheme } from "./dark";
 
-export { theme } from "antd";
+export { default as theme } from "antd/es/theme";
 
-export { ConfigProvider } from "antd";
+export { default as ConfigProvider } from "antd/es/config-provider";
 
-export type { GlobalToken } from "antd";
-
-export type { Breakpoint } from "antd";
+export type { Breakpoint } from "antd/es/_util/responsiveObserver";
