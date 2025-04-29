@@ -18,6 +18,7 @@ export {
   IoTrash as Trash,
   IoCodeOutline as CodeOutline,
 } from "react-icons/io5";
+export { IoMdCloudUpload as Upload, IoMdTime as Time } from "react-icons/io";
 
 export {
   HiFilter as Filter,
@@ -32,9 +33,6 @@ export {
 } from "react-icons/hi";
 export { HiOutlineMegaphone as Megaphone } from "react-icons/hi2";
 
-export { BiSolidVolumeMute as SolidVolumeMute } from "react-icons/bi";
-export { BsShieldLockFill as ShiedLockFill } from "react-icons/bs";
-
 export {
   RiFilterFill as FilterFill,
   RiFilterOffFill as FilterOffFill,
@@ -48,11 +46,14 @@ export {
   BiBold as Bold,
   BiItalic as Italic,
   BiUnderline as Underline,
+  BiSolidVolumeMute as SolidVolumeMute,
 } from "react-icons/bi";
-export { IoMdCloudUpload as Upload, IoMdTime as Time } from "react-icons/io";
+export {
+  BsEnvelopeArrowUp as EnvelopeArrowUp,
+  BsShieldLockFill as ShiedLockFill,
+} from "react-icons/bs";
 
 export { MdTitle as Title } from "react-icons/md";
 export { TbSend2 as Send, TbMessage2 as Message } from "react-icons/tb";
-export { BsEnvelopeArrowUp as EnvelopeArrowUp } from "react-icons/bs";
 
 export { FaEye as Eye } from "react-icons/fa";
