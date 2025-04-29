@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Radio as BaseRadio, RadioChangeEvent } from "antd";
+import { default as BaseRadio } from "antd/es/radio";
+import type { RadioChangeEvent } from "antd/es/radio";
 import { RadioGroupProps } from "antd/es/radio/interface";
 
 type Props = Pick<

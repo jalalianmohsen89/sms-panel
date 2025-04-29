@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Timeline as BaseTimeline, TimelineProps } from "antd";
+import { default as BaseTimeline } from "antd/es/timeline";
+import type { TimelineProps } from "antd/es/timeline";
 import Item from "antd/es/timeline/TimelineItem";
 
 type Props = Pick<

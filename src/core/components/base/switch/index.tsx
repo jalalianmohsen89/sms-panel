@@ -1,7 +1,8 @@
 import { Flex } from "@/core/components/base/flex";
 import { Typography } from "@/core/components/base/typography";
 import { useStyles } from "@/core/styled";
-import { Switch as BaseSwitch, SwitchProps } from "antd";
+import { default as BaseSwitch } from "antd/es/switch";
+import type { SwitchProps } from "antd/es/switch";
 import { FC } from "react";
 
 type Props = Pick<

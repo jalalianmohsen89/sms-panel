@@ -1,5 +1,6 @@
 // Toast.ts
-import { notification, NotificationArgsProps } from "antd";
+import { default as notification } from "antd/es/notification";
+import type { ArgsProps as NotificationArgsProps } from "antd/es/notification";
 
 // تعریف تایپ‌ها
 type ToastType = "success" | "error" | "info" | "warning";

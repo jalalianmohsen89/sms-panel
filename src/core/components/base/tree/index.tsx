@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Tree as BaseTree, TreeProps } from "antd";
+import { default as BaseTree } from "antd/es/tree";
+import type { TreeProps } from "antd/es/tree";
 
 type Props = Pick<
   TreeProps,

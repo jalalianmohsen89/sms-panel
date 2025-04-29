@@ -1,5 +1,4 @@
-export { Empty } from "antd";
-export type { GlobalToken } from "antd";
+export { default as Empty } from "antd/es/empty";
 export type { GetProp, GetProps, GetRef } from "antd/es/_util/type";
 
 export { AutoComplete } from "./auto-complete";

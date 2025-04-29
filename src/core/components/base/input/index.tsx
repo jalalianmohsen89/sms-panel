@@ -1,7 +1,8 @@
 import { Flex } from "@/core/components/base/flex";
 import { Typography } from "@/core/components/base/typography";
 import { useStyles } from "@/core/styled";
-import { Input as InputBase, InputProps } from "antd";
+import { default as InputBase } from "antd/es/input";
+import type { InputProps } from "antd/es/input";
 import OTP from "antd/es/input/OTP";
 import Password from "antd/es/input/Password";
 import Search from "antd/es/input/Search";

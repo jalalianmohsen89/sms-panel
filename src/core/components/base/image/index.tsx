@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Image as BaseImage, ImageProps } from "antd";
+import { default as BaseImage } from "antd/es/image";
+import type { ImageProps } from "antd/es/image";
 
 type Props = Pick<
   ImageProps,

@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Upload as BaseUpload, UploadFile, UploadProps } from "antd";
+import { default as BaseUpload } from "antd/es/upload";
+import type { UploadFile, UploadProps } from "antd/es/upload";
 
 export type Props = Pick<
   UploadProps,

@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Modal as BaseModal, ModalProps } from "antd";
+import { default as BaseModal } from "antd/es/modal";
+import type { ModalProps } from "antd/es/modal";
 import { ModalFuncProps } from "antd/es/modal/interface";
 
 type Props = Pick<

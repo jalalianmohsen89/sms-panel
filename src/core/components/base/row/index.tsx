@@ -1,4 +1,5 @@
-import { Row as BaseRow, RowProps } from "antd";
+import { default as BaseRow } from "antd/es/row";
+import type { RowProps } from "antd/es/row";
 import { FC } from "react";
 import { useStyles } from "./styled";
 

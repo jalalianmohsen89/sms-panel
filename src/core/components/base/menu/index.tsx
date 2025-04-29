@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Menu as BaseMenu, MenuProps } from "antd";
+import { default as BaseMenu } from "antd/es/menu";
+import type { MenuProps } from "antd/es/menu";
 import Item from "antd/es/menu/MenuItem";
 import SubMenu from "antd/es/menu/SubMenu";
 import MenuDivider from "antd/es/menu/MenuDivider";

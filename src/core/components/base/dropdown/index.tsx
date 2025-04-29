@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Dropdown as BaseDropdown, DropdownProps } from "antd";
+import { default as BaseDropdown } from "antd/es/dropdown";
+import type { DropdownProps } from "antd/es/dropdown";
 
 export type Props = Pick<
   DropdownProps,

@@ -1,4 +1,5 @@
-import { Segmented as BaseSegmented, SegmentedProps } from "antd";
+import { default as BaseSegmented } from "antd/es/segmented";
+import type { SegmentedProps } from "antd/es/segmented";
 
 export type Props<T extends object | string | number> = Pick<
   SegmentedProps<T>,

@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Badge as BaseBadge, BadgeProps } from "antd";
+import { default as BaseBadge } from "antd/es/badge";
+import type { BadgeProps } from "antd/es/badge";
 
 type Props = Pick<
   BadgeProps,

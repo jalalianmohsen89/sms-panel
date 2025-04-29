@@ -1,7 +1,8 @@
 import { Flex } from "@/core/components/base/flex";
 import { Typography } from "@/core/components/base/typography";
 import { useStyles as useStylesBase } from "@/core/styled";
-import { Select as BaseSelect, SelectProps } from "antd";
+import { default as BaseSelect } from "antd/es/select";
+import type { SelectProps } from "antd/es/select";
 import { OptGroup, Option } from "rc-select";
 import { FC } from "react";
 import { useStyles } from "./styled";

@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Statistic as BaseStatistic, StatisticProps } from "antd";
+import { default as BaseStatistic } from "antd/es/statistic";
+import type { StatisticProps } from "antd/es/statistic";
 import Countdown from "antd/es/statistic/Countdown";
 
 type Props = Pick<

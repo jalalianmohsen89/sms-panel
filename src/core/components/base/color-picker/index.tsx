@@ -3,11 +3,9 @@ import { Typography } from "@/core/components/base/typography";
 import { useStyles } from "@/core/styled";
 import { theme as themeContent } from "@/core/theme";
 import { generate, green, presetPalettes, red } from "@ant-design/colors";
-import {
-  ColorPicker as BaseColorPicker,
-  ColorPickerProps,
-  GetProp,
-} from "antd";
+import { default as BaseColorPicker } from "antd/es/color-picker";
+import type { ColorPickerProps } from "antd/es/color-picker";
+import { GetProp } from "antd/lib/_util/type";
 import { FC } from "react";
 
 type Presets = Required<ColorPickerProps>["presets"][number];

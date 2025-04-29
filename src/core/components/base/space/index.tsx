@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Space as BaseSpace, SpaceProps } from "antd";
+import { default as BaseSpace } from "antd/es/space";
+import type { SpaceProps } from "antd/es/space";
 
 type Props = Pick<
   SpaceProps,

@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Pagination as BasePagination } from "antd";
+import { default as BasePagination } from "antd/es/pagination";
 import { PaginationProps } from "antd/es/pagination/Pagination";
 
 export type Props = Pick<
