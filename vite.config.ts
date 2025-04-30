@@ -6,6 +6,8 @@ import { resolve } from "path";
 import viteCompression from "vite-plugin-compression";
 import { VitePWA } from "vite-plugin-pwa";
 import { visualizer } from "rollup-plugin-visualizer";
+import vitePluginImp from "vite-plugin-imp";
+import { imagetools } from "vite-imagetools";
 
 // فقط در حالت توسعه visualizer را اضافه کن
 // const isProduction = process.env.NODE_ENV === "production";
@@ -13,7 +15,7 @@ import { visualizer } from "rollup-plugin-visualizer";
 export default defineConfig({
   plugins: [
     react(),
-
+    imagetools(),
     // !isProduction &&
     visualizer({
       open: true,
@@ -37,44 +39,65 @@ export default defineConfig({
       ext: ".br",
       deleteOriginFile: false,
     }),
+    vitePluginImp({
+      libList: [
+        {
+          libName: "antd",
+          style: (name) => `antd/es/${name}/style/index.css`,
+        },
+      ],
+    }),
     VitePWA({
       registerType: "autoUpdate",
-      includeAssets: ["favicon.ico", "apple-touch-icon.png", "masked-icon.svg"],
+      includeAssets: ["favicon.ico", "apple-touch-icon.png", "logo.svg"],
+
       manifest: {
-        name: "My React App",
-        short_name: "MyApp",
-        description: "My Awesome React Application",
-        theme_color: "#ffffff",
-        // آیکون‌ها رو اگر نیاز داری از کامنت در بیار و فایل‌هاشو بذار توی public
-        // icons: [
-        // eslint-disable-next-line no-irregular-whitespace
-        //   { src: "pwa-192x192.png", sizes: "192x192", type: "image/png" },
-        // eslint-disable-next-line no-irregular-whitespace
-        //   { src: "pwa-512x512.png", sizes: "512x512", type: "image/png" },
-        // eslint-disable-next-line max-len, no-irregular-whitespace
-        //   { src: "pwa-512x512.png", sizes: "512x512", type: "image/png", purpose: "any maskable" },
-        // ],
-      },
-      workbox: {
-        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff,woff2}"], // مطمئن شو فونت‌ها هم کش می‌شن
-        runtimeCaching: [
-          // ... (کش کردن فونت‌های گوگل)
+        name: "پنل پیامکی",
+        short_name: "SMS Panel",
+        description: "سامانه ارسال و دریافت پیامک",
+        theme_color: "#1677ff", // رنگ اصلی Ant Design
+        background_color: "#ffffff",
+        display: "standalone",
+        start_url: "/",
+        screenshots: [
           {
-            urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: "CacheFirst",
-            options: {
-              cacheName: "google-fonts-cache",
-              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 }, // 1 سال
-              cacheableResponse: { statuses: [0, 200] },
-            },
+            src: "media/screenshot-desktop.jpg",
+            sizes: "1280x720",
+            type: "image/png",
+            form_factor: "wide",
           },
           {
-            urlPattern: /^https:\/\/fonts\.gstatic\.com\/.*/i,
-            handler: "CacheFirst",
+            src: "media/screenshot-mobile.jpg",
+            sizes: "375x667",
+            type: "image/png",
+            form_factor: "narrow",
+          },
+        ],
+        icons: [
+          { src: "media/pwa-192x192.png", sizes: "192x192", type: "image/png" },
+          { src: "media/pwa-512x512.png", sizes: "512x512", type: "image/png" },
+          {
+            src: "media/pwa-512x512-maskable.png",
+            sizes: "512x512",
+            type: "image/png",
+            purpose: "maskable",
+          },
+        ],
+      },
+
+      workbox: {
+        globPatterns: ["**/*.{js,css,html,ico,png,svg,woff2,woff}"],
+
+        runtimeCaching: [
+          {
+            urlPattern: /^\/.*$/,
+            handler: "NetworkFirst",
             options: {
-              cacheName: "gstatic-fonts-cache",
-              expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 }, // 1 سال
-              cacheableResponse: { statuses: [0, 200] },
+              cacheName: "local-assets",
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 روز
+              },
             },
           },
         ],
@@ -118,7 +141,6 @@ export default defineConfig({
     },
   },
 
-  // ... existing code ...
   assetsInclude: ["**/*.woff", "**/*.woff2"],
   server: {
     host: "0.0.0.0",

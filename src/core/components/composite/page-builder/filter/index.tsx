@@ -5,7 +5,7 @@ import { FC } from "react";
 import { IPageBuilderFilter } from "@/core/types/page-builder";
 import { useStyles } from "./styled";
 import { useStyles as useStylesBase } from "@/core/styled";
-import usePageBuilderFilterHook from "./UsePageBuilderFilterHook";
+import { usePageBuilderFilterHook } from "./UsePageBuilderFilterHook";
 
 type Props = {
   list: IPageBuilderFilter[];

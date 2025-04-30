@@ -18,7 +18,7 @@ import { UploadRules } from "@/core/components/composite";
 import { EnvelopeArrowUp, Megaphone, Message, Send } from "@/core/icons";
 import { useStyles as useStylesBase } from "@/core/styled";
 import { memo } from "react";
-import useFormGroup from "./hook";
+import { useFormGroup } from "./hook";
 import { useStyles } from "./styled";
 
 const FormGroupSms = memo(() => {

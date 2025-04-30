@@ -26,11 +26,11 @@ type Props = {
   skipUrlParams?: boolean;
   showRowNumber?: boolean;
   expandable?: {
-    expandedRowRender: (row: any) => ReactNode;
+    expandedRowRender: (row: unknown) => ReactNode;
   };
-  onSelectedRow?: (rows: any[]) => void;
+  onSelectedRow?: (rows: unknown[]) => void;
 };
-const usePageBuilder = ({
+export const usePageBuilder = ({
   pageColumns,
   pageId,
   refresh,
@@ -78,7 +78,7 @@ const usePageBuilder = ({
   }, []);
 
   const checkAction = useCallback(
-    (action: IPageBuilderActions, row: any) => {
+    (action: IPageBuilderActions, row: unknown) => {
       if (action?.showType === "drawer") {
         setDrawerProps({
           isOpen: true,
@@ -103,7 +103,7 @@ const usePageBuilder = ({
   );
 
   const onSelectedAction = useCallback(
-    (event: string, row: any, item?: IPageBuilderColumns) => {
+    (event: string, row: unknown, item?: IPageBuilderColumns) => {
       const action = pageData?.actions?.find((item) => item.id === event);
 
       switch (event) {
@@ -165,7 +165,7 @@ const usePageBuilder = ({
         };
 
         if (item.render) {
-          column["render"] = (_cell: string, row: any) => (
+          column["render"] = (_cell: string, row: unknown) => (
             <Space
               onClick={() =>
                 item.clickColumn &&
@@ -176,7 +176,7 @@ const usePageBuilder = ({
             </Space>
           );
         } else if (item.value && item.value?.split(".").length > 1) {
-          column["render"] = (_cell: string, row: any) => (
+          column["render"] = (_cell: string, row: unknown) => (
             <Space
               onClick={() =>
                 item.clickColumn &&
@@ -188,7 +188,7 @@ const usePageBuilder = ({
           );
         } else {
           if (!item.actions) {
-            column["render"] = (_cell: any, row: any) => (
+            column["render"] = (_cell: string, row: any) => (
               <Space
                 onClick={() =>
                   item.clickColumn &&
@@ -201,7 +201,7 @@ const usePageBuilder = ({
           }
         }
         if (item.actions && item.actions.length > 0) {
-          column["render"] = (row: any) => (
+          column["render"] = (row: unknown) => (
             <ActionMore
               isCollapse
               isPageBuilder
@@ -310,5 +310,3 @@ const usePageBuilder = ({
     dataTableProps,
   };
 };
-
-export default usePageBuilder;

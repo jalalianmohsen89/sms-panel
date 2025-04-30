@@ -7,7 +7,7 @@ import { useState } from "react";
 import JsonView from "react18-json-view";
 import { useStyles } from "./styled";
 
-const useDevtools = () => {
+export const useDevtools = () => {
   // ---------------------- hooks ---------------------
   const { data } = useStore();
   const { styles } = useStyles();
@@ -91,5 +91,3 @@ const useDevtools = () => {
 
   return { showData, isModalOpen, setIsModalOpen, onClose, showJson };
 };
-
-export default useDevtools;

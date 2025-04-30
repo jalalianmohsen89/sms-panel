@@ -1,5 +1,9 @@
 import { FC } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import { ErrorsPage } from "@/app/modules/errors/ErrorsPage.tsx";
 import App from "../App.tsx";
 import { PrivateRoutes } from "@/app/routing/PrivateRoutes.tsx";
@@ -44,6 +48,10 @@ const routesGuest = createBrowserRouter([
       {
         path: "auth/register",
         element: <Register />,
+      },
+      {
+        path: "/*",
+        element: <Navigate to="/error/403" />,
       },
       { index: true, element: <Login /> },
     ],
