@@ -1,5 +1,5 @@
 import { FC } from "react";
-import useFilterHook from "./UseFilterHook";
+import { useFilterHook } from "./UseFilterHook";
 import { IPageBuilderFilter } from "@/core/types/page-builder";
 
 type Props = IPageBuilderFilter;

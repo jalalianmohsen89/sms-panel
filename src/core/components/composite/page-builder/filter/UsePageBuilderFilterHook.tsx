@@ -116,5 +116,3 @@ export const usePageBuilderFilterHook = (props: Props) => {
     isPending, // Return isPending if needed by the consuming component
   };
 };
-
-export default usePageBuilderFilterHook;

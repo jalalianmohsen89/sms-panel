@@ -31,7 +31,7 @@ interface WithOptionalId {
 
 const DEFAULT_PAGE_SIZE = 15;
 
-const useDataTable = <T extends WithOptionalId>({
+export const useDataTable = <T extends WithOptionalId>({
   apiPath,
   selection,
   sortInfo,
@@ -503,5 +503,3 @@ const useDataTable = <T extends WithOptionalId>({
     params, // Expose params if needed externally
   };
 };
-
-export default useDataTable;

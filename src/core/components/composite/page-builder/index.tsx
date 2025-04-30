@@ -4,17 +4,18 @@ import { Flex } from "@/core/components/base/flex";
 import { Modal } from "@/core/components/base/modal";
 import { Typography } from "@/core/components/base/typography";
 import { DataTable, PageBuilderFilter } from "@/core/components/composite";
+import { ColumnType } from "@/core/components/base/table";
 import { FC, ReactNode } from "react"; // Import useMemo
 
 import { Plus } from "@/core/icons";
 import { useStyles as useStylesBase } from "@/core/styled";
 import { useStyles } from "./styled";
-import usePageBuilder from "./UsePageBuilder";
+import { usePageBuilder } from "./UsePageBuilder";
 
 type Props = {
   pageId: string;
   rowKey?: string;
-  pageColumns?: any;
+  pageColumns?: ColumnType[];
   withPagination?: boolean;
   sortable?: boolean;
   searchable?: boolean;
@@ -22,11 +23,11 @@ type Props = {
   skipUrlParams?: boolean;
   showRowNumber?: boolean;
   refresh?: boolean;
-  onGetData?: (data: any) => void;
+  onGetData?: (data: unknown) => void;
   expandable?: {
-    expandedRowRender: (row: any) => ReactNode;
+    expandedRowRender: (row: unknown) => ReactNode;
   };
-  onSelectedRow?: (rows: any[]) => void;
+  onSelectedRow?: (rows: unknown[]) => void;
 };
 const PageBuilder: FC<Props> = ({
   pageId,

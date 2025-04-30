@@ -4,7 +4,7 @@ import { useMutation } from "@tanstack/react-query";
 import { CheckboxGroupProps } from "antd/es/checkbox";
 import { useState } from "react";
 
-const useFormGroupNotification = () => {
+export const useFormGroupNotification = () => {
   // --------------------- variables ---------------------------
   const [formProps, setFormProps] = useState<any>({});
   const [preview, setPreview] = useState<any>([]);
@@ -84,5 +84,3 @@ const useFormGroupNotification = () => {
     onFinish,
   };
 };
-
-export default useFormGroupNotification;

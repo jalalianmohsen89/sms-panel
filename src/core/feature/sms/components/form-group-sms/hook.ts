@@ -8,7 +8,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { CheckboxGroupProps } from "antd/es/checkbox";
 import { useState } from "react";
 
-const useFormGroup = () => {
+export const useFormGroup = () => {
   // --------------------- variables ---------------------------
   const [formProps, setFormProps] = useState<any>({
     remove_duplicate: true,
@@ -102,5 +102,3 @@ const useFormGroup = () => {
     onFinish,
   };
 };
-
-export default useFormGroup;

@@ -6,7 +6,7 @@ import { Key } from "react";
 import { RenderSkeleton, SearchbarTable } from "./components";
 import { useStyles } from "./styled";
 import { ISortInfo } from "./types";
-import useDataTable from "./UseDataTable";
+import { useDataTable } from "./UseDataTable";
 
 // Keep the original Props type definition
 export type Props<T extends object> = TableProps<T> & {

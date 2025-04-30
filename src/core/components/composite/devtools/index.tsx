@@ -3,7 +3,7 @@ import { Button } from "@/core/components/base/button";
 import { Flex } from "@/core/components/base/flex";
 import { Space } from "@/core/components/base/space";
 import { Modal } from "@/core/components/base/modal";
-import useDevtools from "./UseDevtools";
+import { useDevtools } from "./UseDevtools";
 import { useStyles } from "./styled";
 
 const Devtools = () => {
