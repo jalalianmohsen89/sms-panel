@@ -17,9 +17,9 @@ import {
   filtersUsersList,
 } from "@/core/feature/users/content/PageBuilder";
 import { ShowFormType } from "@/core/types";
-import RegisterUser from "../modals/register-user";
-import { IDataMap, IPage, IPageBuilder, TYPES } from "../types";
+import { IDataMap, IPage, IPageBuilder, TYPES } from "../types/page-builder";
 import AssignNumberToUser from "@/core/feature/users/components/assign-number-to-user";
+import RegisterUser from "../feature/users/components/register-user";
 
 export const filterTypeOptions = [
   {
