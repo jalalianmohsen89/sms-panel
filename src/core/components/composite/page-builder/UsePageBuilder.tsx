@@ -17,7 +17,7 @@ import { useNavigate } from "react-router-dom";
 import { pageBuilders } from "@/core/content/PageBuilder";
 
 type Props = {
-  pageColumns?: any;
+  pageColumns?: ColumnType[];
   pageId: string;
   refresh?: boolean;
   sortable?: boolean;
@@ -157,7 +157,7 @@ const usePageBuilder = ({
     let columnsMaped: any = [];
 
     if (pageData?.columns) {
-      columnsMaped = pageData.columns.map((item: any) => {
+      columnsMaped = pageData.columns.map((item: IPageBuilderColumns) => {
         const column: ColumnType = {
           width: item.width,
           title: item.title,
@@ -169,21 +169,21 @@ const usePageBuilder = ({
             <Space
               onClick={() =>
                 item.clickColumn &&
-                onSelectedAction(item.clickColumn.id, row, item)
+                onSelectedAction(item.clickColumn.id!, row, item)
               }
             >
-              {item.render(row)}
+              {item.render!(row)}
             </Space>
           );
-        } else if (item.value?.split(".").length > 1) {
+        } else if (item.value && item.value?.split(".").length > 1) {
           column["render"] = (_cell: string, row: any) => (
             <Space
               onClick={() =>
                 item.clickColumn &&
-                onSelectedAction(item.clickColumn.id, row, item)
+                onSelectedAction(item.clickColumn.id!, row, item)
               }
             >
-              {createNestedObject(row, item.value)}
+              {createNestedObject(row, item.value!)}
             </Space>
           );
         } else {
@@ -192,21 +192,23 @@ const usePageBuilder = ({
               <Space
                 onClick={() =>
                   item.clickColumn &&
-                  onSelectedAction(item.clickColumn.id, row, item)
+                  onSelectedAction(item.clickColumn.id!, row, item)
                 }
               >
-                {row[item.value] || "-"}
+                {row[item.value!] || "-"}
               </Space>
             );
           }
         }
-        if (item.actions) {
+        if (item.actions && item.actions.length > 0) {
           column["render"] = (row: any) => (
             <ActionMore
               isCollapse
               isPageBuilder
               row={row}
-              list={item.actions}
+              list={
+                item.actions as { action: string; title: string; icon: any }[]
+              }
               onSelectAction={(event) => onSelectedAction(event, row)}
             />
           );
@@ -275,7 +277,9 @@ const usePageBuilder = ({
 
   // ---------------------- useEffects ---------------------
   useEffect(() => {
-    const Page = pageBuilders?.find((item: any) => item.pageId === pageId);
+    const Page = pageBuilders?.find(
+      (item: IPageBuilder) => item.pageId === pageId,
+    );
 
     setPageData(Page);
   }, [pageId]);
