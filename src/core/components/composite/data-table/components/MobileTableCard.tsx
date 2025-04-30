@@ -1,12 +1,9 @@
-import {
-  Checkbox,
-  ColumnType,
-  Divider,
-  ExpandableConfig,
-  Flex,
-  Space,
-  Typography,
-} from "@/core/components/base";
+import { Checkbox } from "@/core/components/base/checkbox";
+import { ColumnType, ExpandableConfig } from "@/core/components/base/table";
+import { Divider } from "@/core/components/base/divider";
+import { Flex } from "@/core/components/base/flex";
+import { Space } from "@/core/components/base/space";
+import { Typography } from "@/core/components/base/typography";
 import { ChevronDown, ChevronUp } from "@/core/icons";
 import { useState } from "react";
 import { useStyles } from "../styled";

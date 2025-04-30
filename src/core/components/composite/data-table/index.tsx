@@ -1,5 +1,6 @@
-import type { TableProps } from "@/core/components/base";
-import { Flex, Table } from "@/core/components/base";
+import type { Props as TableProps } from "@/core/components/base/table";
+import { Flex } from "@/core/components/base/flex";
+import { Table } from "@/core/components/base/table";
 import { useStyles as useStylesBase } from "@/core/styled";
 import { Key } from "react";
 import { RenderSkeleton, SearchbarTable } from "./components";
@@ -28,7 +29,7 @@ export type Props<T extends object> = TableProps<T> & {
   ) => void;
 };
 
-export const DataTable = <T extends object>({
+const DataTable = <T extends object>({
   // Use the original Props type
   apiPath,
   selection,
@@ -119,3 +120,5 @@ export const DataTable = <T extends object>({
     </>
   );
 };
+
+export default DataTable;

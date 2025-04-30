@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Spin as BaseSpin, SpinProps } from "antd";
+import { default as BaseSpin } from "antd/es/spin";
+import type { SpinProps } from "antd/es/spin";
 
 type Props = Pick<
   SpinProps,

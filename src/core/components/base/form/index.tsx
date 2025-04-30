@@ -1,5 +1,6 @@
 import { FC, ReactNode } from "react";
-import { Form as BaseForm, FormProps } from "antd";
+import { default as BaseForm } from "antd/es/form";
+import type { FormProps } from "antd/es/form";
 import Item from "antd/es/form/FormItem";
 import List from "antd/es/form/FormList";
 import { useForm } from "antd/lib/form/Form";

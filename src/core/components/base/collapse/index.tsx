@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Collapse as BaseCollapse, CollapseProps } from "antd";
+import { default as BaseCollapse } from "antd/es/collapse";
+import type { CollapseProps } from "antd/es/collapse";
 
 export type Props = Pick<
   CollapseProps,

@@ -1,5 +1,5 @@
-import { Table as BaseTable, TableProps } from "antd";
-import { ColumnGroupType, ColumnType } from "antd/es/table";
+import { default as BaseTable } from "antd/es/table";
+import type { ColumnGroupType, ColumnType, TableProps } from "antd/es/table";
 import { ExpandableConfig } from "antd/es/table/interface";
 
 declare module "antd/es/table" {
@@ -33,7 +33,6 @@ export type Props<T extends object> = Pick<
 > & {
   columns: (ColumnGroupType<T> | ColumnType<T>)[];
 };
-
 export const Table = <T extends object>(props: Props<T>) => (
   <BaseTable {...props} />
 );

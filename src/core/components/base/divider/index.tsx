@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Divider as BaseDivider } from "antd";
+import { default as BaseDivider } from "antd/es/divider";
 import { DividerProps } from "antd/es/divider";
 
 type Props = Pick<

@@ -1,33 +1,32 @@
-import { Button, Col, Row } from "@/core/components/base";
+import { Row } from "@/core/components/base/row";
+import { Button } from "@/core/components/base/button";
+import { Col } from "@/core/components/base/col";
 import { FC } from "react";
-import { theme as themeContent } from "@/core/theme";
-import { IPageBuilderFilter } from "../types";
+import { IPageBuilderFilter } from "@/core/types/page-builder";
+import { useStyles } from "./styled";
+import { useStyles as useStylesBase } from "@/core/styled";
 import usePageBuilderFilterHook from "./UsePageBuilderFilterHook";
-import { css } from "@emotion/css";
-import { Section } from "@/core/styled";
 
 type Props = {
   list: IPageBuilderFilter[];
 };
 
-export const PageBuilderFilter: FC<Props> = ({ list }) => {
+const PageBuilderFilter: FC<Props> = ({ list }) => {
   // -------------------- hooks ----------------------
   const { checkFilters, sendParams } = usePageBuilderFilterHook({ list });
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
+  const { styles: stylesBase } = useStylesBase();
 
   // -------------------- render ----------------------
   return (
-    <Section token={token}>
+    <section className={stylesBase.section}>
       <Row gutter={[15, 15]} align="middle">
         {checkFilters}
       </Row>
       <Row justify={"end"}>
         <Col>
           <Button
-            className={css`
-              margin-top: 1rem;
-              margin-left: 1rem;
-            `}
+            className={styles.buttonFilter}
             type="primary"
             onClick={sendParams}
           >
@@ -35,6 +34,8 @@ export const PageBuilderFilter: FC<Props> = ({ list }) => {
           </Button>
         </Col>
       </Row>
-    </Section>
+    </section>
   );
 };
+
+export default PageBuilderFilter;

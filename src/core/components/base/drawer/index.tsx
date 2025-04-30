@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Drawer as BaseDrawer, DrawerProps } from "antd";
+import { default as BaseDrawer } from "antd/es/drawer";
+import type { DrawerProps } from "antd/es/drawer";
 
 type Props = Pick<
   DrawerProps,

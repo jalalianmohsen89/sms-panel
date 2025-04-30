@@ -1,16 +1,14 @@
 import apiService from "@/core/services";
 import { useMutation } from "@tanstack/react-query";
 import { useEffect, useState, useCallback, useMemo } from "react";
-import {
-  DatePickerJalali,
-  RangePickerJalali,
-  Input,
-  Select,
-  Switch,
-} from "@/core/components/base";
-import { css } from "@emotion/css";
-import { IPageBuilderFilter, TYPES, ISelect } from "../types";
+import { RangePickerJalali } from "@/core/components/base/date-picker/RangePicker";
+import { DatePickerJalali } from "@/core/components/base/date-picker";
+import { Input } from "@/core/components/base/input";
+import { Select } from "@/core/components/base/select";
+import { Switch } from "@/core/components/base/switch";
+import { IPageBuilderFilter, TYPES, ISelect } from "@/core/types/page-builder";
 import { useSearchParams } from "react-router-dom";
+import { useStyles } from "./styled";
 
 type Props = IPageBuilderFilter;
 const useFilterHook = (props: Props) => {
@@ -34,6 +32,7 @@ const useFilterHook = (props: Props) => {
   const [multipleValue, setMultipleValue] = useState<any[]>(defaultValue || []);
   const [options, setOptions] = useState<ISelect[]>([]);
   const [searchParams] = useSearchParams();
+  const { styles } = useStyles();
 
   const fetchData = useCallback(() => apiService.get(apiUrl ?? ""), [apiUrl]);
 
@@ -155,9 +154,7 @@ const useFilterHook = (props: Props) => {
   const datePickerType = useCallback(
     () => (
       <DatePickerJalali
-        className={css`
-          width: 100%;
-        `}
+        className={styles.width}
         showTime={showTime}
         label={title}
         placeholder={title}
@@ -165,15 +162,14 @@ const useFilterHook = (props: Props) => {
         onChange={handleDatePickerChange}
       />
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [showTime, title, value, handleDatePickerChange],
   );
 
   const dateRangeType = useCallback(
     () => (
       <RangePickerJalali
-        className={css`
-          width: 100%;
-        `}
+        className={styles.width}
         label={title}
         showTime={showTime}
         placeholder={title}
@@ -183,6 +179,7 @@ const useFilterHook = (props: Props) => {
         }
       />
     ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [title, showTime, value, handleDateRangeChange],
   );
 

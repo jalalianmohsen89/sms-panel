@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "lint:fix": "eslint --fix src/**/*.{js,jsx,ts,tsx,json}",
     "prepare": "husky",
-    "plop": "plop"
+    "plop": "plop",
+    "analyze": "source-map-explorer dist/assets/index-*.js"
   },
   "lint-staged": {
     "*.{js,ts,tsx,css,json}": "prettier --write",
@@ -18,13 +19,10 @@
   },
   "dependencies": {
     "@ant-design/colors": "^7.2.0",
-    "@emotion/css": "^11.13.5",
-    "@emotion/react": "^11.13.5",
-    "@emotion/styled": "^11.13.5",
     "@tanstack/react-query": "^5.62.0",
     "@types/moment-jalaali": "^0.7.9",
     "@types/node": "^22.10.1",
-    "@vitejs/plugin-react-swc": "^3.7.2",
+    "@vitejs/plugin-react": "^4.4.1",
     "antd": "^5.24.7",
     "antd-jalali": "^2.0.1",
     "antd-style": "^3.7.1",
@@ -39,6 +37,9 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.0.2",
     "react18-json-view": "^0.2.8",
+    "rollup-plugin-visualizer": "^5.14.0",
+    "vite-imagetools": "^7.0.5",
+    "vite-plugin-compression": "^0.5.1",
     "zustand": "^5.0.3"
   },
   "devDependencies": {
@@ -63,10 +64,12 @@
     "jsdom": "^25.0.1",
     "lint-staged": "^15.2.10",
     "plop": "^4.0.1",
+    "source-map-explorer": "^2.5.3",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.8.1",
     "vite": "^5.4.8",
     "vite-plugin-eslint": "^1.8.1",
+    "vite-plugin-pwa": "^1.0.0",
     "vitest": "^2.1.8"
   }
 }

@@ -1,6 +1,8 @@
-import { Flex, Space, Table, Typography } from "@/core/components/base";
+import { Typography } from "@/core/components/base/typography";
+import { Flex } from "@/core/components/base/flex";
+import { Space } from "@/core/components/base/space";
+import { Table } from "@/core/components/base/table";
 import useStore from "@/core/store";
-import { css } from "@emotion/css";
 import { useState } from "react";
 import JsonView from "react18-json-view";
 import { useStyles } from "./styled";
@@ -34,12 +36,7 @@ const useDevtools = () => {
       title: "عملیات",
       dataIndex: "actions",
       render: (_: any, row: any) => (
-        <Flex
-          className={css`
-            cursor: pointer;
-          `}
-          onClick={() => onClick(row)}
-        >
+        <Flex className={styles.pointer} onClick={() => onClick(row)}>
           {row && selectedRow.length > 0 ? "مخفی" : "نمایش"}
         </Flex>
       ),

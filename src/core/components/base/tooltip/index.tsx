@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Tooltip as BaseTooltip, TooltipProps } from "antd";
+import { default as BaseTooltip } from "antd/es/tooltip";
+import type { TooltipProps } from "antd/es/tooltip";
 
 type Props = Pick<
   TooltipProps,

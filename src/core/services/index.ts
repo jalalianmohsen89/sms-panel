@@ -1,6 +1,6 @@
 import axios, { AxiosError } from "axios";
 import Cookies from "js-cookie";
-import { Toast } from "../components/base";
+import { Toast } from "@/core/components/base/toast";
 
 const apiService = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL, // api base_url

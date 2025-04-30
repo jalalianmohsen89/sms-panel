@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Checkbox as BaseCheckbox, CheckboxProps } from "antd";
+import { default as BaseCheckbox } from "antd/es/checkbox";
+import type { CheckboxProps } from "antd/es/checkbox";
 import Group from "antd/es/checkbox/Group";
 
 type Props = Pick<

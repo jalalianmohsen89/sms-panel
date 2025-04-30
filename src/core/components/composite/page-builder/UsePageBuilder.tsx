@@ -1,29 +1,48 @@
-import { theme as themeContent } from "@/core/theme";
-import { useState, useEffect, ReactNode, useCallback, useMemo } from "react";
-import { ColumnType, Space } from "@/core/components/base";
-import { pageBuilders } from "@/core/components/composite/page-builder/content";
+import { ColumnType } from "@/core/components/base/table";
+import { Space } from "@/core/components/base/space";
+import { ActionMore } from "@/core/components/composite/data-table/components";
 import {
   ISortInfo,
   SortOrder,
 } from "@/core/components/composite/data-table/types";
-import { createNestedObject } from "@/core/functions";
-import { ActionMore } from "@/core/components/composite/data-table/components";
 import {
   IPageBuilder,
   IPageBuilderActions,
   IPageBuilderColumns,
   ModalType,
-} from "@/core/components/composite/page-builder/types";
+} from "@/core/types/page-builder";
+import { createNestedObject } from "@/core/functions";
+import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { pageBuilders } from "@/core/content/PageBuilder";
 
 type Props = {
-  pageColumns?: any;
+  pageColumns?: ColumnType[];
   pageId: string;
   refresh?: boolean;
+  sortable?: boolean;
+  searchable?: boolean;
+  selectable?: boolean;
+  skipUrlParams?: boolean;
+  showRowNumber?: boolean;
+  expandable?: {
+    expandedRowRender: (row: any) => ReactNode;
+  };
+  onSelectedRow?: (rows: any[]) => void;
 };
-const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
+const usePageBuilder = ({
+  pageColumns,
+  pageId,
+  refresh,
+  sortable,
+  searchable,
+  selectable,
+  skipUrlParams,
+  showRowNumber,
+  expandable,
+  onSelectedRow,
+}: Props) => {
   // ---------------------- variables ---------------------
-  const { token } = themeContent.useToken();
   const navigate = useNavigate();
   const [pageData, setPageData] = useState<IPageBuilder>();
   const [columns, setColumns] = useState(pageColumns);
@@ -138,7 +157,7 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
     let columnsMaped: any = [];
 
     if (pageData?.columns) {
-      columnsMaped = pageData.columns.map((item: any) => {
+      columnsMaped = pageData.columns.map((item: IPageBuilderColumns) => {
         const column: ColumnType = {
           width: item.width,
           title: item.title,
@@ -150,21 +169,21 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
             <Space
               onClick={() =>
                 item.clickColumn &&
-                onSelectedAction(item.clickColumn.id, row, item)
+                onSelectedAction(item.clickColumn.id!, row, item)
               }
             >
-              {item.render(row)}
+              {item.render!(row)}
             </Space>
           );
-        } else if (item.value?.split(".").length > 1) {
+        } else if (item.value && item.value?.split(".").length > 1) {
           column["render"] = (_cell: string, row: any) => (
             <Space
               onClick={() =>
                 item.clickColumn &&
-                onSelectedAction(item.clickColumn.id, row, item)
+                onSelectedAction(item.clickColumn.id!, row, item)
               }
             >
-              {createNestedObject(row, item.value)}
+              {createNestedObject(row, item.value!)}
             </Space>
           );
         } else {
@@ -173,21 +192,23 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
               <Space
                 onClick={() =>
                   item.clickColumn &&
-                  onSelectedAction(item.clickColumn.id, row, item)
+                  onSelectedAction(item.clickColumn.id!, row, item)
                 }
               >
-                {row[item.value] || "-"}
+                {row[item.value!] || "-"}
               </Space>
             );
           }
         }
-        if (item.actions) {
+        if (item.actions && item.actions.length > 0) {
           column["render"] = (row: any) => (
             <ActionMore
               isCollapse
               isPageBuilder
               row={row}
-              list={item.actions}
+              list={
+                item.actions as { action: string; title: string; icon: any }[]
+              }
               onSelectAction={(event) => onSelectedAction(event, row)}
             />
           );
@@ -200,9 +221,65 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
     return columnsMaped;
   }, [pageData?.columns, onSelectedAction]);
 
+  const dataTableProps = useMemo(() => {
+    const props: any = {}; // Use a more specific type if possible
+
+    if (pageData?.page.dataMap) {
+      props.dataMap = pageData.page.dataMap.method;
+    }
+    if (selectable) {
+      props.selection = true;
+      props.onSelected = (rows: any[]) => onSelectedRow?.(rows);
+    }
+    if (searchable) {
+      props.searchbar = true;
+    }
+    if (sortable) {
+      props.sortInfo = sortInfo;
+      props.onChangeSortMobile = (
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        sort_direction: SortOrder,
+        // eslint-disable-next-line @typescript-eslint/naming-convention
+        sort_field: string,
+      ) => {
+        setSortInfo({ sort_field, sort_direction });
+        handleSort(sort_field);
+      };
+    }
+    if (expandable) {
+      props.expandable = expandable;
+    }
+    if (refeatchData) {
+      props.refeatch = refeatchData;
+    }
+    if (skipUrlParams) {
+      props.skipUrlParams = true;
+    }
+    if (showRowNumber) {
+      props.showRowNumber = true;
+    }
+
+    return props;
+  }, [
+    pageData,
+    selectable,
+    onSelectedRow,
+    searchable,
+    sortable,
+    sortInfo,
+    setSortInfo,
+    handleSort,
+    expandable,
+    refeatchData,
+    skipUrlParams,
+    showRowNumber,
+  ]);
+
   // ---------------------- useEffects ---------------------
   useEffect(() => {
-    const Page = pageBuilders?.find((item: any) => item.pageId === pageId);
+    const Page = pageBuilders?.find(
+      (item: IPageBuilder) => item.pageId === pageId,
+    );
 
     setPageData(Page);
   }, [pageId]);
@@ -223,18 +300,14 @@ const usePageBuilder = ({ pageColumns, pageId, refresh }: Props) => {
   }, [refresh, refeatchData, onSubmit]);
 
   return {
-    token,
     columns,
     pageData,
-    refeatchData,
     modalProps,
     setModalProps,
     drawerProps,
     setDrawerProps,
-    sortInfo,
-    setSortInfo,
-    handleSort,
     addForm,
+    dataTableProps,
   };
 };
 

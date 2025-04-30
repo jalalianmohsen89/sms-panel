@@ -1,8 +1,21 @@
+import { lazy } from "react";
+
 export { Loading } from "./loading";
 
 export { Header, Notification, Profile, Sidebar } from "./layout";
 
-export { DataTable } from "./data-table";
+export const DataTable = lazy(
+  () => import("@/core/components/composite/data-table"),
+);
+
+export const PageBuilder = lazy(
+  () => import("@/core/components/composite/page-builder"),
+);
+
+export const PageBuilderFilter = lazy(
+  () => import("@/core/components/composite/page-builder/filter"),
+);
+
 export {
   ActionMore,
   MobileTablesCard,
@@ -11,16 +24,5 @@ export {
   RenderSkeleton,
   SearchbarTable,
 } from "./data-table/components";
-
-export { PageBuilder } from "./page-builder";
-
-export {
-  filterTypeOptions,
-  dataMapsList,
-  pages,
-  pageBuilders,
-} from "@/core/components/composite/page-builder/content";
-
-export { PageBuilderFilter } from "@/core/components/composite/page-builder/filter";
 
 export { UploadRules } from "@/core/components/composite/upload-rules";

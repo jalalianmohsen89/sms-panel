@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Breadcrumb as BaseBreadcrumb, BreadcrumbProps } from "antd";
+import { default as BaseBreadcrumb } from "antd/es/breadcrumb";
+import type { BreadcrumbProps } from "antd/es/breadcrumb";
 
 type Props = Pick<
   BreadcrumbProps,

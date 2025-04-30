@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { AutoComplete as BaseAutoComplete, AutoCompleteProps } from "antd";
+import { default as BaseAutoComplete } from "antd/es/auto-complete";
+import type { AutoCompleteProps } from "antd/es/auto-complete";
 
 type Props = Pick<
   AutoCompleteProps,

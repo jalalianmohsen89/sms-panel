@@ -1,11 +1,9 @@
-import { Flex, TextArea, Typography } from "@/core/components/base";
-import { css } from "@emotion/css";
+import { Typography } from "@/core/components/base/typography";
+import { Flex } from "@/core/components/base/flex";
+import { Space } from "@/core/components/base/space";
+import { TextArea } from "@/core/components/base/text-area";
 import { FC, useEffect, useState } from "react";
-import {
-  ToolbarEditorContainer,
-  ToolbarEditorItem,
-} from "@/core/feature/sms/styled";
-import { theme as themeContent } from "@/core/theme";
+import { useStyles } from "./styled";
 
 type Props = {
   value?: string;
@@ -17,7 +15,7 @@ export const Editor: FC<Props> = ({ value = "", onChange }) => {
   const [charCount, setCharCount] = useState(0);
   const [lang, setLang] = useState("فارسی");
   const [chars, setChars] = useState(70);
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
 
   const containsEnglishChar = (text: string): boolean => /[A-Za-z]/.test(text);
   const onChangeEditor = (event: any) => {
@@ -34,33 +32,26 @@ export const Editor: FC<Props> = ({ value = "", onChange }) => {
   }, [textEditor]);
 
   return (
-    <Flex
-      className={css`
-        position: relative;
-      `}
-    >
+    <Flex className={styles.position}>
       <TextArea
         label="متن پیام"
         placeholder="متن مورد نظر خود را وارد کنید..."
         autoSize={{ minRows: 6, maxRows: 12 }}
-        className={css`
-          width: 100%;
-          padding: 1rem 1rem 3rem;
-        `}
+        className={styles.textareaStyle}
         value={textEditor}
         onChange={onChangeEditor}
       />
-      <ToolbarEditorContainer token={token} align="center">
-        <ToolbarEditorItem token={token}>
+      <Flex className={styles.ToolbarEditorContainer} align="center">
+        <Space className={styles.ToolbarEditorItem}>
           <Typography>{charCount + "" + "/" + chars}</Typography>
-        </ToolbarEditorItem>
-        <ToolbarEditorItem token={token}>
+        </Space>
+        <Space className={styles.ToolbarEditorItem}>
           <Typography>{lang}</Typography>
-        </ToolbarEditorItem>
-        <ToolbarEditorItem token={token}>
+        </Space>
+        <Space className={styles.ToolbarEditorItem}>
           <Typography>{pageCount + " " + "پیام"}</Typography>
-        </ToolbarEditorItem>
-      </ToolbarEditorContainer>
+        </Space>
+      </Flex>
     </Flex>
   );
 };

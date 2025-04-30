@@ -1,4 +1,5 @@
-import { Alert as AlertBase, AlertProps } from "antd";
+import { default as AlertBase } from "antd/es/alert";
+import type { AlertProps } from "antd/es/alert";
 import { FC } from "react";
 import { useStyles } from "./styled";
 

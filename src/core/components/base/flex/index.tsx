@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Flex as BaseFlex } from "antd";
+import { default as BaseFlex } from "antd/es/flex";
 import { FlexProps } from "antd/lib";
 
 type Props = Pick<

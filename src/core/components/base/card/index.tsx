@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Card as BaseCard, CardProps } from "antd";
+import { default as BaseCard } from "antd/es/card";
+import type { CardProps } from "antd/es/card";
 import Grid from "antd/es/card/Grid";
 import Meta from "antd/es/card/Meta";
 

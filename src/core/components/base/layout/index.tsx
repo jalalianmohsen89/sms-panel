@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Layout as BaseLayout } from "antd";
+import { default as BaseLayout } from "antd/es/layout";
 import { BasicProps, Content, Footer, Header } from "antd/es/layout/layout";
 import Sider from "antd/es/layout/Sider";
 

@@ -1,6 +1,6 @@
 import { FC } from "react";
-import { Cascader as BaseCascader } from "antd";
-import { CascaderProps } from "antd/es/cascader";
+import { default as BaseCascader } from "antd/es/cascader";
+import type { CascaderProps } from "antd/es/cascader";
 
 type Props = {
   defaultValue?: any[];

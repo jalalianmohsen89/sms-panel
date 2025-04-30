@@ -1,5 +1,6 @@
 import { FC } from "react";
-import { Avatar as BaseAvatar, AvatarProps } from "antd";
+import { default as BaseAvatar } from "antd/es/avatar";
+import type { AvatarProps } from "antd/es/avatar";
 import AvatarGroup from "antd/es/avatar/AvatarGroup";
 
 type Props = Pick<

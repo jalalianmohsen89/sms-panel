@@ -1,14 +1,13 @@
 import FormPersonalSms from "@/core/feature/sms/components/form-personal-sms";
-import { Section } from "@/core/styled";
-import { theme as themeContent } from "@/core/theme";
+import { useStyles } from "@/core/styled";
 
 const SendPersonal = () => {
-  const { token } = themeContent.useToken();
+  const { styles } = useStyles();
 
   return (
-    <Section token={token}>
+    <section className={styles.section}>
       <FormPersonalSms />
-    </Section>
+    </section>
   );
 };
 
