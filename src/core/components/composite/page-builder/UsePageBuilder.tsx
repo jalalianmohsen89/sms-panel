@@ -5,16 +5,16 @@ import {
   ISortInfo,
   SortOrder,
 } from "@/core/components/composite/data-table/types";
-import { pageBuilders } from "@/core/components/composite/page-builder/content";
 import {
   IPageBuilder,
   IPageBuilderActions,
   IPageBuilderColumns,
   ModalType,
-} from "@/core/components/composite/page-builder/types";
+} from "@/core/types/page-builder";
 import { createNestedObject } from "@/core/functions";
 import { ReactNode, useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { pageBuilders } from "@/core/content/PageBuilder";
 
 type Props = {
   pageColumns?: any;
