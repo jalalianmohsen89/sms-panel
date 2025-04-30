@@ -98,3 +98,5 @@ export { ColorPicker } from "./color-picker";
 export { Editor } from "./editor";
 export { Countdown, Statistic } from "./statistic";
 export { Tree } from "./tree";
+
+export { ConvertDate } from "./convert-date";
