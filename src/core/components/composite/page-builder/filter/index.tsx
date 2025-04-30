@@ -2,7 +2,7 @@ import { Row } from "@/core/components/base/row";
 import { Button } from "@/core/components/base/button";
 import { Col } from "@/core/components/base/col";
 import { FC } from "react";
-import { IPageBuilderFilter } from "../types";
+import { IPageBuilderFilter } from "@/core/types/page-builder";
 import { useStyles } from "./styled";
 import { useStyles as useStylesBase } from "@/core/styled";
 import usePageBuilderFilterHook from "./UsePageBuilderFilterHook";
