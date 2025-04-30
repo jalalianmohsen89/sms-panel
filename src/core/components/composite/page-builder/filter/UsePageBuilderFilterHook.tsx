@@ -6,7 +6,7 @@ import {
   useTransition,
 } from "react";
 import { useSearchParams } from "react-router-dom";
-import { IPageBuilderFilter } from "../types";
+import { IPageBuilderFilter } from "@/core/types/page-builder";
 import FilterItem from "./FilterItem";
 import { Col } from "@/core/components/base/col";
 

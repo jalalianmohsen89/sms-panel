@@ -1,9 +1,9 @@
-import ConvertDate from "@/core/components/composite/page-builder/columns/convert-date";
+import { ConvertDate } from "@/core/components/base/convert-date";
 import {
   IPageBuilderColumns,
   IPageBuilderFilter,
   TYPES,
-} from "@/core/components/composite/page-builder/types";
+} from "@/core/types/page-builder";
 // import { actionIconList } from "@/core/content";
 import { ShowFormType } from "@/core/types";
 

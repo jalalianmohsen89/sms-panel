@@ -25,11 +25,4 @@ export {
   SearchbarTable,
 } from "./data-table/components";
 
-export {
-  filterTypeOptions,
-  dataMapsList,
-  pages,
-  pageBuilders,
-} from "@/core/components/composite/page-builder/content";
-
 export { UploadRules } from "@/core/components/composite/upload-rules";

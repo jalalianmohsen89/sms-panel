@@ -6,7 +6,7 @@ import { DatePickerJalali } from "@/core/components/base/date-picker";
 import { Input } from "@/core/components/base/input";
 import { Select } from "@/core/components/base/select";
 import { Switch } from "@/core/components/base/switch";
-import { IPageBuilderFilter, TYPES, ISelect } from "../types";
+import { IPageBuilderFilter, TYPES, ISelect } from "@/core/types/page-builder";
 import { useSearchParams } from "react-router-dom";
 import { useStyles } from "./styled";
 
