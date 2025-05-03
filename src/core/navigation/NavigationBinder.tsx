@@ -1,4 +1,3 @@
-// src/core/navigation/NavigationBinder.tsx
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { setNavigate } from "@/core/navigation";
