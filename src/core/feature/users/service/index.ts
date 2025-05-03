@@ -5,3 +5,6 @@ export const registerUser = (formData: any) =>
 
 export const assingUser = (formData: any) =>
   apiService.post("user-number/create", formData);
+
+export const setWebHook = (data: any) =>
+  apiService.put("user-number/update", data);
