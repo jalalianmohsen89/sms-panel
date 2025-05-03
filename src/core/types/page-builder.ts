@@ -59,11 +59,13 @@ export interface IPageBuilderColumns {
   render?: (row: any) => any;
   // typeValue?: (row: any) => any;
   clickColumn?: IPageBuilderActions;
-  actions?: {
-    action: string;
-    title: string;
-    icon?: ReactNode;
-  }[];
+  actions?: IPageBuilderColumnsActions[];
+}
+
+export interface IPageBuilderColumnsActions {
+  action: string;
+  title: string;
+  icon?: ReactNode;
 }
 
 export interface IPageBuilderActions {

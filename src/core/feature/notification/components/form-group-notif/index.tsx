@@ -16,7 +16,7 @@ import { Button } from "@/core/components/base/button";
 import { UploadRules } from "@/core/components/composite";
 import { EnvelopeArrowUp, Megaphone, Message, Send } from "@/core/icons";
 import { useStyles as useStylesBase } from "@/core/styled";
-import useFormGroupNotification from "./hook";
+import { useFormGroupNotification } from "./hook";
 import { useStyles } from "./styled";
 
 const FormGroupNotif = () => {

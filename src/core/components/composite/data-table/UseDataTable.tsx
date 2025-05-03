@@ -1,11 +1,11 @@
-import { Col } from "@/core/components/base/col";
 import { Empty } from "@/core/components/base";
+import { Col } from "@/core/components/base/col";
+import { useBreakpoint } from "@/core/components/base/grid";
 import { Pagination } from "@/core/components/base/pagination";
 import { Row } from "@/core/components/base/row";
-import { useBreakpoint } from "@/core/components/base/grid";
 import apiService from "@/core/services";
 import { useStore } from "@/core/store";
-import { useMutation } from "@tanstack/react-query";
+import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import {
   useCallback,
   useDeferredValue,
@@ -22,8 +22,8 @@ import {
   SearchbarTable,
 } from "./components";
 import { Props } from "./index";
-import { IPagination, IParams } from "./types";
 import { useStyles } from "./styled";
+import { IPagination, IParams } from "./types";
 
 interface WithOptionalId {
   id?: string | number;
@@ -31,7 +31,7 @@ interface WithOptionalId {
 
 const DEFAULT_PAGE_SIZE = 15;
 
-const useDataTable = <T extends WithOptionalId>({
+export const useDataTable = <T extends WithOptionalId>({
   apiPath,
   selection,
   sortInfo,
@@ -200,75 +200,94 @@ const useDataTable = <T extends WithOptionalId>({
   );
 
   // -------------------- Data Fetching --------------------------
-  const fetchData = useCallback(() => {
-    // Construct final params, including search
-    const finalParams = { ...params };
+  const finalParams = useMemo(() => {
+    const queryParams = { ...params };
 
     if (deferredSearchValue) {
-      finalParams.search = deferredSearchValue;
+      queryParams.search = deferredSearchValue;
     }
-    // Remove pagination params if not needed
     if (!withPagination) {
-      delete finalParams.page;
-      delete finalParams.limit;
+      delete queryParams.page;
+      delete queryParams.limit;
     }
 
-    return apiService.get(apiPath, {
-      params: skipUrlParams ? undefined : finalParams,
-    });
-  }, [apiPath, params, skipUrlParams, deferredSearchValue, withPagination]);
+    return queryParams;
+  }, [params, deferredSearchValue, withPagination]);
 
-  const { mutate: getData, isPending: loadingMutation } = useMutation({
-    mutationFn: fetchData,
-    onSuccess: ({ data }) => {
-      startTransition(() => {
-        let processedRows = dataMap
-          ? dataMap(data.list || data)
-          : data.list || data;
-
-        if (withPagination && data.pagination) {
-          setPagination({
-            page: +data.pagination.page,
-            current: +data.pagination.page,
-            pageSize: +data.pagination.limit,
-            total: data.pagination.total,
-          });
-        }
-
-        if (showRowNumber) {
-          const currentPage = params.page ?? 1;
-          const currentLimit = params.limit ?? DEFAULT_PAGE_SIZE;
-
-          processedRows = processedRows?.map((item: any, index: number) => ({
-            ...item,
-            index: currentLimit * (currentPage - 1) + index + 1,
-            key: item.id ?? index, // Ensure unique key for React
-          }));
-        } else {
-          processedRows = processedRows.map((item: any, index: number) => ({
-            ...item,
-            key: item.id ?? index, // Ensure unique key for React
-          }));
-        }
-
-        setRows(processedRows);
-        onGetData?.(data);
-        addRecordToDevList(
-          {
-            name: "getData",
-            url: location.pathname,
-            params: JSON.stringify(params), // Log current params
-            list: data,
-          },
-          location,
-        );
-      });
-    },
-    // onError: (error) => {
-    //   console.error("Error fetching data:", error);
-    //   // Handle error appropriately, e.g., show a toast message
-    // }
+  const {
+    data: dataSourceApi,
+    isFetching,
+    refetch: refetchApi,
+  } = useQuery({
+    queryKey: [apiPath, finalParams],
+    queryFn: ({ signal }: { signal: AbortSignal }) =>
+      apiService.get(apiPath, {
+        params: skipUrlParams ? undefined : finalParams,
+        signal,
+      }),
+    placeholderData: keepPreviousData,
+    enabled:
+      (requiredFilter && Object.keys(finalParams).length > 2) ||
+      !requiredFilter,
   });
+
+  useEffect(() => {
+    if (!dataSourceApi?.data) return;
+
+    startTransition(() => {
+      let processedRows = dataMap
+        ? dataMap(dataSourceApi.data.list || dataSourceApi.data)
+        : dataSourceApi.data.list || dataSourceApi.data;
+
+      if (withPagination && dataSourceApi.data.pagination) {
+        setPagination({
+          page: +dataSourceApi.data.pagination.page,
+          current: +dataSourceApi.data.pagination.page,
+          pageSize: +dataSourceApi.data.pagination.limit,
+          total: dataSourceApi.data.pagination.total,
+        });
+      }
+
+      if (showRowNumber) {
+        const currentPage = params.page ?? 1;
+        const currentLimit = params.limit ?? DEFAULT_PAGE_SIZE;
+
+        processedRows = processedRows?.map((item: any, index: number) => ({
+          ...item,
+          index: currentLimit * (currentPage - 1) + index + 1,
+          key: item.id ?? index,
+        }));
+      } else {
+        processedRows = processedRows.map((item: any, index: number) => ({
+          ...item,
+          key: item.id ?? index,
+        }));
+      }
+
+      setRows(processedRows);
+      onGetData?.(dataSourceApi.data);
+      addRecordToDevList(
+        {
+          name: "getData",
+          url: location.pathname,
+          params: JSON.stringify(finalParams),
+          list: dataSourceApi.data,
+        },
+        location,
+      );
+    });
+  }, [
+    dataSourceApi,
+    finalParams,
+    withPagination,
+    showRowNumber,
+    dataMap,
+    onGetData,
+    addRecordToDevList,
+    location,
+    params.page,
+    params.limit,
+  ]);
 
   // -------------------- Effects --------------------------
 
@@ -305,43 +324,13 @@ const useDataTable = <T extends WithOptionalId>({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.search, skipUrlParams, withPagination]); // Only run when search query changes
 
-  // Effect to fetch data when params change (debounced by deferredSearchValue)
-  useEffect(() => {
-    // Ensure dataMap is provided before fetching
-    if (!dataMap) return;
-
-    const shouldFetch =
-      !requiredFilter ||
-      (requiredFilter &&
-        Object.keys(params).some((k) => k !== "page" && k !== "limit"));
-
-    if (shouldFetch) {
-      // Check if essential params are present before fetching
-      if (
-        withPagination &&
-        (params.page === undefined || params.limit === undefined)
-      ) {
-        return;
-      }
-      getData();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    params,
-    requiredFilter,
-    deferredSearchValue,
-    dataMap,
-    getData,
-    withPagination,
-  ]); // getData is memoized by useMutation
-
   // Effect to refetch data when `refeatch` prop changes
   useEffect(() => {
     if (dataMap && refeatch) {
-      getData();
+      refetchApi();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refeatch, dataMap, getData]);
+  }, [refeatch, dataMap, refetchApi]);
 
   // Effect to handle externally provided dataSource
   useEffect(() => {
@@ -422,7 +411,7 @@ const useDataTable = <T extends WithOptionalId>({
               params={params}
               setParams={setParams} // Allow direct setting for sort if needed
               onChangeSortMobile={onChangeSortMobile}
-              refreshData={getData}
+              refreshData={refetchApi}
             />
           </Col>
         )}
@@ -447,7 +436,7 @@ const useDataTable = <T extends WithOptionalId>({
       columns,
       params,
       onChangeSortMobile,
-      getData,
+      refetchApi,
       selection,
       selectionKey,
       rows,
@@ -487,7 +476,7 @@ const useDataTable = <T extends WithOptionalId>({
 
   // -------------------- Return Value --------------------------
   return {
-    loading: loadingMutation || isPendingTransition,
+    loading: isFetching || isPendingTransition,
     isMobile,
     mobileColumns: mobileTableContent, // Renamed for clarity
     rows,
@@ -503,5 +492,3 @@ const useDataTable = <T extends WithOptionalId>({
     params, // Expose params if needed externally
   };
 };
-
-export default useDataTable;

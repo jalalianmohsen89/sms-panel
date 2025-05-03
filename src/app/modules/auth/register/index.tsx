@@ -5,7 +5,7 @@ import { Flex } from "@/core/components/base/flex";
 import { Form } from "@/core/components/base/form";
 import { Typography } from "@/core/components/base/typography";
 import RegisterForm from "@/core/feature/auth/components/RegisterForm";
-import { registerMobile } from "@/core/feature/auth/server";
+import { registerMobile } from "@/core/feature/auth/service";
 import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { useStyles } from "@/core/feature/auth/styled";

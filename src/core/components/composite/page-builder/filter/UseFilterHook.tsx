@@ -11,7 +11,7 @@ import { useSearchParams } from "react-router-dom";
 import { useStyles } from "./styled";
 
 type Props = IPageBuilderFilter;
-const useFilterHook = (props: Props) => {
+export const useFilterHook = (props: Props) => {
   // -------------------- variables ----------------------
   const {
     onChangeValue,
@@ -257,5 +257,3 @@ const useFilterHook = (props: Props) => {
     multipleValue,
   };
 };
-
-export default useFilterHook;

@@ -1,6 +1,8 @@
 import axios, { AxiosError } from "axios";
 import Cookies from "js-cookie";
 import { Toast } from "@/core/components/base/toast";
+import { goTo } from "../navigation";
+import useStore from "@/core/store";
 
 const apiService = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL, // api base_url
@@ -26,10 +28,8 @@ const catcherServerApi = (error: unknown) => {
   if (error instanceof AxiosError) {
     switch (error.response?.status || error.status) {
     case 401:
-      Cookies.remove("token");
-      localStorage.removeItem("token");
       Toast.error("اطلاعات شما منقضی شده است");
-      window.location.href = "/auth/login";
+      useStore.getState().logout();
       break;
     case 400:
       if (typeof error.response?.data?.message === "string") {
@@ -38,14 +38,14 @@ const catcherServerApi = (error: unknown) => {
         return Toast.error(error.response?.data?.message[0]);
       }
     case 403:
-      window.location.href = "/error/403";
+      goTo("/error/403");
       break;
     case 404:
-      // window.location.href = "/error/404";
+      goTo("/error/404");
       break;
     case 429:
     case 500: {
-      window.location.href = "/error/500";
+      goTo("/error/500");
       break;
     }
     }
