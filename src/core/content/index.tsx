@@ -18,6 +18,7 @@ export const permissionList = [
   "UI::Users::Lines",
   "UI::Lines::List",
   "UI::Notification::Transition",
+  "UI::Users::WebhookSettings",
 ];
 
 export const navigation = [
