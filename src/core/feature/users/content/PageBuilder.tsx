@@ -150,34 +150,26 @@ export const columnsUserLines: IPageBuilderColumns[] = [
     title: "تاریخ",
     render: (row: any) => <ConvertDate date={row.createdAt} />,
   },
-  // {
-  //   id: "actions",
-  //   title: "عملیات",
-  //   width: "10%",
-  //   actions: [
-  //     {
-  //       action: "edit",
-  //       title: "ویرایش",
-  //       icon: actionIconList[0].value
-  //     },
-  //     {
-  //       action: "delete",
-  //       title: "حذف",
-  //       icon: actionIconList[1].value
-  //     }
-  //   ]
-  // }
+  {
+    id: "actions",
+    title: "عملیات",
+    width: "10%",
+    actions: [
+      {
+        action: "view",
+        title: "تنظیمات وب هوک",
+        icon: actionIconList[0].value,
+      },
+    ],
+  },
 ];
 
 export const actionsColumnUserLines = [
   {
-    id: "edit",
+    id: "view",
     showType: "modal" as ShowFormType,
-    value: () => <></>,
-  },
-  {
-    id: "delete",
-    showType: "modal" as ShowFormType,
-    value: () => <></>,
+    value: (row: any) =>
+      // eslint-disable-next-line no-underscore-dangle
+      `/users/webhook_settings?user=${row.inboxOwner._id}&number=${row._id}`,
   },
 ];
