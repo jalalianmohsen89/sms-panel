@@ -5,7 +5,13 @@ import ReactDOM from "react-dom/client";
 import { Provider } from "react-redux";
 import "./core/assets/css/index.css";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  // defaultOptions: {
+  //   queries: {
+  //     staleTime: 1000 * 60 * 5, // 5 دقیقه
+  //   },
+  // },
+});
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>

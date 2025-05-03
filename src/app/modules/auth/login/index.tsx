@@ -5,7 +5,7 @@ import { Flex } from "@/core/components/base/flex";
 import { Form } from "@/core/components/base/form";
 import { Typography } from "@/core/components/base/typography";
 import LoginForm from "@/core/feature/auth/components/LoginForm";
-import { loginMobile } from "@/core/feature/auth/server";
+import { loginMobile } from "@/core/feature/auth/service";
 import { useStyles } from "@/core/feature/auth/styled";
 import useStore from "@/core/store";
 import { useMutation } from "@tanstack/react-query";

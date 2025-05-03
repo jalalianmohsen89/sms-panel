@@ -2,6 +2,7 @@ import axios, { AxiosError } from "axios";
 import Cookies from "js-cookie";
 import { Toast } from "@/core/components/base/toast";
 import { goTo } from "../navigation";
+import useStore from "@/core/store";
 
 const apiService = axios.create({
   baseURL: import.meta.env.VITE_BASE_URL, // api base_url
@@ -27,10 +28,8 @@ const catcherServerApi = (error: unknown) => {
   if (error instanceof AxiosError) {
     switch (error.response?.status || error.status) {
     case 401:
-      Cookies.remove("token");
-      localStorage.removeItem("token");
       Toast.error("اطلاعات شما منقضی شده است");
-      goTo("/auth/login");
+      useStore.getState().logout();
       break;
     case 400:
       if (typeof error.response?.data?.message === "string") {
